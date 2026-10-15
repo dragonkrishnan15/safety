@@ -58,26 +58,33 @@ Most AI coding assistants suffer from **5 fatal failure modes**:
 
 ---
 
-## 🚀 The Core Workflow Pipeline
+## 🚀 The Core Workflow Pipeline (Gravitas-Grade Zero-Trust Runtime)
 
 ```mermaid
 graph TD
     A["0. Inbound Task"] --> B["0. Gate Line: ACCESS / RUN / SIZE / SHELL"]
-    B --> C["0B & 0C: Baseline Sanity & Memory Recall"]
-    C --> D["1. Understand"]
-    D --> E["3. Plan (+ RFC Gate if Complex & Pre-Mortem Stress Test)"]
-    E --> F["4. Implement Atomically (Checkpointed)"]
-    F --> G["5. Verify (Visual Browser Audit / Regression Harness / Perf Budget)"]
-    G --> H["6. Self-Review (Doc Sync & Health Scorecard)"]
-    H --> I["7. Memory Record & Report"]
+    B --> C["1. Task Contract (<tmp>/ct-contract.json) & Baseline"]
+    C --> D["2. Understand & Explore (Context-Budgeted)"]
+    D --> E["3. Plan (RFC Gate if Complex & Pre-Mortem Stress Test)"]
+    E --> F["4. Implement Atomically (Pre-Tool Policy Interceptor)"]
+    F --> G["5. Verify (The Test Adversary Red-Team / Browser Audit / Regression Harness)"]
+    G --> H["6. Evidence Chain Logging (<tmp>/ct-ledger.jsonl)"]
+    H --> I["7. Programmatic Stop Gate (scripts/stop_gate)"]
+    I -->|Exit != 0| F
+    I -->|Exit == 0| J["8. Health Scorecard, Memory Record & Report"]
 ```
 
 ---
 
-## 🌟 The 10 Superpowers
+## 🌟 The 14 Superpowers (Gravitas-Enhanced)
 
 | Superpower | What It Does | Reference |
 |---|---|---|
+| **Task Contract Engine** | Binds the agent to a formal contract (`ct-contract.json`) with permitted/forbidden paths and invariants before the first edit. | [task-contract.md](references/task-contract.md) |
+| **Pre-Tool Interceptor** | Intercepts tool calls before execution; blocks destructive commands (`rm -rf`, `reset --hard`), protected paths, and secret leaks. | [policy-interceptor.md](references/policy-interceptor.md) |
+| **The Test Adversary** | Red-team persona attacking its own implementation with poison inputs, rapid concurrency, and boundary limits. | [test-adversary.md](references/test-adversary.md) |
+| **Evidence Chain & Ledger** | Immutable append-only event stream (`ct-ledger.jsonl`). Every completion claim MUST cite an Evidence ID (`[EV-xxx]`). | [evidence-chain.md](references/evidence-chain.md) |
+| **Programmatic Stop Gate** | Automated exit gate (`scripts/stop_gate`). Session cannot terminate successfully unless automated checks exit with code `0`. | [scripts/stop_gate.ps1](scripts/stop_gate.ps1) |
 | **Gate Line** | Instantly sets mode (`read` vs `write`, `interactive` vs `headless`, `pwsh` vs `posix`). | [SKILL.md](SKILL.md) |
 | **Baseline Sanity** | Captures git status before touching code. Tags existing dirty files as `USER-OWNED`. | [baseline-env.md](references/baseline-env.md) |
 | **Cross-Session Memory** | Recalls repo quirks from `.claude-thinking/memory.json`; records new lessons upon completion. | [memory.md](references/memory.md) |
@@ -86,7 +93,6 @@ graph TD
 | **Atomic Rollback** | Saves checkpoint diffs. Reverts cleanly on failure. Max 2 reverts per step. | [rollback.md](references/rollback.md) |
 | **Failsafe Circuit Breakers** | Auto-halts after 2 identical command failures or 3 failed approaches. Zero-destruction wall. | [failsafes.md](references/failsafes.md) |
 | **Visual Browser Audit** | For Web/UI tasks, launches a browser subagent, audits console for 0 errors, and captures screenshot proof. | [visual-verify.md](references/visual-verify.md) |
-| **Mandatory Regression Harness**| Bug fixes require a permanent unit test that fails before the fix and passes after. | [regression-harness.md](references/regression-harness.md) |
 | **1-Screen Precision Questions** | One-way doors ask exactly 1 question with context, trade-off matrix, `(Recommended)`, and safe default. | [question-protocol.md](references/question-protocol.md) |
 
 ---
@@ -109,6 +115,7 @@ graph TD
 ## 🛠️ Automation Scripts Included
 
 Located in `scripts/`:
+- `stop_gate.ps1` / `.sh`: **Programmatic Stop Gate** validating cleanliness, contract boundaries, and test exit codes.
 - `fingerprint.ps1` / `.sh`: JSON environment and toolchain detection.
 - `leftover_check.ps1` / `.sh`: Scans for leftover `DEBUG-CT` tags and trailing whitespace.
 - `flake_runner.ps1` / `.sh`: Batched flake test runner with statistical confidence limits.

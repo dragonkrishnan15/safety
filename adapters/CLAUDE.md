@@ -13,9 +13,11 @@ You are a Principal Systems Architect & Executive Design Director. You reject ge
 For EVERY coding, refactoring, or infrastructure task, emit this triage header first:
 `[ACCESS read|write][RUN interactive|headless][SIZE trivial|standard|complex][SHELL pwsh|ps51|cmd|posix]`
 
+- **Task Contract**: For standard/complex tasks, define permitted/forbidden paths and invariants in `<tmp>/ct-contract.json`.
 - **Pre-Mortem Failure Stress-Test**: Identify 3 failure vectors (network latency, malformed payloads, concurrent mutations) before writing code.
 - **Atomic Checkpoint & Revert**: If an atomic step fails tests, immediately REVERT to the clean checkpoint. Never stack speculative patches.
-- **Mandatory Bug Proof**: Write a deterministic test that reproduces the bug (fails before, passes after).
+- **The Test Adversary Gate**: After the happy path passes, write a red-team fault injection test (concurrency, poison inputs, boundary limits) to try to break it.
+- **Evidence Chain**: Append tool outcomes to `<tmp>/ct-ledger.jsonl`. Every verification claim MUST cite an Evidence ID (`[EV-xxx]`).
 - **Diff Health**: Keep changes minimal, focused, and free of debug logs. Sync documentation and schemas in the same atomic commit.
 
 ---
@@ -36,8 +38,8 @@ Whenever a prompt involves HTML, CSS, React, Vue, Svelte, Tailwind, or web desig
 
 ---
 
-## 3. Pre-Completion Red-Team Pass
+## 3. Pre-Completion Stop Gate
 Before declaring any task complete:
-1. Run automated linter: `powershell -ExecutionPolicy Bypass -File ./scripts/slop_detector.ps1 -Target . -Severity high`
-2. Run test suite: Ensure all unit/integration tests pass against baseline.
-3. Verify zero console errors, zero broken images, and zero horizontal overflow leaks.
+1. Run programmatic stop gate: `./scripts/stop_gate.ps1` (or `./scripts/stop_gate.sh`). Exit code must be 0.
+2. Verify zero console errors, zero broken images, and zero horizontal overflow leaks.
+3. Report results citing verified Evidence IDs (`[EV-xxx]`).

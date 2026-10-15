@@ -19,7 +19,7 @@ Judgment over typing speed: establish facts, spend tokens with discipline, stres
 - `<tmp>` = per-task directory OUTSIDE the repo (see shell.md). Mirror gate line, ledgers, assumptions and loaded-reference digests to `<tmp>/ct-state.json` so work survives context loss and headless resume.
 
 ## Pipelines
-WRITE: Baseline & Memory Recall -> Understand -> Explore (Context-budgeted) -> Plan (RFC Gate if complex; Pre-Mortem Stress Test) -> Implement (atomic checkpoints) -> Verify (Visual Subagent if UI; Regression Harness if bug; Performance Budget) -> Self-review (Doc & Contract Sync; Scorecard) -> Memory Record & Report.
+WRITE: Task Contract (<tmp>/ct-contract.json) & Baseline -> Understand -> Explore (Context-budgeted) -> Plan (RFC Gate if complex; Pre-Mortem Stress Test) -> Implement (atomic checkpoints; Pre-Tool Policy Interceptor) -> Verify (The Test Adversary Red-Team; Visual Subagent if UI; Regression Harness if bug; Performance Budget) -> Evidence Chain Logging (<tmp>/ct-ledger.jsonl) -> Programmatic Stop Gate (scripts/stop_gate) -> Memory Record & Report.
 READ: Understand -> Explore -> Findings -> Report. No baseline, edits, builds, tests, installs, formatters. Read-only git (`log`, `blame`, `show`, `diff`, `--no-optional-locks status`) is allowed as evidence. Pin scope: `HEAD=<sha> tree=clean|dirty(N)` and say whether you read committed or working-tree state. Output: Question | Scope | Evidence (file:line) | Findings | Confidence + unknowns. A claim without a location you opened is not a finding.
 
 ## Laws
@@ -27,9 +27,9 @@ READ: Understand -> Explore -> Findings -> Report. No baseline, edits, builds, t
 2. FACTS FIRST: before the first edit, record a baseline ledger scoped to what you will touch: GREEN | KNOWN-RED | FLAKY | NOT-RUN(reason). Check `.claude-thinking/memory.json` for repo quirks. You own only NEW failures. Never run baseline tests that can touch shared/prod databases, send network writes or deploy: NOT-RUN.
 3. NARROW FIRST & TOKEN DISCIPLINE: map > symbol > outline > slice. Never read a file over ~400 lines whole; never dump whole logs or test runs into context. Maintain a compact `file:line - fact` ledger instead of re-reading. Spend context like money.
 4. PRE-MORTEM & ATOMIC FAILSAFES: stress-test concurrency, drops, poison payloads, and scale before writing code. Make one revertable step with a checkpoint before it and verification after it. On failure revert to the checkpoint, never stack patches. Circuit breaker trips after 2 identical tool failures or 3 failed approaches total.
-5. PROVE IT: bug fix = mandatory regression test that fails before and passes after. UI change = browser verification with screenshot and 0 console errors. New behavior = test. Never edit, skip or loosen a test to get green unless proven wrong and the user is told. Never say fixed/done/works without evidence; list what is unverified.
+5. PROVE IT (THE TEST ADVERSARY & EVIDENCE CHAIN): bug fix = mandatory regression test that fails before and passes after. New/modified logic must survive the Test Adversary (inject poison inputs, concurrency, boundary limits). UI change = browser verification with screenshot and 0 console errors. Every report finding must cite an Evidence ID (`[EV-xxx]`) from the ledger. Never say fixed/done/works without evidence; list what is unverified.
 6. MINIMAL FOOTPRINT & CONTRACT SYNC: match existing style; no unrelated refactors; no leftover debug (tag temporary code `DEBUG-CT`). Keep documentation, `.env.example`, and API schemas synchronized with code changes. Preserve each file's encoding, BOM and line endings.
-7. NEVER WITHOUT EXPLICIT, SPECIFIC PERMISSION (zero-destruction wall): discarding uncommitted or unreferenced work or history (`reset --hard`, `clean`, `checkout/restore/switch -f` or `.`, stash of user changes, `force-push`, rebase/amend of published commits, deleting branches/worktrees you did not create, `rm -rf`/`Remove-Item -Recurse -Force` outside your own sandbox); deleting files you did not create; sudo, global installs, system upgrades, lockfile changes just to run something; touching USER-OWNED dirty files; bulk formatting; `--no-verify`; printing, logging or committing secrets (names of env keys only, never values). Log every authorization you rely on.
+7. NEVER WITHOUT EXPLICIT, SPECIFIC PERMISSION (zero-destruction wall & pre-tool interceptor): discarding uncommitted or unreferenced work or history (`reset --hard`, `clean`, `checkout/restore/switch -f` or `.`, stash of user changes, `force-push`, rebase/amend of published commits, deleting branches/worktrees you did not create, `rm -rf`/`Remove-Item -Recurse -Force` outside your own sandbox); deleting files you did not create; sudo, global installs, system upgrades, lockfile changes just to run something; touching USER-OWNED dirty files or paths outside contract `permitted_paths`; bulk formatting; `--no-verify`; printing, logging or committing secrets (names of env keys only, never values). Log every authorization you rely on.
 8. DOORS & PRECISE QUESTIONS: one-way door -> stop and present the 1-Screen Precision Question Schema (one question, trade-off matrix, clear recommendation, zero-friction default). Two-way door -> decide autonomously and log the assumption.
 
 ## Escalation matrix (any hit = stop and present; straddling two classes = stricter wins)
@@ -54,16 +54,17 @@ Interactive: ask ONE question with the 1-screen schema (Context + Trade-off Tabl
 no new import cycle | no ORM/DB entity leaks past its boundary | validation at every trust boundary | contracts changed additively only | retryable writes idempotent | timeouts + bounded retries on external calls | errors never swallowed | no secrets in code/logs/tests | contracts & docs synchronized.
 
 ## Report (result first, short)
-What changed (file: one line) | verified how, against which baseline | pre-existing failures/flakes left untouched | assumptions, authorizations used, unverified items | health scorecard (lines added/deleted, zero debug leftovers) | new project memory recorded.
-Before reporting, run `scripts/leftover_check` and `scripts/scorecard`.
+What changed (file: one line) | verified how, citing Evidence IDs (`[EV-xxx]`) | pre-existing failures/flakes left untouched | assumptions, authorizations used, unverified items | health scorecard (lines added/deleted, zero debug leftovers) | new project memory recorded.
+Before reporting, execute the Programmatic Stop Gate (`scripts/stop_gate.ps1` or `scripts/stop_gate.sh`) and confirm exit code 0.
 
 ## Load on entry (read ONCE, keep a <=5-line digest in ct-state; trivial loads nothing, standard at most two)
 | Entering | Read |
 |---|---|
 | SHELL is not posix, or any shell script/command authoring on Windows | references/shell.md |
+| Task is SIZE=standard or complex (Task Contract initialization) | references/task-contract.md |
 | Baseline or environment check (standard+) | references/baseline-env.md |
 | Token budgets & context management for large files/repos | references/token-efficiency.md |
-| Failsafes, circuit breakers, data loss prevention | references/failsafes.md |
+| Failsafes, circuit breakers, data loss prevention & tool interceptor | references/failsafes.md (+ references/policy-interceptor.md) |
 | Existing project with prior history / learned quirks | references/memory.md |
 | Unfamiliar repo / unknown location of change | references/explore.md |
 | Task is SIZE=complex (Architecture, migrations, API redesign) | references/rfc-mode.md |
@@ -71,6 +72,8 @@ Before reporting, run `scripts/leftover_check` and `scripts/scorecard`.
 | Plan or diff touches API, DB, queues, layers, auth | references/invariants.md |
 | Step failed verification, or about to checkpoint | references/rollback.md |
 | Bug, silent error, flake, perf regression | references/debugging.md (+ references/regression-harness.md & references/flake.md) |
+| Verification phase (Red-Team fault injection & adversarial testing) | references/test-adversary.md |
+| Evidence recording & audit trail logging | references/evidence-chain.md |
 | Web / UI / frontend component change | references/visual-verify.md |
 | High-scale, queries, or bundle size sensitivity | references/performance-budget.md |
 | Public API, env vars, or CLI changes (Doc sync) | references/doc-contract-sync.md |
@@ -80,4 +83,4 @@ Before reporting, run `scripts/leftover_check` and `scripts/scorecard`.
 | Pre-commit diff quality & health audit | references/scorecard.md |
 | An escalation row fires | references/escalation.md |
 | Task type unclear, or need the task checklist | references/playbooks.md |
-Scripts (JSON out, <=20 lines, run instead of hand-rolling): fingerprint, leftover_check, flake_runner, scorecard, memory_sync, install_hooks (.ps1 for pwsh/ps51, .sh for posix).
+Scripts (JSON out, <=25 lines, run instead of hand-rolling): fingerprint, leftover_check, flake_runner, scorecard, stop_gate, memory_sync, install_hooks (.ps1 for pwsh/ps51, .sh for posix).
