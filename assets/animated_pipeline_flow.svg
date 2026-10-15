@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" width="100%" height="auto">
+  <defs>
+    <linearGradient id="pipeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080d1a" />
+      <stop offset="100%" stop-color="#0e172a" />
+    </linearGradient>
+
+    <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <filter id="pGlow">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes packetFlow {
+      0% { stroke-dashoffset: 200; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes nodePulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.3)); }
+      50% { transform: scale(1.03); filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.8)); }
+    }
+    .flow-line {
+      stroke: #1e293b;
+      stroke-width: 3;
+    }
+    .flow-packet {
+      stroke: url(#laserBeam);
+      stroke-width: 3.5;
+      stroke-dasharray: 20 80;
+      animation: packetFlow 2.5s linear infinite;
+    }
+    .stage-card {
+      transform-origin: center;
+      transition: all 0.3s;
+    }
+    .node-1 { animation: nodePulse 3s ease-in-out infinite 0.0s; transform-origin: 80px 110px; }
+    .node-2 { animation: nodePulse 3s ease-in-out infinite 0.5s; transform-origin: 236px 110px; }
+    .node-3 { animation: nodePulse 3s ease-in-out infinite 1.0s; transform-origin: 392px 110px; }
+    .node-4 { animation: nodePulse 3s ease-in-out infinite 1.5s; transform-origin: 548px 110px; }
+    .node-5 { animation: nodePulse 3s ease-in-out infinite 2.0s; transform-origin: 704px 110px; }
+    .node-6 { animation: nodePulse 3s ease-in-out infinite 2.5s; transform-origin: 860px 110px; }
+    .card-title { font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #f8fafc; }
+    .card-desc { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #94a3b8; }
+  </style>
+
+  <!-- Container Box -->
+  <rect x="5" y="5" width="950" height="210" rx="14" fill="url(#pipeBg)" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Connecting Bus Lines -->
+  <line x1="80" y1="110" x2="860" y2="110" class="flow-line" />
+  <!-- Moving Energy Packets -->
+  <line x1="80" y1="110" x2="860" y2="110" class="flow-packet" filter="url(#pGlow)" />
+
+  <!-- Stage 1: Triage Gate -->
+  <g class="node-1">
+    <rect x="15" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <circle cx="80" cy="78" r="18" fill="#0369a1" opacity="0.3" />
+    <text x="80" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#38bdf8">01</text>
+    <text x="80" y="122" text-anchor="middle" class="card-title">Triage Gate</text>
+    <text x="80" y="142" text-anchor="middle" class="card-desc">Fact Baseline</text>
+    <text x="80" y="156" text-anchor="middle" class="card-desc">Read/Write Bounds</text>
+  </g>
+
+  <!-- Stage 2: Task Contract -->
+  <g class="node-2">
+    <rect x="171" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#818cf8" stroke-width="1.5" />
+    <circle cx="236" cy="78" r="18" fill="#4338ca" opacity="0.3" />
+    <text x="236" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#818cf8">02</text>
+    <text x="236" y="122" text-anchor="middle" class="card-title">Task Contract</text>
+    <text x="236" y="142" text-anchor="middle" class="card-desc">Permitted Paths</text>
+    <text x="236" y="156" text-anchor="middle" class="card-desc">Forbidden Walls</text>
+  </g>
+
+  <!-- Stage 3: Atomic Revert -->
+  <g class="node-3">
+    <rect x="327" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5" />
+    <circle cx="392" cy="78" r="18" fill="#065f46" opacity="0.3" />
+    <text x="392" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#34d399">03</text>
+    <text x="392" y="122" text-anchor="middle" class="card-title">Atomic Check</text>
+    <text x="392" y="142" text-anchor="middle" class="card-desc">Snapshot Clean</text>
+    <text x="392" y="156" text-anchor="middle" class="card-desc">Instant Revert</text>
+  </g>
+
+  <!-- Stage 4: Test Adversary -->
+  <g class="node-4">
+    <rect x="483" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#f43f5e" stroke-width="1.5" />
+    <circle cx="548" cy="78" r="18" fill="#881337" opacity="0.3" />
+    <text x="548" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#f43f5e">04</text>
+    <text x="548" y="122" text-anchor="middle" class="card-title">Test Adversary</text>
+    <text x="548" y="142" text-anchor="middle" class="card-desc">Chaos Injection</text>
+    <text x="548" y="156" text-anchor="middle" class="card-desc">50x Concurrency</text>
+  </g>
+
+  <!-- Stage 5: Evidence Ledger -->
+  <g class="node-5">
+    <rect x="639" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5" />
+    <circle cx="704" cy="78" r="18" fill="#78350f" opacity="0.3" />
+    <text x="704" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#fbbf24">05</text>
+    <text x="704" y="122" text-anchor="middle" class="card-title">Evidence Trail</text>
+    <text x="704" y="142" text-anchor="middle" class="card-desc">Signed EV-xxx</text>
+    <text x="704" y="156" text-anchor="middle" class="card-desc">JSONL Auditing</text>
+  </g>
+
+  <!-- Stage 6: Stop Gate -->
+  <g class="node-6">
+    <rect x="795" y="45" width="130" height="130" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="2" filter="url(#pGlow)" />
+    <circle cx="860" cy="78" r="18" fill="#047857" opacity="0.4" />
+    <text x="860" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="16" fill="#34d399">06</text>
+    <text x="860" y="122" text-anchor="middle" class="card-title" fill="#34d399">Stop Gate</text>
+    <text x="860" y="142" text-anchor="middle" class="card-desc" fill="#a7f3d0">Secret Scanner</text>
+    <text x="860" y="156" text-anchor="middle" class="card-desc" fill="#a7f3d0">PASS / MERGE</text>
+  </g>
+</svg>

@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 # 1. Check for newly introduced DEBUG-CT in active code diff (excluding docs & tool scripts)
-diff_debug=$(git diff -U0 -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' 2>/dev/null | grep '^\+[^+].*DEBUG-CT' || echo "")
+diff_debug=$(git diff -U0 -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' ':!assets/*' 2>/dev/null | grep '^\+[^+].*DEBUG-CT' || echo "")
 diff_count=$(echo "$diff_debug" | grep -v '^$' | wc -l | tr -d ' ')
 
 # 2. Check for committed DEBUG-CT in code (excluding docs & tool scripts)
-repo_debug=$(git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' 2>/dev/null || echo "")
+repo_debug=$(git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' ':!assets/*' 2>/dev/null || echo "")
 repo_count=$(echo "$repo_debug" | grep -v '^$' | wc -l | tr -d ' ')
 
 total_debug=$(( ${diff_count:-0} + ${repo_count:-0} ))

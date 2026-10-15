@@ -1,32 +1,61 @@
 <div align="center">
 
-<img src="assets/hero_banner.jpg" alt="SAFETY Hero Banner" width="100%" style="border-radius: 12px; box-shadow: 0 12px 40px rgba(0, 242, 254, 0.2);" />
+<!-- Animated Hero Header -->
+<img src="assets/animated_hero_header.svg" alt="SAFETY Animated Hero Header" width="100%" />
 
-# 🛡️ SAFETY / MASTER-SKILL
+<br/><br/>
 
-### *The Zero-Trust Autonomous AI Agent Governance & Cognitive Reasoning Engine*
-
+<!-- Modern Shields Badges -->
 [![CI Validation](https://github.com/dragonkrishnan15/safety/actions/workflows/ci.yml/badge.svg)](https://github.com/dragonkrishnan15/safety/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Zero Vendor Lock-in](https://img.shields.io/badge/Vendor%20Lock--in-Zero-blueviolet.svg)](#-universal-compatibility)
-[![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-Active-success.svg)](#-how-it-works-the-zero-trust-pipeline)
+[![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-Active-success.svg)](#-live-animated-terminal-simulation)
+[![Release: v5.1 Apex](https://img.shields.io/badge/Release-v5.1%20Apex-cyan.svg)](CHANGELOG.md)
 
 <p align="center">
-  <b>Converts AI coding assistants from unconstrained token generators into disciplined, sandboxed Principal Engineers.</b><br>
+  <b>Converts AI coding assistants from unconstrained token generators into disciplined, sandboxed Principal Engineers.</b><br/>
   Enforces immutable task contracts, red-team chaos testing, cryptographic evidence trails, and zero-leak pre-commit stop gates.
 </p>
 
-[**🚀 Quickstart**](#-instant-installation) • [**📐 Architecture**](#-architecture--visual-pipeline) • [**⚡ Superpowers**](#-the-core-problem-vs-the-safety-solution) • [**🤖 Supported Agents**](#-universal-compatibility) • [**📋 Templates**](#-production-ready-templates)
+[**🚀 Quickstart**](#-instant-installation) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
 
 </div>
 
 ---
 
-## 🖥️ Live Terminal Simulation
+## 🖥️ Live Animated Terminal Simulation
 
 <div align="center">
-  <img src="assets/terminal_simulation.svg" alt="Animated Stop Gate Terminal" width="100%" style="border-radius: 12px;" />
+  <img src="assets/terminal_simulation.svg" alt="Animated Stop Gate Terminal" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);" />
+</div>
+
+---
+
+## ⚡ Interactive Animated Pipeline
+
+Data packets travel through 6 deterministic governance gates before any code reaches production:
+
+<div align="center">
+  <img src="assets/animated_pipeline_flow.svg" alt="Animated 6-Stage Pipeline Flow" width="100%" style="border-radius: 12px; margin: 12px 0;" />
+</div>
+
+---
+
+## 🛡️ Core Capabilities & Runtime Guards
+
+<div align="center">
+  <img src="assets/animated_feature_cards.svg" alt="Animated Feature Cards" width="100%" style="border-radius: 12px; margin: 12px 0;" />
+</div>
+
+---
+
+## 🤖 Supported AI Agents
+
+Active real-time zero-trust interception across all major coding environments:
+
+<div align="center">
+  <img src="assets/animated_agent_matrix.svg" alt="Supported AI Agents Matrix" width="100%" style="border-radius: 12px; margin: 12px 0;" />
 </div>
 
 ---
@@ -62,25 +91,13 @@
 
 ---
 
-## 📐 Architecture & Visual Pipeline
+## 📐 Deep-Dive System Architecture
 
 <div align="center">
-  <img src="assets/architecture_infographic.jpg" alt="Zero-Trust Architecture Infographic" width="100%" style="border-radius: 12px; margin: 16px 0;" />
+  <img src="assets/architecture_infographic.jpg" alt="Zero-Trust Architecture Infographic" width="100%" style="border-radius: 12px; margin: 16px 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);" />
 </div>
 
-```mermaid
-graph LR
-    A[1. Triage Gate] --> B[2. Task Contract]
-    B --> C[3. Checkpoint & Revert]
-    C --> D[4. Test Adversary]
-    D --> E[5. Evidence Ledger]
-    E --> F[6. Stop Gate & Merge]
-
-    classDef stage fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
-    class A,B,C,D,E,F stage;
-```
-
-For complete technical specifications and state transition diagrams, view [**`ARCHITECTURE.md`**](ARCHITECTURE.md).
+For full technical specifications and state transition diagrams, view [**`ARCHITECTURE.md`**](ARCHITECTURE.md).
 
 ---
 
@@ -129,22 +146,6 @@ bash ./quickstart.sh
 
 ---
 
-## 🤖 Universal Compatibility
-
-**master-skill / safety** operates natively across all major agent environments with zero code modifications:
-
-| Environment | Adapter Location | Target Activation File | Scope |
-|:---|:---|:---|:---|
-| **Google Antigravity / Gemini** | `SKILL.md` | `~/.gemini/config/skills/master-skill/` | Global & Workspace |
-| **Cursor IDE** | `adapters/.cursorrules` | `.cursor/rules/master-skill.mdc` | Workspace / Project |
-| **Windsurf IDE** | `adapters/.windsurfrules` | `.windsurfrules` | Global & Workspace |
-| **Anthropic Claude Code** | `adapters/CLAUDE.md` | `./CLAUDE.md` (or `~/.claude/CLAUDE.md`) | Global & Workspace |
-| **Cline / Roo Code** | `adapters/.clinerules` | `.clinerules` | Global & Workspace |
-| **GitHub Copilot** | `adapters/COPILOT.md` | `.github/copilot-instructions.md` | Workspace |
-| **OpenAI Codex / Devin / DeepSeek** | `adapters/AGENTS.md` | `AGENTS.md` | Workspace Root |
-
----
-
 ## ⚡ Interactive Chat Slash Commands
 
 When working in interactive chat environments (Cursor, Claude Code, Antigravity, Windsurf), you can use these shortcuts:
@@ -159,22 +160,14 @@ When working in interactive chat environments (Cursor, Claude Code, Antigravity,
 
 ---
 
-## 📋 Production-Ready Templates
+## 📋 Production-Ready Boilerplate Templates
 
-The repository includes ready-to-use production boilerplate templates in [`templates/`](templates/):
+The repository includes ready-to-use production templates in [`templates/`](templates/):
 
 - [`contract.template.json`](templates/contract.template.json): Task contract schema specifying permitted paths, forbidden paths, and invariants.
 - [`ledger.template.jsonl`](templates/ledger.template.jsonl): Append-only cryptographic evidence ledger.
 - [`adversary_test.py`](templates/adversary_test.py): Python red-team suite injecting 30 concurrent workers and poison inputs.
 - [`adversary_test.ts`](templates/adversary_test.ts): TypeScript/JavaScript suite testing 50 concurrent async promises under latency.
-
----
-
-## 🛡️ Security & Zero Data Leakage Policy
-
-1. **Zero Secret Leakage**: The automated stop gate scans additions against patterns for OpenAI, Anthropic, Google, AWS, and private keys.
-2. **Local Machine Privacy**: No local drive paths, home directories, or private developer identifiers are ever committed.
-3. **No External Runtime Dependencies**: All scripts and verification gates run on pure native PowerShell (Windows) or POSIX sh (macOS/Linux). No pip or npm packages required.
 
 ---
 
