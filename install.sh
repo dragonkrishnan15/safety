@@ -71,10 +71,16 @@ WORK_DIR="$(pwd)"
 if [[ "$TARGET" =~ ^(auto|all|gemini)$ ]]; then
   if [[ "$SCOPE" == "global" || -d "$HOME_DIR/.gemini" ]]; then
     copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/config/skills/claude-thinking/SKILL.md" "Antigravity Global Skill"
+    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
+    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
+    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
     copy_cfg "$SCRIPT_DIR/claude-thinking.md" "$HOME_DIR/.gemini/config/rules/claude-thinking.md" "Antigravity Global Rule"
   fi
   if [[ "$SCOPE" == "project" ]]; then
     copy_cfg "$SCRIPT_DIR/SKILL.md" "$WORK_DIR/.agents/skills/claude-thinking/SKILL.md" "Antigravity Project Skill"
+    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$WORK_DIR/.agents/skills/claude-thinking/"
+    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$WORK_DIR/.agents/skills/claude-thinking/"
+    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$WORK_DIR/.agents/skills/claude-thinking/"
     copy_cfg "$SCRIPT_DIR/claude-thinking.md" "$WORK_DIR/.agents/rules/claude-thinking.md" "Antigravity Project Rule"
   fi
 fi

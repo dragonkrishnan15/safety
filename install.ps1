@@ -61,6 +61,9 @@ if ($Target -in @('auto', 'all', 'gemini')) {
         $GeminiSkillDir = "$HomeDir\.gemini\config\skills\claude-thinking"
         if (-not (Test-Path $GeminiSkillDir)) { New-Item -ItemType Directory -Path $GeminiSkillDir -Force | Out-Null }
         Copy-Config "$ScriptDir\SKILL.md" "$GeminiSkillDir\SKILL.md" "Antigravity Global Skill"
+        if (Test-Path "$ScriptDir\references") { Copy-Item -Path "$ScriptDir\references" -Destination $GeminiSkillDir -Recurse -Force }
+        if (Test-Path "$ScriptDir\scripts") { Copy-Item -Path "$ScriptDir\scripts" -Destination $GeminiSkillDir -Recurse -Force }
+        if (Test-Path "$ScriptDir\examples") { Copy-Item -Path "$ScriptDir\examples" -Destination $GeminiSkillDir -Recurse -Force }
         Copy-Config "$ScriptDir\claude-thinking.md" "$HomeDir\.gemini\config\rules\claude-thinking.md" "Antigravity Global Rule"
     }
     if ($Scope -eq 'project') {
