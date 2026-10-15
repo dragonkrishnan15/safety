@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Lint & Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up bash scripts permission
+        run: chmod +x scripts/*.sh install.sh
+
+      - name: Verify leftover check script
+        run: ./scripts/leftover_check.sh
+
+      - name: Validate Markdown syntax & existence
+        run: |
+          test -f SKILL.md
+          test -f README.md
+          test -f AGENT_INSTALL.md
+          test -f adapters/CLAUDE.md
+          test -f adapters/.cursorrules
+          test -f adapters/.windsurfrules
+          test -f adapters/.clinerules
+          test -f adapters/COPILOT.md
+          echo "All core files and adapters verified successfully."

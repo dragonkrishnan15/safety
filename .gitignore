@@ -1,0 +1,18 @@
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+.cache/
+dist/
+coverage/
+.system_generated/
+
+# Local state
+.claude-thinking/
+ct-state.json
+scratch/
+
