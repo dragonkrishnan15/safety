@@ -1,11 +1,11 @@
 $ErrorActionPreference = 'SilentlyContinue'
 
 # 1. Check for newly introduced DEBUG-CT in active code diff (excluding docs & tool scripts)
-$diffLines = git diff -U0 -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' 2>$null | Where-Object { $_ -match '^\+[^+].*DEBUG-CT' }
+$diffLines = git diff -U0 -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' 2>$null | Where-Object { $_ -match '^\+[^+].*DEBUG-CT' }
 $diffDebugCount = ($diffLines | Measure-Object).Count
 
 # 2. Check for committed DEBUG-CT in code (excluding docs & tool scripts)
-$repoMatches = git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' 2>$null
+$repoMatches = git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' 2>$null
 $repoDebugCount = ($repoMatches | Measure-Object).Count
 
 $totalDebug = $diffDebugCount + $repoDebugCount

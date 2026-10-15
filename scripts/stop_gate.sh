@@ -39,7 +39,15 @@ if [[ -n "$CONTRACT_PATH" && -f "$CONTRACT_PATH" ]]; then
   fi
 fi
 
-# 3. Test runner execution
+# 3. Sensitive Secret & Token Scanner
+diff_additions=$(git diff -U0 HEAD 2>/dev/null | grep '^\+' || true)
+if [[ -n "$diff_additions" ]]; then
+  if echo "$diff_additions" | grep -Eq '(ghp_[A-Za-z0-9]{36}|sk-[A-Za-z0-9]{20,}|sk-ant-[A-Za-z0-9]{20,}|AIza[0-9A-Za-z-_]{35}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)'; then
+    VIOLATIONS+=("SECURITY ALERT: Detected potential sensitive secret/token in git diff additions.")
+  fi
+fi
+
+# 4. Test runner execution
 TEST_EXIT=0
 if [[ -n "$TEST_CMD" ]]; then
   eval "$TEST_CMD" >/dev/null 2>&1 || TEST_EXIT=$?

@@ -68,7 +68,26 @@ if ($ContractPath -and (Test-Path $ContractPath)) {
     }
 }
 
-# 4. Deterministic Test Suite Execution
+# 4. Sensitive Secret & Token Scanner
+$SecretPatterns = @(
+    'ghp_[A-Za-z0-9]{36}',
+    'sk-[A-Za-z0-9]{20,}',
+    'sk-ant-[A-Za-z0-9]{20,}',
+    'AIza[0-9A-Za-z-_]{35}',
+    'AKIA[0-9A-Z]{16}',
+    '-----BEGIN [A-Z ]*PRIVATE KEY-----'
+)
+$diffContent = git diff -U0 HEAD 2>$null
+if ($diffContent) {
+    foreach ($pattern in $SecretPatterns) {
+        $matches = [regex]::Matches($diffContent, "^\+.*($pattern)", [System.Text.RegularExpressions.RegexOptions]::Multiline)
+        if ($matches.Count -gt 0) {
+            $Violations.Add("SECURITY ALERT: Detected potential sensitive secret/token matching pattern '$pattern' in git diff.")
+        }
+    }
+}
+
+# 5. Deterministic Test Suite Execution
 $TestExitCode = 0
 if ($TestCommand) {
     Invoke-Expression $TestCommand
