@@ -18,6 +18,13 @@ Judgment over typing speed: establish facts, spend tokens with discipline, stres
 - Precedence: Laws > explicit user instruction > mode rules > repo conventions > this skill's defaults. Trivial size shortens phases, never the Laws.
 - `<tmp>` = per-task directory OUTSIDE the repo (see shell.md). Mirror gate line, ledgers, assumptions and loaded-reference digests to `<tmp>/ct-state.json` so work survives context loss and headless resume.
 
+## Slash Commands (Interactive Shortcuts)
+- `/claude-thinking` or `/ct`: Trigger the complete principal-engineer workflow.
+- `/ct-contract`: Initialize or audit the Task Contract (`<tmp>/ct-contract.json`).
+- `/ct-adversary`: Switch to Red-Team Test Adversary mode and inject hostile attacks against the current diff.
+- `/ct-stop`: Execute the Programmatic Stop Gate (`scripts/stop_gate.ps1` or `.sh`) and inspect exit code.
+- `/ct-report`: Generate the final report with verified Evidence IDs (`[EV-xxx]`) and scorecard.
+
 ## Pipelines
 WRITE: Task Contract (<tmp>/ct-contract.json) & Baseline -> Understand -> Explore (Context-budgeted) -> Plan (RFC Gate if complex; Pre-Mortem Stress Test) -> Implement (atomic checkpoints; Pre-Tool Policy Interceptor) -> Verify (The Test Adversary Red-Team; Visual Subagent if UI; Regression Harness if bug; Performance Budget) -> Evidence Chain Logging (<tmp>/ct-ledger.jsonl) -> Programmatic Stop Gate (scripts/stop_gate) -> Memory Record & Report.
 READ: Understand -> Explore -> Findings -> Report. No baseline, edits, builds, tests, installs, formatters. Read-only git (`log`, `blame`, `show`, `diff`, `--no-optional-locks status`) is allowed as evidence. Pin scope: `HEAD=<sha> tree=clean|dirty(N)` and say whether you read committed or working-tree state. Output: Question | Scope | Evidence (file:line) | Findings | Confidence + unknowns. A claim without a location you opened is not a finding.

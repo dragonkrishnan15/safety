@@ -5,7 +5,7 @@ hook_file="$git_dir/hooks/pre-commit"
 mkdir -p "$git_dir/hooks"
 cat << 'EOF' > "$hook_file"
 #!/bin/sh
-debug=$(git grep -n "DEBUG-CT" 2>/dev/null)
+debug=$(git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' 2>/dev/null)
 if [ -n "$debug" ]; then
   echo "Commit blocked: Temporary DEBUG-CT instrumentation found:" >&2
   echo "$debug" >&2

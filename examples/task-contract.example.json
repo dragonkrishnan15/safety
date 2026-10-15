@@ -1,0 +1,23 @@
+{
+  "task_id": "CT-2026-AUTH-042",
+  "objective": "Implement resilient token refresh endpoint with Redis blacklist and rate limiting",
+  "invariants": [
+    "No breaking changes to public /api/auth/token schema",
+    "All pre-existing authentication unit tests remain green",
+    "Zero database credentials or secrets exposed in code or logs",
+    "Expired or blacklisted refresh tokens must return HTTP 401 within 50ms"
+  ],
+  "permitted_paths": [
+    "src/controllers/auth.controller.ts",
+    "src/services/token.service.ts",
+    "tests/auth/token_refresh.test.ts",
+    "package.json"
+  ],
+  "forbidden_paths": [
+    ".env*",
+    "config/database.ts",
+    "src/modules/billing/**",
+    "src/modules/admin/**"
+  ],
+  "stop_gate_command": "npm test -- tests/auth/token_refresh.test.ts"
+}

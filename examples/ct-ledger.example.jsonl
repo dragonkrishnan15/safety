@@ -1,0 +1,4 @@
+{"ev_id":"EV-001","type":"baseline","cmd":"npm test -- tests/auth","exit_code":0,"summary":"24 passed, 0 failed, 0 flaky","timestamp":"2026-10-16T01:30:00Z"}
+{"ev_id":"EV-002","type":"unit_test","cmd":"npm test -- tests/auth/token_refresh.test.ts","exit_code":0,"summary":"8 new tests passed in 0.42s","timestamp":"2026-10-16T01:31:15Z"}
+{"ev_id":"EV-003","type":"adversary_test","cmd":"pytest tests/adversary/test_token_adversary.py","exit_code":0,"summary":"Repelled 100 concurrent race-condition refresh requests; blacklist check upheld","timestamp":"2026-10-16T01:32:00Z"}
+{"ev_id":"EV-004","type":"stop_gate","cmd":"./scripts/stop_gate.ps1","exit_code":0,"summary":"0 debug leftovers, contract paths respected, diff scorecard clean","timestamp":"2026-10-16T01:32:30Z"}

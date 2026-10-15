@@ -47,6 +47,16 @@ irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/instal
 
 ## ⚡ What is `claude-thinking`?
 
+```text
+┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ claude-thinking (Zero-Trust Runtime) ─┐
+│ • Dumps 2,500-line files into context      │ │ • Slices symbols with tight 30-line margins│
+│ • "I fixed the bug! Everything works!"     │ │ • Cites: [EV-001: 18/18 tests pass, exit 0]│
+│ • Leaves console.log and broken tests      │ │ • Programmatic Stop Gate enforces exit 0   │
+│ • Overwrites your uncommitted files        │ │ • Tags dirty files as USER-OWNED (untouched)│
+│ • Only tests the happy path                │ │ • Test Adversary injects poison payloads   │
+└────────────────────────────────────────────┘ └────────────────────────────────────────────┘
+```
+
 Most AI coding assistants suffer from **5 fatal failure modes**:
 1. **Blind Overwrites**: Overwriting user files without checking what was there before.
 2. **Context Exhaustion**: Dumping massive 2,000-line files into context and running out of tokens.
@@ -55,6 +65,18 @@ Most AI coding assistants suffer from **5 fatal failure modes**:
 5. **No Verification Proof**: Saying *"I fixed it!"* without running tests or checking the browser.
 
 **`claude-thinking` turns any LLM into a disciplined Principal Engineer.** It enforces strict baseline capture, atomic checkpoints, pre-mortem failure mode analysis, real browser audits, token discipline, and zero-destruction failsafes.
+
+---
+
+## ⚡ Slash Commands (Interactive Shortcuts)
+
+| Command | Action |
+|---|---|
+| `/claude-thinking` or `/ct` | Launch the full Principal-Engineer pipeline. |
+| `/ct-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
+| `/ct-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
+| `/ct-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
+| `/ct-report` | Generate the evidence-grounded final scorecard report. |
 
 ---
 
@@ -122,6 +144,15 @@ Located in `scripts/`:
 - `scorecard.ps1` / `.sh`: Calculates additions/deletions ratio and diff blast radius.
 - `memory_sync.ps1` / `.sh`: Appends 1-sentence lessons to `.claude-thinking/memory.json`.
 - `install_hooks.ps1` / `.sh`: Installs git pre-commit safety gate.
+
+---
+
+## 📁 Production Reference Examples
+
+Located in `examples/`:
+- [`examples/task-contract.example.json`](examples/task-contract.example.json): Real-world Task Contract with path boundaries, invariants, and stop gate command.
+- [`examples/ct-ledger.example.jsonl`](examples/ct-ledger.example.jsonl): Append-only event stream demonstrating `[EV-xxx]` evidence capture.
+- [`examples/adversary-test.example.py`](examples/adversary-test.example.py): Complete Red-Team adversarial test suite injecting concurrency races, poison payloads, and boundary limits.
 
 ---
 

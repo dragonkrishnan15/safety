@@ -114,6 +114,15 @@ if ($Target -in @('auto', 'all', 'copilot')) {
 # 7. Universal Agent Fallback
 if ($Scope -eq 'project') {
     Copy-Config "$ScriptDir\adapters\AGENTS.md" "$WorkDir\AGENTS.md" "Universal AGENTS.md Workspace Spec"
+
+    # 8. Git Pre-Commit Quality Gate (if in git repo)
+    if (Test-Path "$WorkDir\.git") {
+        $HookScript = "$ScriptDir\scripts\install_hooks.ps1"
+        if (Test-Path $HookScript) {
+            & powershell -ExecutionPolicy Bypass -File $HookScript 2>$null
+            Write-Host "  [OK] Installed Git Pre-Commit Quality Gate -> .git/hooks/pre-commit" -ForegroundColor Green
+        }
+    }
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan

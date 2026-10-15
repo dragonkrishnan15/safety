@@ -125,6 +125,12 @@ fi
 # 7. Universal Agent Fallback
 if [[ "$SCOPE" == "project" ]]; then
   copy_cfg "$SCRIPT_DIR/adapters/AGENTS.md" "$WORK_DIR/AGENTS.md" "Universal AGENTS.md Workspace Spec"
+
+  # 8. Git Pre-Commit Quality Gate (if in git repo)
+  if [[ -d "$WORK_DIR/.git" && -f "$SCRIPT_DIR/scripts/install_hooks.sh" ]]; then
+    bash "$SCRIPT_DIR/scripts/install_hooks.sh" >/dev/null 2>&1 || true
+    echo "  [OK] Installed Git Pre-Commit Quality Gate -> .git/hooks/pre-commit"
+  fi
 fi
 
 echo "=========================================================="

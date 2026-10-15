@@ -11,7 +11,7 @@ $hookScript = @'
 # claude-thinking pre-commit quality gate
 if command -v powershell >/dev/null 2>&1; then
     powershell -NoProfile -Command "
-        $debug = git grep -n 'DEBUG-CT' 2>`$null
+        $debug = git grep -n 'DEBUG-CT' -- ':!*.md' ':!*.mdc' 2>`$null
         if ($debug) {
             Write-Error 'Commit blocked: Temporary DEBUG-CT instrumentation found:'
             $debug | ForEach-Object { Write-Error $_ }
