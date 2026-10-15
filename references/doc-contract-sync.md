@@ -11,7 +11,7 @@ Code and documentation must never drift apart. When code changes public behavior
 | **CLI Flag / Command Argument** | CLI `--help` output, man page, or `README.md` usage section |
 | **Database Schema / Migration** | Database ERD / docs or internal data dictionary |
 | **Public Library Function / Class** | JSDoc, docstrings, or typed exported declarations |
-| **Architectural Invariant / Convention** | `.claude-thinking/memory.json` |
+| **Architectural Invariant / Convention** | `.master-skill/memory.json` |
 
 ---
 

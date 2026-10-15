@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Programmatic Stop Gate for claude-thinking (Gravitas-grade Runtime Gate)
+    Programmatic Stop Gate for master-skill (Gravitas-grade Runtime Gate)
 .DESCRIPTION
     Validates that a task satisfies all invariant conditions before completion:
     1. Zero leftover DEBUG-CT or whitespace errors.

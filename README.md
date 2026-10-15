@@ -1,4 +1,4 @@
-# 🧠 claude-thinking (v5.1 Apex Zero-Trust Edition)
+# 🧠 master-skill (v5.1 Apex Zero-Trust Edition)
 
 > **The Principal-Engineer runtime & reasoning framework for ALL AI coding agents and LLM models.**
 > Transform reactive, hallucinating code-completion models into disciplined, verification-gated engineering partners.
@@ -19,10 +19,10 @@
 
 ---
 
-## ⚡ Quick Comparison: Standard AI vs. `claude-thinking`
+## ⚡ Quick Comparison: Standard AI vs. `master-skill`
 
 ```text
-┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ claude-thinking (Zero-Trust Runtime) ─┐
+┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ master-skill (Zero-Trust Runtime) ───┐
 │ • Dumps 2,500-line files into context      │ │ • Slices symbols with tight 30-line margins│
 │ • "I fixed the bug! Everything works!"     │ │ • Cites: [EV-001: 18/18 tests pass, exit 0]│
 │ • Piles hack-upon-hack on broken tests     │ │ • Clean atomic rollbacks on failed steps   │
@@ -57,10 +57,10 @@ Choose the installation method that fits your workflow:
 You don't need to touch a terminal or copy files manually. Copy and paste this exact prompt directly into **Claude Code**, **Cursor**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
 
 ```text
-Install and activate the claude-thinking framework from https://github.com/CodeStrikerMayank/master_skill.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
+Install and activate the master-skill framework from https://github.com/CodeStrikerMayank/master_skill.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
 ```
 
-> **How it works:** The agent reads [`AGENT_INSTALL.md`](AGENT_INSTALL.md), detects its runtime IDE, copies the required rule/skill files, and activates `claude-thinking` automatically.
+> **How it works:** The agent reads [`AGENT_INSTALL.md`](AGENT_INSTALL.md), detects its runtime IDE, copies the required rule/skill files, and activates `master-skill` automatically.
 
 ---
 
@@ -99,10 +99,10 @@ If you prefer total manual control, copy the corresponding adapter file from `ad
 
 | Environment | Source File in Repo | Target Destination | Scope |
 |---|---|---|---|
-| **Google Antigravity** | `SKILL.md` + `claude-thinking.md` | `~/.gemini/config/skills/claude-thinking/` & `~/.gemini/config/rules/` | Global |
-| **Google Antigravity (Project)** | `SKILL.md` + `claude-thinking.md` | `.agents/skills/claude-thinking/` & `.agents/rules/` | Workspace |
+| **Google Antigravity** | `SKILL.md` + `master-skill.md` | `~/.gemini/config/skills/master-skill/` & `~/.gemini/config/rules/master-skill.md` | Global |
+| **Google Antigravity (Project)** | `SKILL.md` + `master-skill.md` | `.agents/skills/master-skill/` & `.agents/rules/master-skill.md` | Workspace |
 | **Anthropic Claude Code** | `adapters/CLAUDE.md` | `./CLAUDE.md` (or `~/.claude/CLAUDE.md`) | Workspace / Global |
-| **Cursor IDE** | `adapters/.cursorrules` | `./.cursorrules` (or `.cursor/rules/claude-thinking.mdc`) | Workspace |
+| **Cursor IDE** | `adapters/.cursorrules` | `./.cursorrules` (or `.cursor/rules/master-skill.mdc`) | Workspace |
 | **Windsurf IDE** | `adapters/.windsurfrules` | `./.windsurfrules` | Workspace |
 | **Cline / Roo Code** | `adapters/.clinerules` | `./.clinerules` | Workspace |
 | **GitHub Copilot** | `adapters/COPILOT.md` | `.github/copilot-instructions.md` | Workspace |
@@ -140,7 +140,7 @@ graph TD
 | **Programmatic Stop Gate** | Automated exit gate (`scripts/stop_gate`). Session cannot terminate successfully unless automated checks exit with code `0`. | [scripts/stop_gate.ps1](scripts/stop_gate.ps1) |
 | **Gate Line** | Instantly sets mode (`read` vs `write`, `interactive` vs `headless`, `pwsh` vs `posix`). | [SKILL.md](SKILL.md) |
 | **Baseline Sanity** | Captures git status before touching code. Tags existing dirty files as `USER-OWNED`. | [baseline-env.md](references/baseline-env.md) |
-| **Cross-Session Memory** | Recalls repo quirks from `.claude-thinking/memory.json`; records new lessons upon completion. | [memory.md](references/memory.md) |
+| **Cross-Session Memory** | Recalls repo quirks from `.master-skill/memory.json`; records new lessons upon completion. | [memory.md](references/memory.md) |
 | **Token Discipline** | Forbids reading files $>400$ lines. Slices symbols with ~30 lines of margin using ripgrep. | [token-efficiency.md](references/token-efficiency.md) |
 | **Pre-Mortem Analysis** | Stress-tests concurrency, drops, poison payloads, and scale before writing code. | [pre-mortem.md](references/pre-mortem.md) |
 | **Atomic Rollback** | Saves checkpoint diffs. Reverts cleanly on failure. Max 2 reverts per step. | [rollback.md](references/rollback.md) |
@@ -156,11 +156,11 @@ When working in interactive chat environments (Claude Code, Antigravity, Cursor,
 
 | Command | Action |
 |---|---|
-| `/claude-thinking` or `/ct` | Launch the full Principal-Engineer pipeline on current prompt. |
-| `/ct-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
-| `/ct-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
-| `/ct-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
-| `/ct-report` | Generate the evidence-grounded final scorecard report. |
+| `/master-skill` or `/ms` | Launch the full Principal-Engineer pipeline on current prompt. |
+| `/ms-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
+| `/ms-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
+| `/ms-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
+| `/ms-report` | Generate the evidence-grounded final scorecard report. |
 
 ---
 
@@ -181,7 +181,7 @@ Located in `scripts/`:
 - `leftover_check.ps1` / `.sh`: Scans for leftover `DEBUG-CT` tags and trailing whitespace.
 - `flake_runner.ps1` / `.sh`: Batched flake test runner with statistical confidence limits.
 - `scorecard.ps1` / `.sh`: Calculates additions/deletions ratio and diff blast radius.
-- `memory_sync.ps1` / `.sh`: Appends 1-sentence lessons to `.claude-thinking/memory.json`.
+- `memory_sync.ps1` / `.sh`: Appends 1-sentence lessons to `.master-skill/memory.json`.
 - `install_hooks.ps1` / `.sh`: Installs git pre-commit safety gate.
 
 ---
@@ -195,7 +195,7 @@ Located in `scripts/`:
 **A:** Never. Law 7 and the Baseline Sanity gate automatically flag all pre-existing dirty files as `USER-OWNED`. The agent is strictly forbidden from editing, staging, stashing, formatting, or reverting them.
 
 #### Q: Do I need Python, Node.js, or Docker to run this?
-**A:** No. `claude-thinking` has **zero external runtime dependencies**. Its automation scripts run on native PowerShell (Windows) or POSIX sh/bash (macOS/Linux).
+**A:** No. `master-skill` has **zero external runtime dependencies**. Its automation scripts run on native PowerShell (Windows) or POSIX sh/bash (macOS/Linux).
 
 #### Q: How does the AI know when to stop?
 **A:** It cannot stop simply by declaring "Done". It must execute `scripts/stop_gate`, which requires an exit code of `0`, passing all invariant checks and test suites.

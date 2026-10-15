@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# claude-thinking Universal Installer for macOS / Linux / WSL
+# master-skill Universal Installer for macOS / Linux / WSL
 #
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash
@@ -38,14 +38,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # If executed via curl | bash, SCRIPT_DIR might not have SKILL.md
 if [[ ! -f "$SCRIPT_DIR/SKILL.md" ]]; then
-  TMP_REPO="$(mktemp -d)/claude-thinking"
-  echo "==> Fetching claude-thinking repository..."
+  TMP_REPO="$(mktemp -d)/master-skill"
+  echo "==> Fetching master-skill repository..."
   git clone --depth 1 https://github.com/CodeStrikerMayank/master_skill.git "$TMP_REPO"
   SCRIPT_DIR="$TMP_REPO"
 fi
 
 echo "=========================================================="
-echo " 🧠 claude-thinking Universal Installer (v5.1)"
+echo " 🧠 master-skill Universal Installer (v5.1)"
 echo " Scope:  $SCOPE"
 echo " Target: $TARGET"
 echo "=========================================================="
@@ -70,18 +70,18 @@ WORK_DIR="$(pwd)"
 # 1. Antigravity / Gemini CLI
 if [[ "$TARGET" =~ ^(auto|all|gemini)$ ]]; then
   if [[ "$SCOPE" == "global" || -d "$HOME_DIR/.gemini" ]]; then
-    copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/config/skills/claude-thinking/SKILL.md" "Antigravity Global Skill"
-    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
-    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
-    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/claude-thinking/"
-    copy_cfg "$SCRIPT_DIR/claude-thinking.md" "$HOME_DIR/.gemini/config/rules/claude-thinking.md" "Antigravity Global Rule"
+    copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/config/skills/master-skill/SKILL.md" "Antigravity Global Skill"
+    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    copy_cfg "$SCRIPT_DIR/master-skill.md" "$HOME_DIR/.gemini/config/rules/master-skill.md" "Antigravity Global Rule"
   fi
   if [[ "$SCOPE" == "project" ]]; then
-    copy_cfg "$SCRIPT_DIR/SKILL.md" "$WORK_DIR/.agents/skills/claude-thinking/SKILL.md" "Antigravity Project Skill"
-    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$WORK_DIR/.agents/skills/claude-thinking/"
-    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$WORK_DIR/.agents/skills/claude-thinking/"
-    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$WORK_DIR/.agents/skills/claude-thinking/"
-    copy_cfg "$SCRIPT_DIR/claude-thinking.md" "$WORK_DIR/.agents/rules/claude-thinking.md" "Antigravity Project Rule"
+    copy_cfg "$SCRIPT_DIR/SKILL.md" "$WORK_DIR/.agents/skills/master-skill/SKILL.md" "Antigravity Project Skill"
+    [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$WORK_DIR/.agents/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$WORK_DIR/.agents/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$WORK_DIR/.agents/skills/master-skill/"
+    copy_cfg "$SCRIPT_DIR/master-skill.md" "$WORK_DIR/.agents/rules/master-skill.md" "Antigravity Project Rule"
   fi
 fi
 
@@ -89,7 +89,7 @@ fi
 if [[ "$TARGET" =~ ^(auto|all|claude)$ ]]; then
   if [[ "$SCOPE" == "global" ]]; then
     copy_cfg "$SCRIPT_DIR/adapters/CLAUDE.md" "$HOME_DIR/.claude/CLAUDE.md" "Claude Code Global Memory"
-    copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.claude/skills/claude-thinking/SKILL.md" "Claude Code Global Skill"
+    copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.claude/skills/master-skill/SKILL.md" "Claude Code Global Skill"
   else
     copy_cfg "$SCRIPT_DIR/adapters/CLAUDE.md" "$WORK_DIR/CLAUDE.md" "Claude Code Workspace Memory"
   fi
@@ -101,7 +101,7 @@ if [[ "$TARGET" =~ ^(auto|all|cursor)$ ]]; then
     copy_cfg "$SCRIPT_DIR/adapters/.cursorrules" "$HOME_DIR/.cursorrules" "Cursor Global Rules"
   else
     copy_cfg "$SCRIPT_DIR/adapters/.cursorrules" "$WORK_DIR/.cursorrules" "Cursor Project Rules"
-    copy_cfg "$SCRIPT_DIR/adapters/.cursorrules" "$WORK_DIR/.cursor/rules/claude-thinking.mdc" "Cursor MDC Rules"
+    copy_cfg "$SCRIPT_DIR/adapters/.cursorrules" "$WORK_DIR/.cursor/rules/master-skill.mdc" "Cursor MDC Rules"
   fi
 fi
 
@@ -140,5 +140,5 @@ if [[ "$SCOPE" == "project" ]]; then
 fi
 
 echo "=========================================================="
-echo " [SUCCESS] claude-thinking is installed and ready!"
+echo " [SUCCESS] master-skill is installed and ready!"
 echo "=========================================================="

@@ -1,6 +1,6 @@
-# Contributing to claude-thinking
+# Contributing to master-skill
 
-Thank you for your interest in contributing to **claude-thinking**! Our mission is to elevate AI coding assistants into disciplined, reliable Principal Engineers across every language, stack, and development tool.
+Thank you for your interest in contributing to **master-skill**! Our mission is to elevate AI coding assistants into disciplined, reliable Principal Engineers across every language, stack, and development tool.
 
 ---
 

@@ -3,7 +3,7 @@ param(
     [string]$Entry = ""
 )
 if (-not $Entry) { exit 0 }
-$memDir = ".claude-thinking"
+$memDir = ".master-skill"
 $memFile = Join-Path $memDir "memory.json"
 if (-not (Test-Path $memDir)) { New-Item -ItemType Directory -Path $memDir -Force | Out-Null }
 $data = if (Test-Path $memFile) { Get-Content $memFile -Raw | ConvertFrom-Json } else {

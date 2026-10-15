@@ -5,8 +5,8 @@ Protocol for persisting and recalling repository-specific knowledge, architectur
 ## 1. Memory Store Location & Structure
 
 Memory is stored locally in the project repository under:
-`.claude-thinking/memory.json` (or `.ct-memory.json` at root if directory creation is restricted).
-*If the repository has a `.gitignore`, ensure `.claude-thinking/` is tracked or ignored based on team preference (tracked if shared team conventions, ignored if developer-local).*
+`.master-skill/memory.json` (or `.ct-memory.json` at root if directory creation is restricted).
+*If the repository has a `.gitignore`, ensure `.master-skill/` is tracked or ignored based on team preference (tracked if shared team conventions, ignored if developer-local).*
 
 ### Schema:
 ```json
@@ -37,10 +37,10 @@ Memory is stored locally in the project repository under:
 ## 2. Phase 0C: Memory Recall Protocol
 
 When entering Phase 0C (Environment & Tooling Reality):
-1. **Probe for Memory File**: Check if `.claude-thinking/memory.json` exists.
+1. **Probe for Memory File**: Check if `.master-skill/memory.json` exists.
 2. **If Found**: Read `architectural_decisions`, `learned_quirks`, and `tooling_preferences`.
 3. **Log Recall**: In the Phase 0 Gate output, log:
-   `[MEMORY] Recalled 2 architectural decisions and 1 known quirk from .claude-thinking/memory.json`
+   `[MEMORY] Recalled 2 architectural decisions and 1 known quirk from .master-skill/memory.json`
 4. **Constraint Enforcement**: Automatically apply recalled decisions to Phase 1 (Understand) and Phase 3 (Plan). Never violate a documented architectural decision without explicit user authorization.
 
 ---
@@ -55,7 +55,7 @@ During Phase 7 (Self-Review & Report), evaluate if new persistent knowledge was 
 - A pre-existing flaky test was identified.
 
 ### Recording Action:
-Run `scripts/memory_sync.ps1` (or update `.claude-thinking/memory.json`):
+Run `scripts/memory_sync.ps1` (or update `.master-skill/memory.json`):
 - Append new items to the appropriate list.
 - Keep entries strictly **1 sentence each** (high signal, zero fluff).
 - Avoid recording temporary task state or trivial variable names.

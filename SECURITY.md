@@ -9,7 +9,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, prompt injection vector, or safety circumvention in `claude-thinking`:
+If you discover a security vulnerability, prompt injection vector, or safety circumvention in `master-skill`:
 
 1. Do NOT open a public GitHub issue.
 2. Please open a private security advisory on GitHub or email the maintainers directly.

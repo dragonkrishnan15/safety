@@ -1,7 +1,7 @@
 # 🤖 AI Agent Automated Installation Manifest
 
 > **Notice to AI Agents (Claude Code, Cursor, Windsurf, Antigravity, Cline, Roo Code, GitHub Copilot, ChatGPT, etc.):**  
-> If the user asked you to *"install"*, *"configure"*, or *"set up"* `claude-thinking` from this repository, you do not need to ask the user what to do. Detect which environment you are running in and execute the corresponding action from the lookup table below.
+> If the user asked you to *"install"*, *"configure"*, or *"set up"* `master-skill` from this repository, you do not need to ask the user what to do. Detect which environment you are running in and execute the corresponding action from the lookup table below.
 
 ---
 
@@ -11,11 +11,11 @@ Identify which tool or IDE environment you are running under, then copy the spec
 
 | Environment Detected | Source File(s) in this Repo | Destination Path | Scope |
 |---|---|---|---|
-| **Google Antigravity / Gemini CLI** | `SKILL.md`<br>`claude-thinking.md` | `~/.gemini/config/skills/claude-thinking/SKILL.md`<br>`~/.gemini/config/rules/claude-thinking.md` | Global (All user projects) |
-| **Google Antigravity (Project-level)** | `SKILL.md`<br>`claude-thinking.md` | `.agents/skills/claude-thinking/SKILL.md`<br>`.agents/rules/claude-thinking.md` | Current workspace |
-| **Anthropic Claude Code (Global)** | `adapters/CLAUDE.md`<br>`SKILL.md` | `~/.claude/CLAUDE.md`<br>`~/.claude/skills/claude-thinking/SKILL.md` | Global |
+| **Google Antigravity / Gemini CLI** | `SKILL.md`<br>`master-skill.md` | `~/.gemini/config/skills/master-skill/SKILL.md`<br>`~/.gemini/config/rules/master-skill.md` | Global (All user projects) |
+| **Google Antigravity (Project-level)** | `SKILL.md`<br>`master-skill.md` | `.agents/skills/master-skill/SKILL.md`<br>`.agents/rules/master-skill.md` | Current workspace |
+| **Anthropic Claude Code (Global)** | `adapters/CLAUDE.md`<br>`SKILL.md` | `~/.claude/CLAUDE.md`<br>`~/.claude/skills/master-skill/SKILL.md` | Global |
 | **Anthropic Claude Code (Project)** | `adapters/CLAUDE.md` | `./CLAUDE.md` | Current workspace |
-| **Cursor IDE** | `adapters/.cursorrules`<br>`SKILL.md` | `./.cursorrules` (or `.cursor/rules/claude-thinking.mdc`) | Current workspace |
+| **Cursor IDE** | `adapters/.cursorrules`<br>`SKILL.md` | `./.cursorrules` (or `.cursor/rules/master-skill.mdc`) | Current workspace |
 | **Windsurf IDE** | `adapters/.windsurfrules` | `./.windsurfrules` | Current workspace |
 | **Cline / Roo Code** | `adapters/.clinerules` | `./.clinerules` | Current workspace |
 | **GitHub Copilot** | `adapters/COPILOT.md` | `.github/copilot-instructions.md` | Current workspace |
@@ -54,4 +54,4 @@ Once you have copied the files:
 2. In your next response to the user, confirm:
    - Which agent/IDE was detected
    - The exact destination path configured
-   - That `claude-thinking (v5.1)` is now active for all future prompts
+   - That `master-skill (v5.1)` is now active for all future prompts

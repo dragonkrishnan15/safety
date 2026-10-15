@@ -8,7 +8,7 @@ $hookDir = Split-Path $hookFile
 if (-not (Test-Path $hookDir)) { New-Item -ItemType Directory -Path $hookDir -Force | Out-Null }
 $hookScript = @'
 #!/bin/sh
-# claude-thinking pre-commit quality gate
+# master-skill pre-commit quality gate
 if command -v powershell >/dev/null 2>&1; then
     powershell -NoProfile -Command "
         $debug = git grep -n 'DEBUG-CT' -- ':!*.md' ':!*.mdc' 2>`$null

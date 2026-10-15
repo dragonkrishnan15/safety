@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 category="${1:-learned_quirks}"; entry="$2"
 [ -z "$entry" ] && exit 0
-mem_dir=".claude-thinking"; mem_file="$mem_dir/memory.json"
+mem_dir=".master-skill"
+mem_file="$mem_dir/memory.json"
 mkdir -p "$mem_dir"
 [ ! -f "$mem_file" ] && printf '{"updated_at":"","architectural_decisions":[],"learned_quirks":[],"tooling_preferences":{},"historical_known_red":[]}' > "$mem_file"
 now=$(date -u +"%Y-%m-%dT%H:%M:%SZ")

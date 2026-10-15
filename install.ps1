@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    claude-thinking Universal Installer for Windows & PowerShell
+    master-skill Universal Installer for Windows & PowerShell
 .DESCRIPTION
-    Installs claude-thinking rules and skills for Claude Code, Cursor, Windsurf,
+    Installs master-skill rules and skills for Claude Code, Cursor, Windsurf,
     Google Antigravity / Gemini CLI, Cline, Roo Code, and GitHub Copilot.
 .PARAMETER Scope
     'project' (current workspace) or 'global' (user profile across all projects). Default: 'project'.
@@ -25,15 +25,15 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # Handle one-liner execution where script is piped (irm | iex)
 if (-not $ScriptDir -or -not (Test-Path "$ScriptDir/SKILL.md")) {
-    $TempRepo = Join-Path ([System.IO.Path]::GetTempPath()) "claude-thinking-install"
-    Write-Host "[*] Fetching claude-thinking repository..." -ForegroundColor Cyan
+    $TempRepo = Join-Path ([System.IO.Path]::GetTempPath()) "master-skill-install"
+    Write-Host "[*] Fetching master-skill repository..." -ForegroundColor Cyan
     if (Test-Path $TempRepo) { Remove-Item -Recurse -Force $TempRepo }
     git clone --depth 1 https://github.com/CodeStrikerMayank/master_skill.git $TempRepo
     $ScriptDir = $TempRepo
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " 🧠 claude-thinking Universal Installer (v5.1)" -ForegroundColor Green
+Write-Host " 🧠 master-skill Universal Installer (v5.1)" -ForegroundColor Green
 Write-Host " Scope:  $Scope" -ForegroundColor Yellow
 Write-Host " Target: $Target" -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
@@ -58,17 +58,17 @@ $WorkDir = (Get-Location).Path
 # 1. Google Gemini / Antigravity
 if ($Target -in @('auto', 'all', 'gemini')) {
     if ($Scope -eq 'global' -or (Test-Path "$HomeDir\.gemini")) {
-        $GeminiSkillDir = "$HomeDir\.gemini\config\skills\claude-thinking"
+        $GeminiSkillDir = "$HomeDir\.gemini\config\skills\master-skill"
         if (-not (Test-Path $GeminiSkillDir)) { New-Item -ItemType Directory -Path $GeminiSkillDir -Force | Out-Null }
         Copy-Config "$ScriptDir\SKILL.md" "$GeminiSkillDir\SKILL.md" "Antigravity Global Skill"
         if (Test-Path "$ScriptDir\references") { Copy-Item -Path "$ScriptDir\references" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\scripts") { Copy-Item -Path "$ScriptDir\scripts" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\examples") { Copy-Item -Path "$ScriptDir\examples" -Destination $GeminiSkillDir -Recurse -Force }
-        Copy-Config "$ScriptDir\claude-thinking.md" "$HomeDir\.gemini\config\rules\claude-thinking.md" "Antigravity Global Rule"
+        Copy-Config "$ScriptDir\master-skill.md" "$HomeDir\.gemini\config\rules\master-skill.md" "Antigravity Global Rule"
     }
     if ($Scope -eq 'project') {
-        Copy-Config "$ScriptDir\SKILL.md" "$WorkDir\.agents\skills\claude-thinking\SKILL.md" "Antigravity Project Skill"
-        Copy-Config "$ScriptDir\claude-thinking.md" "$WorkDir\.agents\rules\claude-thinking.md" "Antigravity Project Rule"
+        Copy-Config "$ScriptDir\SKILL.md" "$WorkDir\.agents\skills\master-skill\SKILL.md" "Antigravity Project Skill"
+        Copy-Config "$ScriptDir\master-skill.md" "$WorkDir\.agents\rules\master-skill.md" "Antigravity Project Rule"
     }
 }
 
@@ -87,7 +87,7 @@ if ($Target -in @('auto', 'all', 'cursor')) {
         Copy-Config "$ScriptDir\adapters\.cursorrules" "$HomeDir\.cursorrules" "Cursor Global Rules"
     } else {
         Copy-Config "$ScriptDir\adapters\.cursorrules" "$WorkDir\.cursorrules" "Cursor Project Rules"
-        Copy-Config "$ScriptDir\adapters\.cursorrules" "$WorkDir\.cursor\rules\claude-thinking.mdc" "Cursor MDC Rules"
+        Copy-Config "$ScriptDir\adapters\.cursorrules" "$WorkDir\.cursor\rules\master-skill.mdc" "Cursor MDC Rules"
     }
 }
 
@@ -129,5 +129,5 @@ if ($Scope -eq 'project') {
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " [SUCCESS] claude-thinking is installed and ready!" -ForegroundColor Green
+Write-Host " [SUCCESS] master-skill is installed and ready!" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan

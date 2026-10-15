@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Programmatic Stop Gate for claude-thinking (Gravitas-grade Runtime Gate)
+# Programmatic Stop Gate for master-skill (Gravitas-grade Runtime Gate)
 # Exits 0 on success (PASSED), 1 on failure (REJECTED)
 # ==============================================================================
 

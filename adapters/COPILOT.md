@@ -1,4 +1,4 @@
-# GitHub Copilot Custom Instructions - claude-thinking v5.1
+# GitHub Copilot Custom Instructions - master-skill v5.1
 
 For all programming, refactoring, debugging, and review tasks:
 

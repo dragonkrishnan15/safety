@@ -1,14 +1,14 @@
-# claude-thinking: always-on global rule (v5.1 Apex Architecture Edition)
+# master-skill: always-on global rule (v5.1 Apex Zero-Trust Edition)
 
 For EVERY request to write, modify, refactor, debug, fix, review, optimize, test,
 explain, migrate, or deploy code, config, scripts, SQL, or infrastructure (any
-language, any stack, any shell), you MUST load and follow the `claude-thinking`
-workflow before acting. If the user types `/claude-thinking`, apply it too.
+language, any stack, any shell), you MUST load and follow the `master-skill`
+workflow before acting. If the user types `/master-skill` or `/ms`, apply it too.
 
 Skill locations:
-- `%USERPROFILE%\.gemini\config\skills\claude-thinking\SKILL.md`
-- `%USERPROFILE%\.gemini\antigravity\skills\claude-thinking\SKILL.md`
-- `.agent\skills\claude-thinking\SKILL.md`
+- `%USERPROFILE%\.gemini\config\skills\master-skill\SKILL.md`
+- `%USERPROFILE%\.gemini\antigravity\skills\master-skill\SKILL.md`
+- `.agents\skills\master-skill\SKILL.md`
 
 ## 0. Gate - emit this line first, then act
 `[ACCESS read|write][RUN interactive|headless][SIZE trivial|standard|complex][SHELL pwsh|ps51|cmd|posix]`

@@ -10,8 +10,8 @@ Guidelines for detecting, adapting to, and executing commands safely across Powe
 
 ### Temporary Directory `<tmp>`
 Always locate `<tmp>` outside the target repository to avoid polluting the workspace or git status:
-- **Windows (PowerShell)**: `$env:TEMP\claude-thinking\<taskId>` or `$env:USERPROFILE\.claude-thinking\<taskId>`
-- **POSIX**: `/tmp/claude-thinking/<taskId>` or `~/.claude-thinking/<taskId>`
+- **Windows (PowerShell)**: `$env:TEMP\master-skill\<taskId>` or `$env:USERPROFILE\.master-skill\<taskId>`
+- **POSIX**: `/tmp/master-skill/<taskId>` or `~/.master-skill/<taskId>`
 - Ensure directory exists:
   - PowerShell: `if (-not (Test-Path $tmp)) { New-Item -ItemType Directory -Path $tmp -Force | Out-Null }`
   - POSIX: `mkdir -p "$tmp"`
