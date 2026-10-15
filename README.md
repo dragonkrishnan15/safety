@@ -1,210 +1,190 @@
-# 🧠 master-skill (v5.1 Apex Zero-Trust Edition)
-
-> **The Principal-Engineer runtime & reasoning framework for ALL AI coding agents and LLM models.**
-> Transform reactive, hallucinating code-completion models into disciplined, verification-gated engineering partners.
-> Native compatibility with **Claude Code**, **Cursor IDE**, **Windsurf**, **Google Antigravity**, **Cline**, **Roo Code**, **GitHub Copilot**, and **ChatGPT**.
-
----
-
 <div align="center">
 
+<img src="assets/hero_banner.jpg" alt="SAFETY Hero Banner" width="100%" style="border-radius: 12px; box-shadow: 0 12px 40px rgba(0, 242, 254, 0.2);" />
+
+# 🛡️ SAFETY / MASTER-SKILL
+
+### *The Zero-Trust Autonomous AI Agent Governance & Cognitive Reasoning Engine*
+
+[![CI Validation](https://github.com/dragonkrishnan15/safety/actions/workflows/ci.yml/badge.svg)](https://github.com/dragonkrishnan15/safety/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI Status](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](.github/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/Version-5.1.0--Apex-blueviolet.svg)](SKILL.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-green.svg)]()
-[![Shell](https://img.shields.io/badge/Shell-pwsh%20%7C%20ps51%20%7C%20cmd%20%7C%20bash%20%7C%20zsh-orange.svg)]()
+[![Zero Vendor Lock-in](https://img.shields.io/badge/Vendor%20Lock--in-Zero-blueviolet.svg)](#-universal-compatibility)
+[![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-Active-success.svg)](#-how-it-works-the-zero-trust-pipeline)
+
+<p align="center">
+  <b>Converts AI coding assistants from unconstrained token generators into disciplined, sandboxed Principal Engineers.</b><br>
+  Enforces immutable task contracts, red-team chaos testing, cryptographic evidence trails, and zero-leak pre-commit stop gates.
+</p>
+
+[**🚀 Quickstart**](#-instant-installation) • [**📐 Architecture**](#-architecture--visual-pipeline) • [**⚡ Superpowers**](#-the-core-problem-vs-the-safety-solution) • [**🤖 Supported Agents**](#-universal-compatibility) • [**📋 Templates**](#-production-ready-templates)
 
 </div>
 
 ---
 
-## ⚡ Quick Comparison: Standard AI vs. `master-skill`
+## 🖥️ Live Terminal Simulation
 
-```text
-┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ master-skill (Zero-Trust Runtime) ───┐
-│ • Dumps 2,500-line files into context      │ │ • Slices symbols with tight 30-line margins│
-│ • "I fixed the bug! Everything works!"     │ │ • Cites: [EV-001: 18/18 tests pass, exit 0]│
-│ • Piles hack-upon-hack on broken tests     │ │ • Clean atomic rollbacks on failed steps   │
-│ • Overwrites your uncommitted files        │ │ • Tags dirty files as USER-OWNED (untouched)│
-│ • Only tests the happy path                │ │ • Test Adversary injects poison payloads   │
-│ • Leaves debug console.log & tags behind   │ │ • Programmatic Stop Gate enforces exit 0   │
-└────────────────────────────────────────────┘ └────────────────────────────────────────────┘
+<div align="center">
+  <img src="assets/terminal_simulation.svg" alt="Animated Stop Gate Terminal" width="100%" style="border-radius: 12px;" />
+</div>
+
+---
+
+## ⚡ The Core Problem vs. The SAFETY Solution
+
+<table>
+<tr>
+<th width="50%" align="center">❌ Unchecked "Vibe Coding" AI Agents</th>
+<th width="50%" align="center">✅ Sandboxed Principal AI with SAFETY</th>
+</tr>
+<tr>
+<td>
+
+- **Hallucinated Passes**: Claims "Fixed and verified!" without ever executing tests.
+- **Speculative Patch Stacking**: When tests fail, stacks random edits until code breaks completely.
+- **Data Leaks & Secrets**: Commits API keys, local credentials, and internal tokens to GitHub.
+- **Scope Creep & Churn**: Refactors untouched files, deletes unrelated tests, and reformats entire directories.
+- **Fragile Happy-Path Tests**: Writes trivial mocks that pass locally but implode under real production load.
+
+</td>
+<td>
+
+- **Proof-Backed Evidence**: Every assertion must cite a verifiable Evidence ID (`[EV-xxx]`) in `ct-ledger.jsonl`.
+- **Atomic Failsafe Rollbacks**: On failure, instantly reverts to clean checkpoint instead of stacking blind edits.
+- **Zero-Leak Secret Scanner**: Automatically intercepts API keys (`ghp_`, `sk-`, `AIza`, `AKIA`) before git commits.
+- **Strict Contract Boundaries**: Hard blocks unauthorized file writes outside configured `permitted_paths`.
+- **The Test Adversary**: Stress-tests code with 30-50 concurrent async workers, poison inputs, and network latency.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📐 Architecture & Visual Pipeline
+
+<div align="center">
+  <img src="assets/architecture_infographic.jpg" alt="Zero-Trust Architecture Infographic" width="100%" style="border-radius: 12px; margin: 16px 0;" />
+</div>
+
+```mermaid
+graph LR
+    A[1. Triage Gate] --> B[2. Task Contract]
+    B --> C[3. Checkpoint & Revert]
+    C --> D[4. Test Adversary]
+    D --> E[5. Evidence Ledger]
+    E --> F[6. Stop Gate & Merge]
+
+    classDef stage fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
+    class A,B,C,D,E,F stage;
 ```
 
----
-
-## 📑 Table of Contents
-1. [⚡ 3 Ways to Install](#-3-ways-to-install)
-   - [Method 1: AI Agent 1-Prompt Auto-Install (Recommended)](#method-1-ai-agent-1-prompt-auto-install-recommended)
-   - [Method 2: One-Line Terminal Command (Automated)](#method-2-one-line-terminal-command-automated)
-   - [Method 3: Manual File Placement](#method-3-manual-file-placement)
-2. [🚀 The Core Zero-Trust Pipeline](#-the-core-zero-trust-pipeline)
-3. [🌟 The 14 Superpowers](#-the-14-superpowers)
-4. [⌨️ Interactive Slash Commands](#️-interactive-slash-commands)
-5. [📁 Production Reference Examples](#-production-reference-examples)
-6. [🛠️ Automation Scripts Included](#️-automation-scripts-included)
-7. [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
-8. [🤝 Contributing & License](#-contributing--license)
+For complete technical specifications and state transition diagrams, view [**`ARCHITECTURE.md`**](ARCHITECTURE.md).
 
 ---
 
-## ⚡ 3 Ways to Install
+## 🚀 Instant Installation
 
-Choose the installation method that fits your workflow:
-
-### Method 1: AI Agent 1-Prompt Auto-Install (Recommended)
-You don't need to touch a terminal or copy files manually. Copy and paste this exact prompt directly into **Claude Code**, **Cursor**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
+### Method 1: AI Agent 1-Prompt Auto-Install (Zero Terminal)
+Copy and paste this exact prompt directly into **Cursor**, **Claude Code**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
 
 ```text
 Install and activate the master-skill framework from https://github.com/dragonkrishnan15/safety.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
 ```
 
-> **How it works:** The agent reads [`AGENT_INSTALL.md`](AGENT_INSTALL.md), detects its runtime IDE, copies the required rule/skill files, and activates `master-skill` automatically.
-
 ---
 
 ### Method 2: One-Line Terminal Command (Automated)
-Run a single command in your terminal. The installer automatically detects your installed AI tools (Cursor, Claude, Antigravity, Windsurf, Cline) and configures them.
-
-#### 🍎 macOS / Linux / WSL (Bash):
-```bash
-# Install for current project workspace:
-curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash
-
-# Or install globally across all user projects:
-curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash -s -- --global
-```
 
 #### 🪟 Windows (PowerShell):
 ```powershell
-# Install for current project workspace:
 irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex
-
-# Or install globally across all user projects:
+```
+*Or install globally across all user projects:*
+```powershell
 & ([scriptblock]::Create((irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1))) -Scope global
 ```
 
-#### 💻 Windows Command Prompt (CMD):
-```cmd
-powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex"
+#### 🍎 macOS / Linux / WSL (Bash):
+```bash
+curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash
 ```
-
-*Note: In project mode, the installer also automatically configures a `.git/hooks/pre-commit` quality gate to prevent accidental commits of debug tags.*
+*Or install globally across all user projects:*
+```bash
+curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash -s -- --global
+```
 
 ---
 
-### Method 3: Manual File Placement
-If you prefer total manual control, copy the corresponding adapter file from `adapters/` into your project or user root:
+### Method 3: Instant Quickstart Runner
+Run the interactive onboarder directly in your local clone:
+```powershell
+# Windows
+.\quickstart.ps1
 
-| Environment | Source File in Repo | Target Destination | Scope |
-|---|---|---|---|
-| **Google Antigravity** | `SKILL.md` + `master-skill.md` | `~/.gemini/config/skills/master-skill/` & `~/.gemini/config/rules/master-skill.md` | Global |
-| **Google Antigravity (Project)** | `SKILL.md` + `master-skill.md` | `.agents/skills/master-skill/` & `.agents/rules/master-skill.md` | Workspace |
-| **Anthropic Claude Code** | `adapters/CLAUDE.md` | `./CLAUDE.md` (or `~/.claude/CLAUDE.md`) | Workspace / Global |
-| **Cursor IDE** | `adapters/.cursorrules` | `./.cursorrules` (or `.cursor/rules/master-skill.mdc`) | Workspace |
-| **Windsurf IDE** | `adapters/.windsurfrules` | `./.windsurfrules` | Workspace |
-| **Cline / Roo Code** | `adapters/.clinerules` | `./.clinerules` | Workspace |
+# macOS / Linux / WSL
+bash ./quickstart.sh
+```
+
+---
+
+## 🤖 Universal Compatibility
+
+**master-skill / safety** operates natively across all major agent environments with zero code modifications:
+
+| Environment | Adapter Location | Target Activation File | Scope |
+|:---|:---|:---|:---|
+| **Google Antigravity / Gemini** | `SKILL.md` | `~/.gemini/config/skills/master-skill/` | Global & Workspace |
+| **Cursor IDE** | `adapters/.cursorrules` | `.cursor/rules/master-skill.mdc` | Workspace / Project |
+| **Windsurf IDE** | `adapters/.windsurfrules` | `.windsurfrules` | Global & Workspace |
+| **Anthropic Claude Code** | `adapters/CLAUDE.md` | `./CLAUDE.md` (or `~/.claude/CLAUDE.md`) | Global & Workspace |
+| **Cline / Roo Code** | `adapters/.clinerules` | `.clinerules` | Global & Workspace |
 | **GitHub Copilot** | `adapters/COPILOT.md` | `.github/copilot-instructions.md` | Workspace |
-| **ChatGPT / Custom LLM** | `adapters/SYSTEM_PROMPT.md` | Paste into Custom System Instructions | Global |
-| **Universal Spec** | `adapters/AGENTS.md` | `./AGENTS.md` | Workspace |
+| **OpenAI Codex / Devin / DeepSeek** | `adapters/AGENTS.md` | `AGENTS.md` | Workspace Root |
 
 ---
 
-## 🚀 The Core Zero-Trust Pipeline
+## ⚡ Interactive Chat Slash Commands
 
-```mermaid
-graph TD
-    A["0. Inbound Task"] --> B["0. Gate Line: ACCESS / RUN / SIZE / SHELL"]
-    B --> C["1. Task Contract (<tmp>/ct-contract.json) & Baseline Sanity"]
-    C --> D["2. Understand & Context-Budgeted Explore"]
-    D --> E["3. Plan (RFC Gate if Complex & Pre-Mortem Stress Test)"]
-    E --> F["4. Implement Atomically (Pre-Tool Policy Interceptor)"]
-    F --> G["5. Verify (The Test Adversary / Browser Audit / Regression Harness)"]
-    G --> H["6. Evidence Chain Logging (<tmp>/ct-ledger.jsonl)"]
-    H --> I["7. Programmatic Stop Gate (scripts/stop_gate)"]
-    I -->|Exit != 0| F
-    I -->|Exit == 0| J["8. Health Scorecard, Memory Record & Report"]
-```
+When working in interactive chat environments (Cursor, Claude Code, Antigravity, Windsurf), you can use these shortcuts:
+
+| Command | Action Performed |
+|:---|:---|
+| **`/master-skill`** (or **`/ms`**) | Forces full zero-trust triage and cognitive reasoning on the active task |
+| **`/ms-contract`** | Generates or validates `ct-contract.json` bounds for the current task |
+| **`/ms-adversary`** | Injects red-team fault simulations (concurrency, poison inputs, latency drops) |
+| **`/ms-stop`** | Executes `scripts/stop_gate` pre-commit audit and renders diff health scorecard |
+| **`/ms-report`** | Formats verified report citing Evidence IDs (`[EV-xxx]`) from the ledger |
 
 ---
 
-## 🌟 The 14 Superpowers
+## 📋 Production-Ready Templates
 
-| Superpower | What It Enforces | Documentation |
-|---|---|---|
-| **Task Contract Engine** | Binds the agent to a formal contract (`ct-contract.json`) with permitted/forbidden paths and invariants before the first edit. | [task-contract.md](references/task-contract.md) |
-| **Pre-Tool Interceptor** | Intercepts tool calls before execution; blocks destructive commands (`rm -rf`, `reset --hard`), protected paths, and secret leaks. | [policy-interceptor.md](references/policy-interceptor.md) |
-| **The Test Adversary** | Red-team persona attacking its own implementation with poison inputs, rapid concurrency, and boundary limits. | [test-adversary.md](references/test-adversary.md) |
-| **Evidence Chain & Ledger** | Immutable append-only event stream (`ct-ledger.jsonl`). Every completion claim MUST cite an Evidence ID (`[EV-xxx]`). | [evidence-chain.md](references/evidence-chain.md) |
-| **Programmatic Stop Gate** | Automated exit gate (`scripts/stop_gate`). Session cannot terminate successfully unless automated checks exit with code `0`. | [scripts/stop_gate.ps1](scripts/stop_gate.ps1) |
-| **Gate Line** | Instantly sets mode (`read` vs `write`, `interactive` vs `headless`, `pwsh` vs `posix`). | [SKILL.md](SKILL.md) |
-| **Baseline Sanity** | Captures git status before touching code. Tags existing dirty files as `USER-OWNED`. | [baseline-env.md](references/baseline-env.md) |
-| **Cross-Session Memory** | Recalls repo quirks from `.master-skill/memory.json`; records new lessons upon completion. | [memory.md](references/memory.md) |
-| **Token Discipline** | Forbids reading files $>400$ lines. Slices symbols with ~30 lines of margin using ripgrep. | [token-efficiency.md](references/token-efficiency.md) |
-| **Pre-Mortem Analysis** | Stress-tests concurrency, drops, poison payloads, and scale before writing code. | [pre-mortem.md](references/pre-mortem.md) |
-| **Atomic Rollback** | Saves checkpoint diffs. Reverts cleanly on failure. Max 2 reverts per step. | [rollback.md](references/rollback.md) |
-| **Failsafe Circuit Breakers** | Auto-halts after 2 identical command failures or 3 failed approaches. Zero-destruction wall. | [failsafes.md](references/failsafes.md) |
-| **Visual Browser Audit** | For Web/UI tasks, launches a browser subagent, audits console for 0 errors, and captures screenshot proof. | [visual-verify.md](references/visual-verify.md) |
-| **1-Screen Precision Questions** | One-way doors ask exactly 1 question with context, trade-off matrix, `(Recommended)`, and safe default. | [question-protocol.md](references/question-protocol.md) |
+The repository includes ready-to-use production boilerplate templates in [`templates/`](templates/):
+
+- [`contract.template.json`](templates/contract.template.json): Task contract schema specifying permitted paths, forbidden paths, and invariants.
+- [`ledger.template.jsonl`](templates/ledger.template.jsonl): Append-only cryptographic evidence ledger.
+- [`adversary_test.py`](templates/adversary_test.py): Python red-team suite injecting 30 concurrent workers and poison inputs.
+- [`adversary_test.ts`](templates/adversary_test.ts): TypeScript/JavaScript suite testing 50 concurrent async promises under latency.
 
 ---
 
-## ⌨️ Interactive Slash Commands
+## 🛡️ Security & Zero Data Leakage Policy
 
-When working in interactive chat environments (Claude Code, Antigravity, Cursor, Windsurf), you can use these shortcuts:
-
-| Command | Action |
-|---|---|
-| `/master-skill` or `/ms` | Launch the full Principal-Engineer pipeline on current prompt. |
-| `/ms-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
-| `/ms-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
-| `/ms-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
-| `/ms-report` | Generate the evidence-grounded final scorecard report. |
+1. **Zero Secret Leakage**: The automated stop gate scans additions against patterns for OpenAI, Anthropic, Google, AWS, and private keys.
+2. **Local Machine Privacy**: No local drive paths, home directories, or private developer identifiers are ever committed.
+3. **No External Runtime Dependencies**: All scripts and verification gates run on pure native PowerShell (Windows) or POSIX sh (macOS/Linux). No pip or npm packages required.
 
 ---
 
-## 📁 Production Reference Examples
+<div align="center">
 
-Located in [`examples/`](examples/):
-- **[`examples/task-contract.example.json`](examples/task-contract.example.json)**: Real-world Task Contract with path boundaries, invariants, and stop gate command.
-- **[`examples/ct-ledger.example.jsonl`](examples/ct-ledger.example.jsonl)**: Append-only event stream demonstrating `[EV-001]` through `[EV-004]` evidence capture.
-- **[`examples/adversary-test.example.py`](examples/adversary-test.example.py)**: Complete Red-Team adversarial test suite injecting concurrency races, poison payloads, and boundary limits.
+### 🌟 Star this repository on GitHub!
+If you believe AI coding agents should be reliable, sandboxed, and disciplined, give this repo a star!
 
----
+[**GitHub: dragonkrishnan15/safety**](https://github.com/dragonkrishnan15/safety) • [**Issues**](https://github.com/dragonkrishnan15/safety/issues) • [**Contributing Guide**](CONTRIBUTING.md)
 
-## 🛠️ Automation Scripts Included
+Distributed under the [MIT License](LICENSE).
 
-Located in `scripts/`:
-- `stop_gate.ps1` / `.sh`: **Programmatic Stop Gate** validating cleanliness, contract boundaries, and test exit codes.
-- `fingerprint.ps1` / `.sh`: JSON environment and toolchain detection.
-- `leftover_check.ps1` / `.sh`: Scans for leftover `DEBUG-CT` tags and trailing whitespace.
-- `flake_runner.ps1` / `.sh`: Batched flake test runner with statistical confidence limits.
-- `scorecard.ps1` / `.sh`: Calculates additions/deletions ratio and diff blast radius.
-- `memory_sync.ps1` / `.sh`: Appends 1-sentence lessons to `.master-skill/memory.json`.
-- `install_hooks.ps1` / `.sh`: Installs git pre-commit safety gate.
-
----
-
-## ❓ Frequently Asked Questions (FAQ)
-
-#### Q: Does this slow down my AI assistant?
-**A:** No. In fact, it often speeds up completion time and cuts API costs by 60–80% because it stops the AI from reading whole 2,000-line files, looping in infinite error cycles, or stacking broken patches.
-
-#### Q: Will this interfere with my existing uncommitted code?
-**A:** Never. Law 7 and the Baseline Sanity gate automatically flag all pre-existing dirty files as `USER-OWNED`. The agent is strictly forbidden from editing, staging, stashing, formatting, or reverting them.
-
-#### Q: Do I need Python, Node.js, or Docker to run this?
-**A:** No. `master-skill` has **zero external runtime dependencies**. Its automation scripts run on native PowerShell (Windows) or POSIX sh/bash (macOS/Linux).
-
-#### Q: How does the AI know when to stop?
-**A:** It cannot stop simply by declaring "Done". It must execute `scripts/stop_gate`, which requires an exit code of `0`, passing all invariant checks and test suites.
-
----
-
-## 🤝 Contributing & License
-
-We welcome community contributions, additional IDE adapters, and domain playbooks!
-Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
-
-Distributed under the [MIT License](LICENSE). Free and open-source for personal, team, and commercial use.
+</div>
