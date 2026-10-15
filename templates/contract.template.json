@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "task_id": "TASK-001",
+  "timestamp": "2026-10-16T00:00:00Z",
+  "permitted_paths": [
+    "src/**",
+    "tests/**",
+    "package.json"
+  ],
+  "forbidden_paths": [
+    "prod/**",
+    "secrets/**",
+    ".env",
+    "dist/**",
+    ".git/**"
+  ],
+  "architectural_invariants": [
+    "No circular dependencies between modules",
+    "All state mutations must occur within transactional boundaries",
+    "Zero leftover debug statements (DEBUG-CT) permitted in commits",
+    "Strict type safety without implicit 'any' types"
+  ],
+  "verification_targets": [
+    {
+      "name": "Unit & Integration Tests",
+      "command": "npm test",
+      "required_exit_code": 0
+    },
+    {
+      "name": "Static Type Check & Linter",
+      "command": "npm run lint",
+      "required_exit_code": 0
+    }
+  ],
+  "resource_limits": {
+    "max_files_modified": 15,
+    "max_lines_added": 400
+  }
+}

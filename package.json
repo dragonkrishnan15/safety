@@ -1,0 +1,34 @@
+{
+  "name": "@dragonkrishnan15/safety",
+  "version": "5.1.0",
+  "description": "Zero-trust autonomous AI agent safety, cognitive reasoning, and pre-commit verification engine",
+  "main": "master-skill.md",
+  "scripts": {
+    "test": "powershell -ExecutionPolicy Bypass -File ./scripts/stop_gate.ps1",
+    "quickstart": "powershell -ExecutionPolicy Bypass -File ./quickstart.ps1",
+    "lint": "powershell -ExecutionPolicy Bypass -File ./scripts/leftover_check.ps1",
+    "memory:sync": "powershell -ExecutionPolicy Bypass -File ./scripts/memory_sync.ps1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragonkrishnan15/safety.git"
+  },
+  "keywords": [
+    "ai-agent",
+    "safety",
+    "zero-trust",
+    "claude",
+    "cursor",
+    "windsurf",
+    "antigravity",
+    "agentic-ai",
+    "code-verification",
+    "principal-engineer"
+  ],
+  "author": "dragonkrishnan15 <krishnanmayank915@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dragonkrishnan15/safety/issues"
+  },
+  "homepage": "https://github.com/dragonkrishnan15/safety#readme"
+}
