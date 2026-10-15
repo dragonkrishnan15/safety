@@ -1,95 +1,126 @@
-# claude-thinking (v5.1 Apex Architecture Edition)
+# 🧠 claude-thinking (v5.1 Apex Zero-Trust Edition)
 
-> **Principal-Engineer reasoning framework for ALL AI coding agents and LLM models.**  
-> Compatible with Claude Code, Cursor, Windsurf, Google Antigravity, Cline, Roo Code, GitHub Copilot, ChatGPT, and custom LLM harnesses.
+> **The Principal-Engineer runtime & reasoning framework for ALL AI coding agents and LLM models.**
+> Transform reactive, hallucinating code-completion models into disciplined, verification-gated engineering partners.
+> Native compatibility with **Claude Code**, **Cursor IDE**, **Windsurf**, **Google Antigravity**, **Cline**, **Roo Code**, **GitHub Copilot**, and **ChatGPT**.
+
+---
+
+<div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![CI Status](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](.github/workflows/ci.yml)
+[![Version](https://img.shields.io/badge/Version-5.1.0--Apex-blueviolet.svg)](SKILL.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-green.svg)]()
 [![Shell](https://img.shields.io/badge/Shell-pwsh%20%7C%20ps51%20%7C%20cmd%20%7C%20bash%20%7C%20zsh-orange.svg)]()
 
+</div>
+
 ---
 
-## ⚡ 10-Second Auto-Install (Pass this to ANY AI Agent)
+## ⚡ Quick Comparison: Standard AI vs. `claude-thinking`
 
-You don't need to manually configure files. Copy and paste this prompt to **Claude Code**, **Cursor**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
+```text
+┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ claude-thinking (Zero-Trust Runtime) ─┐
+│ • Dumps 2,500-line files into context      │ │ • Slices symbols with tight 30-line margins│
+│ • "I fixed the bug! Everything works!"     │ │ • Cites: [EV-001: 18/18 tests pass, exit 0]│
+│ • Piles hack-upon-hack on broken tests     │ │ • Clean atomic rollbacks on failed steps   │
+│ • Overwrites your uncommitted files        │ │ • Tags dirty files as USER-OWNED (untouched)│
+│ • Only tests the happy path                │ │ • Test Adversary injects poison payloads   │
+│ • Leaves debug console.log & tags behind   │ │ • Programmatic Stop Gate enforces exit 0   │
+└────────────────────────────────────────────┘ └────────────────────────────────────────────┘
+```
+
+---
+
+## 📑 Table of Contents
+1. [⚡ 3 Ways to Install](#-3-ways-to-install)
+   - [Method 1: AI Agent 1-Prompt Auto-Install (Recommended)](#method-1-ai-agent-1-prompt-auto-install-recommended)
+   - [Method 2: One-Line Terminal Command (Automated)](#method-2-one-line-terminal-command-automated)
+   - [Method 3: Manual File Placement](#method-3-manual-file-placement)
+2. [🚀 The Core Zero-Trust Pipeline](#-the-core-zero-trust-pipeline)
+3. [🌟 The 14 Superpowers](#-the-14-superpowers)
+4. [⌨️ Interactive Slash Commands](#️-interactive-slash-commands)
+5. [📁 Production Reference Examples](#-production-reference-examples)
+6. [🛠️ Automation Scripts Included](#️-automation-scripts-included)
+7. [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+8. [🤝 Contributing & License](#-contributing--license)
+
+---
+
+## ⚡ 3 Ways to Install
+
+Choose the installation method that fits your workflow:
+
+### Method 1: AI Agent 1-Prompt Auto-Install (Recommended)
+You don't need to touch a terminal or copy files manually. Copy and paste this exact prompt directly into **Claude Code**, **Cursor**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
 
 ```text
 Install and activate the claude-thinking framework from https://github.com/CodeStrikerMayank/master_skill.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
 ```
 
-The agent will read [AGENT_INSTALL.md](AGENT_INSTALL.md) and automatically set up the rules and skills for your exact workspace.
+> **How it works:** The agent reads [`AGENT_INSTALL.md`](AGENT_INSTALL.md), detects its runtime IDE, copies the required rule/skill files, and activates `claude-thinking` automatically.
 
 ---
 
-## 💻 1-Line Terminal Installation (For Humans & CLI Agents)
+### Method 2: One-Line Terminal Command (Automated)
+Run a single command in your terminal. The installer automatically detects your installed AI tools (Cursor, Claude, Antigravity, Windsurf, Cline) and configures them.
 
-### macOS / Linux / WSL (Bash):
+#### 🍎 macOS / Linux / WSL (Bash):
 ```bash
-# Install to current project:
+# Install for current project workspace:
 curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash
 
 # Or install globally across all user projects:
 curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash -s -- --global
 ```
 
-### Windows (PowerShell):
+#### 🪟 Windows (PowerShell):
 ```powershell
-# Install to current project:
+# Install for current project workspace:
 irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1 | iex
 
 # Or install globally across all user projects:
 & ([scriptblock]::Create((irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1))) -Scope global
 ```
 
----
-
-## ⚡ What is `claude-thinking`?
-
-```text
-┌─ ❌ Standard AI Coding Assistant ──────────┐ ┌─ 🛡️ claude-thinking (Zero-Trust Runtime) ─┐
-│ • Dumps 2,500-line files into context      │ │ • Slices symbols with tight 30-line margins│
-│ • "I fixed the bug! Everything works!"     │ │ • Cites: [EV-001: 18/18 tests pass, exit 0]│
-│ • Leaves console.log and broken tests      │ │ • Programmatic Stop Gate enforces exit 0   │
-│ • Overwrites your uncommitted files        │ │ • Tags dirty files as USER-OWNED (untouched)│
-│ • Only tests the happy path                │ │ • Test Adversary injects poison payloads   │
-└────────────────────────────────────────────┘ └────────────────────────────────────────────┘
+#### 💻 Windows Command Prompt (CMD):
+```cmd
+powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1 | iex"
 ```
 
-Most AI coding assistants suffer from **5 fatal failure modes**:
-1. **Blind Overwrites**: Overwriting user files without checking what was there before.
-2. **Context Exhaustion**: Dumping massive 2,000-line files into context and running out of tokens.
-3. **Patch Stacking**: When code fails, piling hack upon hack instead of rolling back to clean state.
-4. **Vague Questions**: Asking lazy questions like *"What should I do next?"* instead of structured recommendations.
-5. **No Verification Proof**: Saying *"I fixed it!"* without running tests or checking the browser.
-
-**`claude-thinking` turns any LLM into a disciplined Principal Engineer.** It enforces strict baseline capture, atomic checkpoints, pre-mortem failure mode analysis, real browser audits, token discipline, and zero-destruction failsafes.
+*Note: In project mode, the installer also automatically configures a `.git/hooks/pre-commit` quality gate to prevent accidental commits of debug tags.*
 
 ---
 
-## ⚡ Slash Commands (Interactive Shortcuts)
+### Method 3: Manual File Placement
+If you prefer total manual control, copy the corresponding adapter file from `adapters/` into your project or user root:
 
-| Command | Action |
-|---|---|
-| `/claude-thinking` or `/ct` | Launch the full Principal-Engineer pipeline. |
-| `/ct-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
-| `/ct-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
-| `/ct-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
-| `/ct-report` | Generate the evidence-grounded final scorecard report. |
+| Environment | Source File in Repo | Target Destination | Scope |
+|---|---|---|---|
+| **Google Antigravity** | `SKILL.md` + `claude-thinking.md` | `~/.gemini/config/skills/claude-thinking/` & `~/.gemini/config/rules/` | Global |
+| **Google Antigravity (Project)** | `SKILL.md` + `claude-thinking.md` | `.agents/skills/claude-thinking/` & `.agents/rules/` | Workspace |
+| **Anthropic Claude Code** | `adapters/CLAUDE.md` | `./CLAUDE.md` (or `~/.claude/CLAUDE.md`) | Workspace / Global |
+| **Cursor IDE** | `adapters/.cursorrules` | `./.cursorrules` (or `.cursor/rules/claude-thinking.mdc`) | Workspace |
+| **Windsurf IDE** | `adapters/.windsurfrules` | `./.windsurfrules` | Workspace |
+| **Cline / Roo Code** | `adapters/.clinerules` | `./.clinerules` | Workspace |
+| **GitHub Copilot** | `adapters/COPILOT.md` | `.github/copilot-instructions.md` | Workspace |
+| **ChatGPT / Custom LLM** | `adapters/SYSTEM_PROMPT.md` | Paste into Custom System Instructions | Global |
+| **Universal Spec** | `adapters/AGENTS.md` | `./AGENTS.md` | Workspace |
 
 ---
 
-## 🚀 The Core Workflow Pipeline (Gravitas-Grade Zero-Trust Runtime)
+## 🚀 The Core Zero-Trust Pipeline
 
 ```mermaid
 graph TD
     A["0. Inbound Task"] --> B["0. Gate Line: ACCESS / RUN / SIZE / SHELL"]
-    B --> C["1. Task Contract (<tmp>/ct-contract.json) & Baseline"]
-    C --> D["2. Understand & Explore (Context-Budgeted)"]
+    B --> C["1. Task Contract (<tmp>/ct-contract.json) & Baseline Sanity"]
+    C --> D["2. Understand & Context-Budgeted Explore"]
     D --> E["3. Plan (RFC Gate if Complex & Pre-Mortem Stress Test)"]
     E --> F["4. Implement Atomically (Pre-Tool Policy Interceptor)"]
-    F --> G["5. Verify (The Test Adversary Red-Team / Browser Audit / Regression Harness)"]
+    F --> G["5. Verify (The Test Adversary / Browser Audit / Regression Harness)"]
     G --> H["6. Evidence Chain Logging (<tmp>/ct-ledger.jsonl)"]
     H --> I["7. Programmatic Stop Gate (scripts/stop_gate)"]
     I -->|Exit != 0| F
@@ -98,9 +129,9 @@ graph TD
 
 ---
 
-## 🌟 The 14 Superpowers (Gravitas-Enhanced)
+## 🌟 The 14 Superpowers
 
-| Superpower | What It Does | Reference |
+| Superpower | What It Enforces | Documentation |
 |---|---|---|
 | **Task Contract Engine** | Binds the agent to a formal contract (`ct-contract.json`) with permitted/forbidden paths and invariants before the first edit. | [task-contract.md](references/task-contract.md) |
 | **Pre-Tool Interceptor** | Intercepts tool calls before execution; blocks destructive commands (`rm -rf`, `reset --hard`), protected paths, and secret leaks. | [policy-interceptor.md](references/policy-interceptor.md) |
@@ -119,18 +150,26 @@ graph TD
 
 ---
 
-## 📦 Universal Adapter Directory
+## ⌨️ Interactive Slash Commands
 
-| Agent / IDE | Instruction File | Where to Place |
-|---|---|---|
-| **Anthropic Claude Code** | [adapters/CLAUDE.md](adapters/CLAUDE.md) | `./CLAUDE.md` or `~/.claude/CLAUDE.md` |
-| **Cursor IDE** | [adapters/.cursorrules](adapters/.cursorrules) | `./.cursorrules` or `.cursor/rules/claude-thinking.mdc` |
-| **Windsurf IDE** | [adapters/.windsurfrules](adapters/.windsurfrules) | `./.windsurfrules` |
-| **Cline / Roo Code** | [adapters/.clinerules](adapters/.clinerules) | `./.clinerules` |
-| **GitHub Copilot** | [adapters/COPILOT.md](adapters/COPILOT.md) | `.github/copilot-instructions.md` |
-| **Google Antigravity / Gemini CLI** | [SKILL.md](SKILL.md) & [claude-thinking.md](claude-thinking.md) | `~/.gemini/config/skills/` & `~/.gemini/config/rules/` |
-| **Universal Generic Agent** | [adapters/AGENTS.md](adapters/AGENTS.md) | `./AGENTS.md` |
-| **ChatGPT / Custom LLM** | [adapters/SYSTEM_PROMPT.md](adapters/SYSTEM_PROMPT.md) | Paste into System Instructions |
+When working in interactive chat environments (Claude Code, Antigravity, Cursor, Windsurf), you can use these shortcuts:
+
+| Command | Action |
+|---|---|
+| `/claude-thinking` or `/ct` | Launch the full Principal-Engineer pipeline on current prompt. |
+| `/ct-contract` | Generate or audit the Task Contract (`<tmp>/ct-contract.json`). |
+| `/ct-adversary` | Activate Red-Team Test Adversary fault injection on current diff. |
+| `/ct-stop` | Run the Programmatic Stop Gate (`scripts/stop_gate.ps1` / `.sh`). |
+| `/ct-report` | Generate the evidence-grounded final scorecard report. |
+
+---
+
+## 📁 Production Reference Examples
+
+Located in [`examples/`](examples/):
+- **[`examples/task-contract.example.json`](examples/task-contract.example.json)**: Real-world Task Contract with path boundaries, invariants, and stop gate command.
+- **[`examples/ct-ledger.example.jsonl`](examples/ct-ledger.example.jsonl)**: Append-only event stream demonstrating `[EV-001]` through `[EV-004]` evidence capture.
+- **[`examples/adversary-test.example.py`](examples/adversary-test.example.py)**: Complete Red-Team adversarial test suite injecting concurrency races, poison payloads, and boundary limits.
 
 ---
 
@@ -147,21 +186,25 @@ Located in `scripts/`:
 
 ---
 
-## 📁 Production Reference Examples
+## ❓ Frequently Asked Questions (FAQ)
 
-Located in `examples/`:
-- [`examples/task-contract.example.json`](examples/task-contract.example.json): Real-world Task Contract with path boundaries, invariants, and stop gate command.
-- [`examples/ct-ledger.example.jsonl`](examples/ct-ledger.example.jsonl): Append-only event stream demonstrating `[EV-xxx]` evidence capture.
-- [`examples/adversary-test.example.py`](examples/adversary-test.example.py): Complete Red-Team adversarial test suite injecting concurrency races, poison payloads, and boundary limits.
+#### Q: Does this slow down my AI assistant?
+**A:** No. In fact, it often speeds up completion time and cuts API costs by 60–80% because it stops the AI from reading whole 2,000-line files, looping in infinite error cycles, or stacking broken patches.
+
+#### Q: Will this interfere with my existing uncommitted code?
+**A:** Never. Law 7 and the Baseline Sanity gate automatically flag all pre-existing dirty files as `USER-OWNED`. The agent is strictly forbidden from editing, staging, stashing, formatting, or reverting them.
+
+#### Q: Do I need Python, Node.js, or Docker to run this?
+**A:** No. `claude-thinking` has **zero external runtime dependencies**. Its automation scripts run on native PowerShell (Windows) or POSIX sh/bash (macOS/Linux).
+
+#### Q: How does the AI know when to stop?
+**A:** It cannot stop simply by declaring "Done". It must execute `scripts/stop_gate`, which requires an exit code of `0`, passing all invariant checks and test suites.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contributing & License
 
-We welcome community contributions! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) to add new adapters or playbooks.
+We welcome community contributions, additional IDE adapters, and domain playbooks!
+Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
 
----
-
-## 📄 License
-
-MIT License. Open source and free for individual developers, teams, and enterprises. See [LICENSE](LICENSE) for details.
+Distributed under the [MIT License](LICENSE). Free and open-source for personal, team, and commercial use.
