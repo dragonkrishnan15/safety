@@ -3,7 +3,7 @@
 # master-skill Universal Installer for macOS / Linux / WSL
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash
 #   or locally:
 #   ./install.sh [--global | --project] [--target all|claude|cursor|windsurf|gemini|cline|copilot]
 # ==============================================================================
@@ -40,7 +40,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 if [[ ! -f "$SCRIPT_DIR/SKILL.md" ]]; then
   TMP_REPO="$(mktemp -d)/master-skill"
   echo "==> Fetching master-skill repository..."
-  git clone --depth 1 https://github.com/CodeStrikerMayank/master_skill.git "$TMP_REPO"
+  git clone --depth 1 https://github.com/dragonkrishnan15/safety.git "$TMP_REPO"
   SCRIPT_DIR="$TMP_REPO"
 fi
 

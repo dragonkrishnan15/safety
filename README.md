@@ -57,7 +57,7 @@ Choose the installation method that fits your workflow:
 You don't need to touch a terminal or copy files manually. Copy and paste this exact prompt directly into **Claude Code**, **Cursor**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
 
 ```text
-Install and activate the master-skill framework from https://github.com/CodeStrikerMayank/master_skill.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
+Install and activate the master-skill framework from https://github.com/dragonkrishnan15/safety.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
 ```
 
 > **How it works:** The agent reads [`AGENT_INSTALL.md`](AGENT_INSTALL.md), detects its runtime IDE, copies the required rule/skill files, and activates `master-skill` automatically.
@@ -70,24 +70,24 @@ Run a single command in your terminal. The installer automatically detects your 
 #### 🍎 macOS / Linux / WSL (Bash):
 ```bash
 # Install for current project workspace:
-curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash
 
 # Or install globally across all user projects:
-curl -fsSL https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.sh | bash -s -- --global
+curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash -s -- --global
 ```
 
 #### 🪟 Windows (PowerShell):
 ```powershell
 # Install for current project workspace:
-irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex
 
 # Or install globally across all user projects:
-& ([scriptblock]::Create((irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1))) -Scope global
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1))) -Scope global
 ```
 
 #### 💻 Windows Command Prompt (CMD):
 ```cmd
-powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1 | iex"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex"
 ```
 
 *Note: In project mode, the installer also automatically configures a `.git/hooks/pre-commit` quality gate to prevent accidental commits of debug tags.*

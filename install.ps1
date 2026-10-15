@@ -9,7 +9,7 @@
 .PARAMETER Target
     'auto' (auto-detect installed agents), 'all', or specific agent name. Default: 'auto'.
 .EXAMPLE
-    irm https://raw.githubusercontent.com/CodeStrikerMayank/master_skill/main/install.ps1 | iex
+    irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex
 #>
 [CmdletBinding()]
 param(
@@ -28,7 +28,7 @@ if (-not $ScriptDir -or -not (Test-Path "$ScriptDir/SKILL.md")) {
     $TempRepo = Join-Path ([System.IO.Path]::GetTempPath()) "master-skill-install"
     Write-Host "[*] Fetching master-skill repository..." -ForegroundColor Cyan
     if (Test-Path $TempRepo) { Remove-Item -Recurse -Force $TempRepo }
-    git clone --depth 1 https://github.com/CodeStrikerMayank/master_skill.git $TempRepo
+    git clone --depth 1 https://github.com/dragonkrishnan15/safety.git $TempRepo
     $ScriptDir = $TempRepo
 }
 
