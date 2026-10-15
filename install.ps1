@@ -64,7 +64,13 @@ if ($Target -in @('auto', 'all', 'gemini')) {
         if (Test-Path "$ScriptDir\references") { Copy-Item -Path "$ScriptDir\references" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\scripts") { Copy-Item -Path "$ScriptDir\scripts" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\examples") { Copy-Item -Path "$ScriptDir\examples" -Destination $GeminiSkillDir -Recurse -Force }
+        $AgyLegacyDir = "$HomeDir\.gemini\antigravity\skills\master-skill"
+        if (Test-Path "$HomeDir\.gemini\antigravity") {
+            if (-not (Test-Path $AgyLegacyDir)) { New-Item -ItemType Directory -Path $AgyLegacyDir -Force | Out-Null }
+            Copy-Config "$ScriptDir\SKILL.md" "$AgyLegacyDir\SKILL.md" "Antigravity Fallback Skill"
+        }
         Copy-Config "$ScriptDir\master-skill.md" "$HomeDir\.gemini\config\rules\master-skill.md" "Antigravity Global Rule"
+        if (Test-Path "$HomeDir\.gemini\config\rules\claude-thinking.md") { Remove-Item -Force "$HomeDir\.gemini\config\rules\claude-thinking.md" 2>$null }
     }
     if ($Scope -eq 'project') {
         Copy-Config "$ScriptDir\SKILL.md" "$WorkDir\.agents\skills\master-skill\SKILL.md" "Antigravity Project Skill"

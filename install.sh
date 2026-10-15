@@ -74,7 +74,12 @@ if [[ "$TARGET" =~ ^(auto|all|gemini)$ ]]; then
     [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$HOME_DIR/.gemini/config/skills/master-skill/"
     [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$HOME_DIR/.gemini/config/skills/master-skill/"
     [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    if [[ -d "$HOME_DIR/.gemini/antigravity" ]]; then
+      mkdir -p "$HOME_DIR/.gemini/antigravity/skills/master-skill"
+      copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/antigravity/skills/master-skill/SKILL.md" "Antigravity Fallback Skill"
+    fi
     copy_cfg "$SCRIPT_DIR/master-skill.md" "$HOME_DIR/.gemini/config/rules/master-skill.md" "Antigravity Global Rule"
+    [[ -f "$HOME_DIR/.gemini/config/rules/claude-thinking.md" ]] && rm -f "$HOME_DIR/.gemini/config/rules/claude-thinking.md"
   fi
   if [[ "$SCOPE" == "project" ]]; then
     copy_cfg "$SCRIPT_DIR/SKILL.md" "$WORK_DIR/.agents/skills/master-skill/SKILL.md" "Antigravity Project Skill"
