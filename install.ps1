@@ -33,7 +33,7 @@ if (-not $ScriptDir -or -not (Test-Path "$ScriptDir/SKILL.md")) {
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " 🧠 master-skill Universal Installer (v5.1)" -ForegroundColor Green
+Write-Host " 🧠 master-skill Universal Installer (v5.2)" -ForegroundColor Green
 Write-Host " Scope:  $Scope" -ForegroundColor Yellow
 Write-Host " Target: $Target" -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
@@ -66,11 +66,24 @@ if ($Target -in @('auto', 'all', 'gemini')) {
         if (Test-Path "$ScriptDir\bin") { Copy-Item -Path "$ScriptDir\bin" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\profiles") { Copy-Item -Path "$ScriptDir\profiles" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\examples") { Copy-Item -Path "$ScriptDir\examples" -Destination $GeminiSkillDir -Recurse -Force }
+
+        # Legacy & compatibility skill paths
         $AgyLegacyDir = "$HomeDir\.gemini\antigravity\skills\master-skill"
         if (Test-Path "$HomeDir\.gemini\antigravity") {
             if (-not (Test-Path $AgyLegacyDir)) { New-Item -ItemType Directory -Path $AgyLegacyDir -Force | Out-Null }
-            Copy-Config "$ScriptDir\SKILL.md" "$AgyLegacyDir\SKILL.md" "Antigravity Fallback Skill"
+            Copy-Item -Path "$GeminiSkillDir\*" -Destination $AgyLegacyDir -Recurse -Force
         }
+        $CtConfigDir = "$HomeDir\.gemini\config\skills\claude-thinking"
+        if (Test-Path "$HomeDir\.gemini\config\skills") {
+            if (-not (Test-Path $CtConfigDir)) { New-Item -ItemType Directory -Path $CtConfigDir -Force | Out-Null }
+            Copy-Item -Path "$GeminiSkillDir\*" -Destination $CtConfigDir -Recurse -Force
+        }
+        $CtLegacyDir = "$HomeDir\.gemini\antigravity\skills\claude-thinking"
+        if (Test-Path "$HomeDir\.gemini\antigravity\skills") {
+            if (-not (Test-Path $CtLegacyDir)) { New-Item -ItemType Directory -Path $CtLegacyDir -Force | Out-Null }
+            Copy-Item -Path "$GeminiSkillDir\*" -Destination $CtLegacyDir -Recurse -Force
+        }
+
         Copy-Config "$ScriptDir\master-skill.md" "$HomeDir\.gemini\config\rules\master-skill.md" "Antigravity Global Rule"
         if (Test-Path "$HomeDir\.gemini\config\rules\claude-thinking.md") { Remove-Item -Force "$HomeDir\.gemini\config\rules\claude-thinking.md" 2>$null }
     }

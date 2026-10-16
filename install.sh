@@ -45,7 +45,7 @@ if [[ ! -f "$SCRIPT_DIR/SKILL.md" ]]; then
 fi
 
 echo "=========================================================="
-echo " 🧠 master-skill Universal Installer (v5.1)"
+echo " 🧠 master-skill Universal Installer (v5.2)"
 echo " Scope:  $SCOPE"
 echo " Target: $TARGET"
 echo "=========================================================="
@@ -78,7 +78,15 @@ if [[ "$TARGET" =~ ^(auto|all|gemini)$ ]]; then
     [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/master-skill/"
     if [[ -d "$HOME_DIR/.gemini/antigravity" ]]; then
       mkdir -p "$HOME_DIR/.gemini/antigravity/skills/master-skill"
-      copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/antigravity/skills/master-skill/SKILL.md" "Antigravity Fallback Skill"
+      cp -rf "$HOME_DIR/.gemini/config/skills/master-skill/"* "$HOME_DIR/.gemini/antigravity/skills/master-skill/"
+    fi
+    if [[ -d "$HOME_DIR/.gemini/config/skills" ]]; then
+      mkdir -p "$HOME_DIR/.gemini/config/skills/claude-thinking"
+      cp -rf "$HOME_DIR/.gemini/config/skills/master-skill/"* "$HOME_DIR/.gemini/config/skills/claude-thinking/"
+    fi
+    if [[ -d "$HOME_DIR/.gemini/antigravity/skills" ]]; then
+      mkdir -p "$HOME_DIR/.gemini/antigravity/skills/claude-thinking"
+      cp -rf "$HOME_DIR/.gemini/config/skills/master-skill/"* "$HOME_DIR/.gemini/antigravity/skills/claude-thinking/"
     fi
     copy_cfg "$SCRIPT_DIR/master-skill.md" "$HOME_DIR/.gemini/config/rules/master-skill.md" "Antigravity Global Rule"
     [[ -f "$HOME_DIR/.gemini/config/rules/claude-thinking.md" ]] && rm -f "$HOME_DIR/.gemini/config/rules/claude-thinking.md"
