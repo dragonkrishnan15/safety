@@ -47,8 +47,13 @@ assert_test "Failing test command should exit 1 with REJECTED status" test_fail_
 test_contract_violation() {
   local temp_contract="/tmp/test-contract-$$.json"
   echo '{"task_id":"TEST-01","forbidden_paths":["scripts/**"]}' > "$temp_contract"
+  local target_file="$SCRIPT_DIR/../scripts/scorecard.sh"
+  local orig_content
+  orig_content=$(cat "$target_file")
+  echo "# test diff for contract check" >> "$target_file"
   local out
   out=$("$STOP_GATE" "" "$temp_contract" 2>&1) || true
+  printf "%s" "$orig_content" > "$target_file"
   rm -f "$temp_contract"
   echo "$out" | grep -q '"status":"REJECTED"'
 }

@@ -51,14 +51,18 @@ Assert-Test "Forbidden path contract violation triggers REJECTED" {
     } | ConvertTo-Json
     Set-Content -Path $tempContract -Value $contractData -Encoding UTF8
 
+    $targetFile = Join-Path $ScriptDir "..\scripts\scorecard.ps1"
+    $originalContent = [System.IO.File]::ReadAllText($targetFile)
+
     try {
-        # Check against stop gate with our modified scripts in diff
+        [System.IO.File]::AppendAllText($targetFile, "`n# test diff for contract check`n")
         $out = & powershell -ExecutionPolicy Bypass -File $StopGateScript -ContractPath $tempContract 2>&1
         $code = $LASTEXITCODE
-        if ($code -ne 1) { throw "Expected exit 1 due to forbidden path modification" }
+        if ($code -ne 1) { throw "Expected exit 1 due to forbidden path modification, got $code. Output: $out" }
         $json = $out | ConvertFrom-Json
-        if ($json.status -ne "REJECTED") { throw "Expected REJECTED status" }
+        if ($json.status -ne "REJECTED") { throw "Expected REJECTED status, got $($json.status)" }
     } finally {
+        [System.IO.File]::WriteAllText($targetFile, $originalContent)
         if (Test-Path $tempContract) { Remove-Item -Force $tempContract }
     }
 }
