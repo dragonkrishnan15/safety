@@ -1,4 +1,4 @@
-# master-skill: always-on global rule (v5.1 Apex Zero-Trust Edition)
+# master-skill: always-on global rule (v5.2 Apex Mesh & Active Governance Edition)
 
 For EVERY request to write, modify, refactor, debug, fix, review, optimize, test,
 explain, migrate, or deploy code, config, scripts, SQL, or infrastructure (any
@@ -20,15 +20,16 @@ Skill locations:
 
 ## Core Superpowers Enforced
 1. **Task Contract Engine**: For standard and complex tasks, write `<tmp>/ct-contract.json` defining exact permitted/forbidden paths and invariants before the first edit.
-2. **Pre-Mortem Failure Stress-Test**: Stress-test concurrency, dependency drops, poison payloads, and scale before coding.
-3. **Token & Context Discipline**: Treat tokens like money. Never dump files $>400$ lines; outline and slice with ripgrep. Filter logs/tests before reading into context.
-4. **Circuit Breakers & Failsafes**: Auto-stop on 2 identical command failures or 3 failed approaches. Zero-destruction wall on destructive git/database commands.
-5. **The Test Adversary Gate**: After passing the happy path, attack the implementation with red-team fault injection (poison inputs, rapid concurrency, boundary off-by-one).
-6. **Evidence Chain & Immutable Ledger**: Append tool outcomes to `<tmp>/ct-ledger.jsonl`. Every report claim MUST cite an Evidence ID (`[EV-xxx]`).
-7. **Programmatic Stop Gate**: Run `scripts/stop_gate.ps1` or `.sh`. Completion is rejected unless the stop gate script exits with code 0.
-8. **1-Screen Precision Question Schema**: When user input is needed on a one-way door, ask exactly ONE question with context, trade-off matrix, clear **(Recommended)** tag, and a zero-friction default action.
-9. **Autonomous Visual Verification & Anti-Slop Gate**: For Web/UI tasks, verify with real browser subagent (0 console errors, no 404s, responsive checks, screenshot proof).
-10. **Diff Health & Scorecard**: Pre-commit automated scorecard auditing churn, net lines, blast radius, and 0 `DEBUG-CT` leftovers.
+2. **Multi-Agent Mesh Locking**: Acquire decentralized mesh locks (`safety mesh lock` or `.master-skill/mesh-locks.json`) to prevent collisions across concurrent agents.
+3. **Pre-Mortem Failure Stress-Test**: Stress-test concurrency, dependency drops, poison payloads, and scale before coding.
+4. **Token & Context Discipline**: Treat tokens like money. Never dump files $>400$ lines; outline and slice with ripgrep. Filter logs/tests before reading into context.
+5. **Circuit Breakers & Failsafes**: Auto-stop on 2 identical command failures or 3 failed approaches. Zero-destruction wall on destructive git/database commands (`safety intercept`).
+6. **The Test Adversary Gate**: After passing the happy path, attack the implementation with red-team fault injection (poison inputs, rapid concurrency, boundary off-by-one).
+7. **Evidence Chain & Immutable Ledger**: Append tool outcomes to `<tmp>/ct-ledger.jsonl`. Every report claim MUST cite an Evidence ID (`[EV-xxx]`).
+8. **Programmatic Stop Gate**: Run `safety gate` (or `scripts/stop_gate.ps1` / `.sh`). Completion is rejected unless the stop gate script exits with code 0.
+9. **1-Screen Precision Question Schema**: When user input is needed on a one-way door, ask exactly ONE question with context, trade-off matrix, clear **(Recommended)** tag, and a zero-friction default action.
+10. **Autonomous Visual Verification & Anti-Slop Gate**: For Web/UI tasks, verify with real browser subagent (0 console errors, no 404s, responsive checks, screenshot proof).
+11. **Diff Health & Scorecard**: Pre-commit automated scorecard auditing churn, net lines, blast radius, and 0 `DEBUG-CT` leftovers (`safety report`).
 
 ## Hard Rules
 - Pre-existing dirty files are **USER-OWNED**; never touch, stage, stash, format, or revert them unasked.

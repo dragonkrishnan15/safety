@@ -73,8 +73,8 @@
   <g transform="translate(30, 80)">
     <!-- Command Prompt -->
     <text x="0" y="0" class="term-text">
-      <tspan class="purple">developer@safety-node</tspan><tspan class="muted">:</tspan><tspan class="cyan">~/project</tspan><tspan class="muted">$</tspan> powershell ./scripts/stop_gate.ps1 -Contract ct-contract.json
-      <rect x="710" y="-12" width="8" height="15" class="cursor" />
+      <tspan class="purple">developer@safety-node</tspan><tspan class="muted">:</tspan><tspan class="cyan">~/project</tspan><tspan class="muted">$</tspan> safety gate --test "npm test"
+      <rect x="520" y="-12" width="8" height="15" class="cursor" />
     </text>
 
     <!-- Line 1: Header -->

@@ -73,6 +73,8 @@ if [[ "$TARGET" =~ ^(auto|all|gemini)$ ]]; then
     copy_cfg "$SCRIPT_DIR/SKILL.md" "$HOME_DIR/.gemini/config/skills/master-skill/SKILL.md" "Antigravity Global Skill"
     [[ -d "$SCRIPT_DIR/references" ]] && cp -rf "$SCRIPT_DIR/references" "$HOME_DIR/.gemini/config/skills/master-skill/"
     [[ -d "$SCRIPT_DIR/scripts" ]] && cp -rf "$SCRIPT_DIR/scripts" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/bin" ]] && cp -rf "$SCRIPT_DIR/bin" "$HOME_DIR/.gemini/config/skills/master-skill/"
+    [[ -d "$SCRIPT_DIR/profiles" ]] && cp -rf "$SCRIPT_DIR/profiles" "$HOME_DIR/.gemini/config/skills/master-skill/"
     [[ -d "$SCRIPT_DIR/examples" ]] && cp -rf "$SCRIPT_DIR/examples" "$HOME_DIR/.gemini/config/skills/master-skill/"
     if [[ -d "$HOME_DIR/.gemini/antigravity" ]]; then
       mkdir -p "$HOME_DIR/.gemini/antigravity/skills/master-skill"

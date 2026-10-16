@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAFETY v5.2 — Zero-Trust AI Agent Governance & Runtime Security</title>
+  <meta name="description" content="Converts AI coding assistants into disciplined, sandboxed Principal Engineers with active MCP interception, task contracts, and pre-commit stop gates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070913;
+      --surface: #0e1326;
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --surface-hover: #141c38;
+      --text: #e2e8f0;
+      --text-muted: #8492a6;
+      --primary: #00f2fe;
+      --primary-glow: rgba(0, 242, 254, 0.25);
+      --secondary: #4facfe;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --danger-glow: rgba(239, 68, 68, 0.25);
+      --warning: #f59e0b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Ambient Background Glow */
+    .glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0.02) 70%, transparent 100%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 9, 19, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(0, 242, 254, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn-github {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid var(--surface-border);
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-github:hover {
+      background: #334155;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 3rem 0 4rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Quick Install Banner */
+    .install-box {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 2rem;
+    }
+
+    .install-box code {
+      color: var(--primary);
+    }
+
+    .copy-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--surface-border);
+      color: #fff;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+
+    /* Security Scorecard Badges */
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--surface-border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    /* Interactive 1-Prompt Generator */
+    .card-generator {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .agent-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 1rem;
+    }
+
+    .agent-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--surface-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .agent-tab.active {
+      background: rgba(0, 242, 254, 0.12);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .prompt-preview {
+      background: #060810;
+      border: 1px solid var(--surface-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #94a3b8;
+      position: relative;
+      overflow-x: auto;
+      max-height: 280px;
+    }
+
+    .prompt-copy-floating {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .prompt-copy-floating:hover {
+      opacity: 0.9;
+    }
+
+    /* Live Interactive Terminal Simulator */
+    .terminal-section {
+      background: #060810;
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 4rem;
+      box-shadow: 0 12px 50px rgba(0, 242, 254, 0.08);
+    }
+
+    .terminal-header {
+      background: #0f152a;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .terminal-title {
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+    }
+
+    .terminal-output {
+      min-height: 160px;
+      max-height: 260px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .term-line {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .term-prompt {
+      color: var(--primary);
+      user-select: none;
+    }
+
+    .term-blocked {
+      color: var(--danger);
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid var(--danger);
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+
+    .term-allowed {
+      color: var(--accent);
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--accent);
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+    }
+
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #0a0e1c;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+    }
+
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    .test-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+
+    .pill-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--surface-border);
+      color: #94a3b8;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      transition: all 0.2s;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Grid Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all 0.25s;
+    }
+
+    .feature-card:hover {
+      background: var(--surface-hover);
+      border-color: rgba(0, 242, 254, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Multi-Agent Mesh Lock Simulator */
+    .mesh-box {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .mesh-sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border: 1px solid var(--surface-border);
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .mesh-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .mesh-visual-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+    }
+
+    .agent-card {
+      background: #060810;
+      border: 1px solid var(--surface-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .agent-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .agent-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .lock-status {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    .status-idle { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
+    .status-locked { background: rgba(0, 242, 254, 0.15); color: var(--primary); border: 1px solid var(--primary); }
+    .status-conflict { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid var(--danger); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--surface-border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-orb"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand">
+      <span>🛡️ SAFETY</span>
+      <span class="brand-badge">v5.2 APEX</span>
+    </a>
+    <nav>
+      <a href="#prompt-wizard">1-Prompt</a>
+      <a href="#terminal">Terminal Guard</a>
+      <a href="#mesh-sim">Mesh Locks</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/dragonkrishnan15/safety" target="_blank" rel="noreferrer" class="btn-github">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        GitHub (MIT)
+      </a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-tag">
+        <span>⚡ Apex Zero-Trust Governance for AI Coding Agents</span>
+      </div>
+      <h1>Turns AI Coders into Disciplined<br />Staff/Principal Engineers</h1>
+      <p>
+        Hard-stops destructive git mistakes, blocks secret leaks before commits, enforces multi-agent mesh locks, and provides tamper-proof verification gates.
+      </p>
+
+      <div class="install-box">
+        <span>$</span>
+        <code>npx @dragonkrishnan15/safety init</code>
+        <button class="copy-btn" onclick="copyText('npx @dragonkrishnan15/safety init', this)">Copy</button>
+      </div>
+
+      <div class="badge-bar">
+        <div class="badge-item"><span class="badge-dot"></span> 14/14 Automated Tests Passing</div>
+        <div class="badge-item"><span class="badge-dot"></span> Zero-Destruction Wall Active</div>
+        <div class="badge-item"><span class="badge-dot"></span> 10+ Secret Pattern Interceptors</div>
+        <div class="badge-item"><span class="badge-dot"></span> Multi-Agent Mesh Lock Protocol</div>
+      </div>
+    </section>
+
+    <!-- 1-Prompt Magic Installer -->
+    <section id="prompt-wizard" class="card-generator">
+      <h2 class="section-title">🤖 1-Prompt AI Auto-Installer</h2>
+      <p class="section-subtitle">Copy and paste this single prompt directly into your AI assistant. It will auto-detect your environment and configure itself with zero friction.</p>
+
+      <div class="agent-tabs">
+        <button class="agent-tab active" onclick="selectTab('all', this)">⚡ Universal (All Agents)</button>
+        <button class="agent-tab" onclick="selectTab('cursor', this)">Cursor Composer</button>
+        <button class="agent-tab" onclick="selectTab('claude', this)">Claude Code</button>
+        <button class="agent-tab" onclick="selectTab('windsurf', this)">Windsurf Cascade</button>
+        <button class="agent-tab" onclick="selectTab('antigravity', this)">Google Antigravity</button>
+      </div>
+
+      <div class="prompt-preview" id="prompt-display">
+        <button class="prompt-copy-floating" onclick="copyPrompt()">Copy Prompt</button>
+        <pre><code id="prompt-code">Please install and activate the @dragonkrishnan15/safety governance framework (master-skill v5.2) in this workspace:
+1. READ THE MANIFEST: Fetch and read https://raw.githubusercontent.com/dragonkrishnan15/safety/main/AGENT_INSTALL.md
+2. INSTALLATION PATH:
+   - If shell tools are available: run `npx @dragonkrishnan15/safety init`
+   - If file-only tools: download the matching adapter from https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/
+3. ACTIVATE SAFETY GATES:
+   - Ensure ct-contract.json is active and execute `node bin/safety.js gate` (or ./scripts/stop_gate.ps1 / .sh) to verify 0 debug tags, 0 secret leaks, and clean invariants.
+4. CONFIRMATION: Confirm which IDE was detected and emit your first principal-engineer gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL ...]</code></pre>
+      </div>
+    </section>
+
+    <!-- Live Interactive Terminal Simulator -->
+    <section id="terminal" class="terminal-section">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <div class="terminal-title">safety-guard ~ zero-destruction interceptor testbed</div>
+        <div style="width: 40px"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-output" id="term-output">
+          <div class="term-line">
+            <span class="term-prompt">safety@apex:~$</span>
+            <span>safety --version</span>
+          </div>
+          <div>@dragonkrishnan15/safety v5.2.0 (Zero-Trust Active Enforcement Active)</div>
+          <div class="term-line">
+            <span class="term-prompt">safety@apex:~$</span>
+            <span>Try testing commands below to see the Zero-Destruction Wall in action:</span>
+          </div>
+        </div>
+
+        <form onsubmit="handleCommand(event)" class="terminal-input-row">
+          <span class="term-prompt">&gt;</span>
+          <input type="text" id="term-input" class="terminal-input" placeholder="Type a command (e.g. git reset --hard, npm test, DROP TABLE)..." autocomplete="off" />
+        </form>
+
+        <div class="test-pills">
+          <span class="pill-label">Quick Test Scenarios:</span>
+          <button class="pill-btn" onclick="simulateCmd('git reset --hard HEAD')">❌ git reset --hard</button>
+          <button class="pill-btn" onclick="simulateCmd('git clean -fd')">❌ git clean -fd</button>
+          <button class="pill-btn" onclick="simulateCmd('curl -H &quot;Authorization: Bearer sk-123456789012345678901234&quot;')">❌ Plaintext OpenAI Key</button>
+          <button class="pill-btn" onclick="simulateCmd('DROP TABLE users;')">❌ DROP TABLE</button>
+          <button class="pill-btn" onclick="simulateCmd('npm test')">✅ npm test</button>
+          <button class="pill-btn" onclick="simulateCmd('safety gate')">✅ safety gate</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-Agent Mesh Lock Simulator -->
+    <section id="mesh-sim" class="mesh-box">
+      <h2 class="section-title">🔒 Multi-Agent Mesh Locking Simulator</h2>
+      <p class="section-subtitle">When multiple AI agents (Cursor + Claude Code + Antigravity) work concurrently in one codebase, the mesh lock protocol prevents collisions in real-time.</p>
+
+      <div class="mesh-sim-controls">
+        <button class="btn-action" onclick="acquireAgent1()">1. Cursor Claims "src/api/auth.ts"</button>
+        <button class="btn-action" onclick="attemptAgent2Conflict()">2. Claude Attempts Overlapping Edit</button>
+        <button class="btn-secondary" onclick="releaseLocks()">Reset Mesh Locks</button>
+      </div>
+
+      <div class="mesh-visual-grid">
+        <div class="agent-card">
+          <div class="agent-header">
+            <span class="agent-name">🤖 Agent 1: Cursor Composer</span>
+            <span id="agent1-badge" class="lock-status status-idle">IDLE</span>
+          </div>
+          <p id="agent1-desc" style="font-size: 0.85rem; color: var(--text-muted);">No active locks currently held.</p>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-header">
+            <span class="agent-name">🤖 Agent 2: Claude Code</span>
+            <span id="agent2-badge" class="lock-status status-idle">IDLE</span>
+          </div>
+          <p id="agent2-desc" style="font-size: 0.85rem; color: var(--text-muted);">Waiting for task assignment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Capabilities Grid -->
+    <section class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Zero-Destruction Wall</h3>
+        <p>Hard-intercepts <code>git reset --hard</code>, <code>clean -fd</code>, force-pushes, and root deletions before execution. Leaves zero chance of data loss.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔑</div>
+        <h3>Sensitive Secret Scanner</h3>
+        <p>Scans every git diff and command argument for 10+ API token patterns (OpenAI, Anthropic, Google, AWS, GitHub PATs, Hugging Face, Slack).</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📜</div>
+        <h3>Task Contract Engine</h3>
+        <p>Enforces strict <code>permitted_paths</code> and <code>forbidden_paths</code> before an AI touches code. Blocks wandering edits in unrelated modules.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>The Test Adversary</h3>
+        <p>Before marking tasks complete, the AI red-teams its own code by injecting 30–50 concurrent async workers, poison inputs, and edge nulls.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Cross-Session Memory</h3>
+        <p>Retains repository architectural decisions and quirks in <code>.master-skill/memory.json</code> so the AI never makes the same mistake twice.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>High-Density Slim Profile</h3>
+        <p>Ships with <code>profiles/SKILL.slim.md</code> (~120 lines / ~2K tokens) for blazing fast, low-cost execution on lightweight frontier models.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      SAFETY is open-source software licensed under the <a href="https://github.com/dragonkrishnan15/safety/blob/main/LICENSE">MIT License</a>.<br />
+      Maintained by <a href="https://github.com/dragonkrishnan15">dragonkrishnan15</a>. Zero vendor lock-in.
+    </p>
+  </footer>
+
+  <script>
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text);
+      const orig = btn.innerText;
+      btn.innerText = 'Copied!';
+      setTimeout(() => btn.innerText = orig, 1800);
+    }
+
+    function selectTab(agent, btn) {
+      document.querySelectorAll('.agent-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      const code = document.getElementById('prompt-code');
+      if (agent === 'cursor') {
+        code.innerText = `Please install and activate @dragonkrishnan15/safety in Cursor:
+1. Fetch https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/.cursorrules and write to ./.cursorrules
+2. Initialize ct-contract.json and run 'node bin/safety.js gate'
+3. Confirm installation and emit your first gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL pwsh]`;
+      } else if (agent === 'claude') {
+        code.innerText = `Please install and activate @dragonkrishnan15/safety in Claude Code:
+1. Fetch https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/CLAUDE.md and write to ./CLAUDE.md
+2. Initialize ct-contract.json and run 'node bin/safety.js gate'
+3. Confirm installation and emit your first gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL posix]`;
+      } else if (agent === 'windsurf') {
+        code.innerText = `Please install and activate @dragonkrishnan15/safety in Windsurf:
+1. Fetch https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/.windsurfrules and write to ./.windsurfrules
+2. Initialize ct-contract.json and verify stop gate exit code 0
+3. Confirm installation and emit your first gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL ...]`;
+      } else if (agent === 'antigravity') {
+        code.innerText = `Please install and activate @dragonkrishnan15/safety in Antigravity:
+1. Fetch https://raw.githubusercontent.com/dragonkrishnan15/safety/main/master-skill.md and write to ./.agents/rules/master-skill.md
+2. Fetch https://raw.githubusercontent.com/dragonkrishnan15/safety/main/SKILL.md and write to ./.agents/skills/master-skill/SKILL.md
+3. Run stop gate and emit your initial gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL ...]`;
+      } else {
+        code.innerText = `Please install and activate the @dragonkrishnan15/safety governance framework (master-skill v5.2) in this workspace:
+1. READ THE MANIFEST: Fetch and read https://raw.githubusercontent.com/dragonkrishnan15/safety/main/AGENT_INSTALL.md
+2. INSTALLATION PATH:
+   - If shell tools are available: run \`npx @dragonkrishnan15/safety init\`
+   - If file-only tools: download matching adapter from https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/
+3. ACTIVATE SAFETY GATES:
+   - Ensure ct-contract.json is active and execute 'node bin/safety.js gate' (or ./scripts/stop_gate.ps1 / .sh) to verify 0 debug tags, 0 secret leaks, and clean invariants.
+4. CONFIRMATION: Confirm which IDE was detected and emit your first principal-engineer gate line: [ACCESS read][RUN interactive][SIZE standard][SHELL ...]`;
+      }
+    }
+
+    function copyPrompt() {
+      const code = document.getElementById('prompt-code').innerText;
+      navigator.clipboard.writeText(code);
+      const btn = document.querySelector('.prompt-copy-floating');
+      btn.innerText = 'Copied!';
+      setTimeout(() => btn.innerText = 'Copy Prompt', 1800);
+    }
+
+    // Terminal Simulation
+    function handleCommand(e) {
+      e.preventDefault();
+      const input = document.getElementById('term-input');
+      const cmd = input.value.trim();
+      if (!cmd) return;
+      input.value = '';
+      executeTermCmd(cmd);
+    }
+
+    function simulateCmd(cmd) {
+      document.getElementById('term-input').value = cmd;
+      executeTermCmd(cmd);
+    }
+
+    function executeTermCmd(cmd) {
+      const out = document.getElementById('term-output');
+
+      const userLine = document.createElement('div');
+      userLine.className = 'term-line';
+      userLine.innerHTML = `<span class="term-prompt">safety@apex:~$</span><span>${escapeHtml(cmd)}</span>`;
+      out.appendChild(userLine);
+
+      const respLine = document.createElement('div');
+
+      const forbidden = /git\s+(reset\s+--hard|clean\s+-[a-zA-Z]*f|checkout\s+\.|push\s+.*--force)|DROP\s+TABLE/i;
+      const secret = /sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{36}|AIza[0-9A-Za-z-_]{35}/;
+
+      if (forbidden.test(cmd)) {
+        respLine.className = 'term-blocked';
+        respLine.innerHTML = `🛑 <b>BLOCKED (ZERO_DESTRUCTION_WALL)</b>: Irreversible destructive command detected and neutralized. Process exited with code 1.`;
+      } else if (secret.test(cmd)) {
+        respLine.className = 'term-blocked';
+        respLine.innerHTML = `🔒 <b>BLOCKED (SECRET_SCANNER)</b>: Plaintext API key / credential detected in command parameters. Command execution rejected.`;
+      } else if (cmd === 'safety gate') {
+        respLine.className = 'term-allowed';
+        respLine.innerHTML = `✅ <b>PASSED</b>: 0 DEBUG-CT leftovers, 0 secret leaks, contract bounds valid, test suite exit code 0.`;
+      } else {
+        respLine.className = 'term-allowed';
+        respLine.innerHTML = `✅ <b>ALLOWED</b>: Command satisfies all safety invariants. Execution permitted.`;
+      }
+
+      out.appendChild(respLine);
+      out.scrollTop = out.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // Mesh Sim Logic
+    function acquireAgent1() {
+      const b1 = document.getElementById('agent1-badge');
+      const d1 = document.getElementById('agent1-desc');
+      b1.className = 'lock-status status-locked';
+      b1.innerText = 'LOCKED';
+      d1.innerHTML = '🔒 Holding lock on <code>src/api/auth.ts</code> (TTL: 1800s)';
+    }
+
+    function attemptAgent2Conflict() {
+      const b2 = document.getElementById('agent2-badge');
+      const d2 = document.getElementById('agent2-desc');
+      b2.className = 'lock-status status-conflict';
+      b2.innerText = 'COLLISION REJECTED';
+      d2.innerHTML = '⚠️ <b>CONFLICT</b>: Rejected! Path <code>src/api/auth.ts</code> is currently locked by <b>Agent 1 (Cursor)</b>. Edit blocked to prevent race condition.';
+    }
+
+    function releaseLocks() {
+      const b1 = document.getElementById('agent1-badge');
+      const d1 = document.getElementById('agent1-desc');
+      const b2 = document.getElementById('agent2-badge');
+      const d2 = document.getElementById('agent2-desc');
+      b1.className = 'lock-status status-idle';
+      b1.innerText = 'IDLE';
+      d1.innerText = 'No active locks currently held.';
+      b2.className = 'lock-status status-idle';
+      b2.innerText = 'IDLE';
+      d2.innerText = 'Waiting for task assignment.';
+    }
+  </script>
+</body>
+</html>

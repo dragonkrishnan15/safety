@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.2.0] - 2026-10-16
+
+### Added
+- **Active Enforcement Engine (CLI & Model Context Protocol Server)**:
+  - `bin/safety.js`: Universal zero-dependency Node CLI (`safety gate`, `safety intercept`, `safety contract init`, `safety mesh`, `safety report`).
+  - `bin/safety-mcp.js`: Standalone stdio JSON-RPC MCP server exposing deterministically enforced safety guardrails to any MCP-compliant agent.
+  - Interceptor: Zero-Destruction Wall hard-blocking `git reset --hard`, `git clean -fd`, force-pushes, and root deletions before execution.
+- **Multi-Agent Consensus & Mesh Locking Protocol**:
+  - `scripts/mesh_lock.ps1` and `scripts/mesh_lock.sh`: Decentralized lock arbitration via `.master-skill/mesh-locks.json` with TTL auto-expiration and path collision detection.
+  - Slash command `/ms-mesh` and reference guide `references/mesh-locks.md`.
+- **Strengthened Stop Gate & Secret Scanner**:
+  - Expanded regex pattern detection across OpenAI, Anthropic, Google, AWS, GitHub fine-grained PATs, Hugging Face, Slack webhooks, and database URIs.
+  - AST-style anti-pattern checks catching swallowed exceptions and empty `catch` blocks in diffs.
+  - Diff line count budgeting (`max_diff_lines`).
+  - Isolated test command execution in `stop_gate.ps1` to prevent premature script exits.
+- **Automated Cross-Platform Test Suite & CI Matrix**:
+  - `tests/test_safety_cli.js`: End-to-end unit tests for CLI commands and interception policies.
+  - `tests/test_stop_gate.ps1` & `.sh`: Integration tests for clean execution, test command failure propagation, and contract violations.
+  - `tests/test_mesh_lock.ps1` & `.sh`: Concurrency conflict and lock acquisition tests.
+  - Multi-platform GitHub Actions CI matrix across Ubuntu and Windows runners.
+- **Dynamic Token-Efficient Slim Profile**:
+  - `dist/SKILL.slim.md`: Condensed single-page profile (~120 lines / ~2K tokens) for fast/low-context models.
+
+### Fixed
+- Fixed documentation false positives in `scorecard.ps1` and `scorecard.sh` where markdown occurrences of `DEBUG-CT` were counted as unremoved code tags.
+
+---
+
 ## [5.1.0] - 2026-10-16
 
 ### Added

@@ -63,6 +63,8 @@ if ($Target -in @('auto', 'all', 'gemini')) {
         Copy-Config "$ScriptDir\SKILL.md" "$GeminiSkillDir\SKILL.md" "Antigravity Global Skill"
         if (Test-Path "$ScriptDir\references") { Copy-Item -Path "$ScriptDir\references" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\scripts") { Copy-Item -Path "$ScriptDir\scripts" -Destination $GeminiSkillDir -Recurse -Force }
+        if (Test-Path "$ScriptDir\bin") { Copy-Item -Path "$ScriptDir\bin" -Destination $GeminiSkillDir -Recurse -Force }
+        if (Test-Path "$ScriptDir\profiles") { Copy-Item -Path "$ScriptDir\profiles" -Destination $GeminiSkillDir -Recurse -Force }
         if (Test-Path "$ScriptDir\examples") { Copy-Item -Path "$ScriptDir\examples" -Destination $GeminiSkillDir -Recurse -Force }
         $AgyLegacyDir = "$HomeDir\.gemini\antigravity\skills\master-skill"
         if (Test-Path "$HomeDir\.gemini\antigravity") {

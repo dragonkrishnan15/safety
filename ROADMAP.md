@@ -4,14 +4,26 @@ This roadmap outlines the planned capabilities, security enhancements, and frame
 
 ---
 
-## 🎯 Active Milestone: v5.2 (Zero-Trust Observability & Mesh Governance)
+## 🎯 Completed Milestone: v5.2 (Apex Mesh & Active Governance)
 
-- [ ] **Multi-Agent Consensus Protocol**:
-  - Enable peer-review verification when multiple AI agents (e.g. Cursor + Claude Code + Antigravity) work concurrently in the same repository.
-  - Decentralized invariant locking via `.master-skill/mesh-locks.json`.
-- [ ] **Automated Performance Budget Checks**:
-  - Enforce bundle-size and memory consumption budgets in `stop_gate.ps1 / .sh`.
-  - Alert when additions exceed pre-configured kilobyte limits.
+- [x] **Multi-Agent Consensus & Mesh Locking Protocol**:
+  - Decentralized invariant locking via `.master-skill/mesh-locks.json` across concurrent agents (Cursor, Claude Code, Antigravity, Cline).
+  - Native scripts `scripts/mesh_lock.ps1` and `scripts/mesh_lock.sh` with TTL auto-expiration and collision detection.
+- [x] **Active Enforcement Engine (Zero-Dependency CLI & MCP Server)**:
+  - Universal executable `bin/safety.js` (`safety gate`, `safety intercept`, `safety contract init`, `safety mesh`, `safety report`).
+  - Native stdio JSON-RPC Model Context Protocol server `bin/safety-mcp.js`.
+- [x] **Automated Diff Budget & Enhanced Secret Scanner**:
+  - Enforce diff line budgets (`max_diff_lines`) and anti-pattern detection (swallowed catch blocks) in `stop_gate.ps1 / .sh`.
+  - Expanded secret regex patterns covering OpenAI, Anthropic, Google, AWS, GitHub PATs, Hugging Face, Slack webhooks, and database URIs.
+- [x] **Comprehensive Cross-Platform Test Suite & CI Matrix**:
+  - Integration test suites in `tests/` for CLI, Stop Gate, and Mesh Locks across Windows (PowerShell) and Ubuntu (POSIX Bash).
+- [x] **Dynamic Token-Efficient Slim Profile**:
+  - `dist/SKILL.slim.md` for fast, lightweight frontier models (Flash, Haiku, GPT-4o-mini).
+
+---
+
+## 🔮 Active Milestone: v5.3 (Cryptographic Proof of Verification & SDKs)
+
 - [ ] **Native TypeScript & Python SDKs**:
   - Lightweight programmatic wrappers (`npm install @safety/core`, `pip install safety-agent-guard`).
   - Native runtime hooks for LangChain, LlamaIndex, AutoGen, and CrewAI.

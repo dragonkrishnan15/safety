@@ -7,18 +7,32 @@ on:
     branches: [ main ]
 
 jobs:
-  validate:
-    name: Lint & Validation
+  validate-posix:
+    name: Ubuntu / POSIX Validation & Test Suite
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Set up bash scripts permission
-        run: chmod +x scripts/*.sh install.sh
+        run: chmod +x scripts/*.sh tests/*.sh install.sh bin/*.js
 
       - name: Verify leftover check script
         run: ./scripts/leftover_check.sh
+
+      - name: Run Node.js safety CLI test suite
+        run: node tests/test_safety_cli.js
+
+      - name: Run Stop Gate Bash integration tests
+        run: ./tests/test_stop_gate.sh
+
+      - name: Run Mesh Lock Bash integration tests
+        run: ./tests/test_mesh_lock.sh
 
       - name: Validate Markdown syntax & existence
         run: |
@@ -31,3 +45,24 @@ jobs:
           test -f adapters/.clinerules
           test -f adapters/COPILOT.md
           echo "All core files and adapters verified successfully."
+
+  validate-windows:
+    name: Windows / PowerShell Test Suite
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Node.js safety CLI test suite
+        run: node tests/test_safety_cli.js
+
+      - name: Run Stop Gate PowerShell integration tests
+        run: powershell -ExecutionPolicy Bypass -File ./tests/test_stop_gate.ps1
+
+      - name: Run Mesh Lock PowerShell integration tests
+        run: powershell -ExecutionPolicy Bypass -File ./tests/test_mesh_lock.ps1

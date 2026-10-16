@@ -13,6 +13,9 @@ coverage/
 
 # Local state
 .claude-thinking/
+.master-skill/mesh-locks.json
+ct-contract.json
+ct-ledger.jsonl
 ct-state.json
 scratch/
 

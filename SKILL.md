@@ -3,7 +3,7 @@ name: master-skill
 description: Principal-engineer workflow for ANY coding task in any language, stack or shell (Windows PowerShell, cmd, bash, zsh, WSL). Use automatically for every request to write, modify, fix, debug, refactor, review, explain, find usages of, optimize, test, migrate or deploy code, config, scripts, SQL or infrastructure, including read-only questions and unattended/background/headless runs, and whenever the user types /master-skill. Enforces a mode gate (read vs write, interactive vs headless), baseline and environment checks, context-efficient exploration, pre-mortem stress testing, scientific debugging, atomic revertable edits, architectural invariant gates, project memory, visual browser audits, token discipline, and failsafe circuit breakers.
 ---
 
-# master-skill v5.1 (Apex Zero-Trust Edition)
+# master-skill v5.2 (Apex Mesh & Active Governance Edition)
 
 Judgment over typing speed: establish facts, spend tokens with discipline, stress-test failure modes, change the minimum, prove the result, leave the repo safer.
 
@@ -21,8 +21,9 @@ Judgment over typing speed: establish facts, spend tokens with discipline, stres
 ## Slash Commands (Interactive Shortcuts)
 - `/master-skill` or `/ms`: Trigger the complete principal-engineer workflow.
 - `/ms-contract`: Initialize or audit the Task Contract (`<tmp>/ct-contract.json`).
+- `/ms-mesh`: Acquire, inspect, or release Multi-Agent Mesh Locks (`.master-skill/mesh-locks.json`).
 - `/ms-adversary`: Switch to Red-Team Test Adversary mode and inject hostile attacks against the current diff.
-- `/ms-stop`: Execute the Programmatic Stop Gate (`scripts/stop_gate.ps1` or `.sh`) and inspect exit code.
+- `/ms-stop`: Execute the Programmatic Stop Gate (`safety gate` or `scripts/stop_gate.ps1` / `.sh`) and inspect exit code.
 - `/ms-report`: Generate the final report with verified Evidence IDs (`[EV-xxx]`) and scorecard.
 
 ## Pipelines
@@ -69,6 +70,7 @@ Before reporting, execute the Programmatic Stop Gate (`scripts/stop_gate.ps1` or
 |---|---|
 | SHELL is not posix, or any shell script/command authoring on Windows | references/shell.md |
 | Task is SIZE=standard or complex (Task Contract initialization) | references/task-contract.md |
+| Multiple agents concurrent in repo, or multi-branch locking | references/mesh-locks.md |
 | Baseline or environment check (standard+) | references/baseline-env.md |
 | Token budgets & context management for large files/repos | references/token-efficiency.md |
 | Failsafes, circuit breakers, data loss prevention & tool interceptor | references/failsafes.md (+ references/policy-interceptor.md) |
@@ -90,4 +92,4 @@ Before reporting, execute the Programmatic Stop Gate (`scripts/stop_gate.ps1` or
 | Pre-commit diff quality & health audit | references/scorecard.md |
 | An escalation row fires | references/escalation.md |
 | Task type unclear, or need the task checklist | references/playbooks.md |
-Scripts (JSON out, <=25 lines, run instead of hand-rolling): fingerprint, leftover_check, flake_runner, scorecard, stop_gate, memory_sync, install_hooks (.ps1 for pwsh/ps51, .sh for posix).
+CLI & Scripts (JSON out, run instead of hand-rolling): safety CLI (`bin/safety.js`), safety MCP (`bin/safety-mcp.js`), mesh_lock, stop_gate, scorecard, leftover_check, fingerprint, flake_runner, memory_sync (.ps1 for pwsh/ps51, .sh for posix).

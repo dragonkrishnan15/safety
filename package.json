@@ -1,10 +1,17 @@
 {
   "name": "@dragonkrishnan15/safety",
-  "version": "5.1.0",
-  "description": "Zero-trust autonomous AI agent safety, cognitive reasoning, and pre-commit verification engine",
+  "version": "5.2.0",
+  "description": "Zero-trust autonomous AI agent safety, cognitive reasoning, active MCP interception, and pre-commit verification engine",
   "main": "master-skill.md",
+  "bin": {
+    "safety": "./bin/safety.js",
+    "safety-mcp": "./bin/safety-mcp.js"
+  },
   "scripts": {
-    "test": "powershell -ExecutionPolicy Bypass -File ./scripts/stop_gate.ps1",
+    "test": "node ./tests/test_safety_cli.js",
+    "test:gate": "powershell -ExecutionPolicy Bypass -File ./scripts/stop_gate.ps1",
+    "test:all": "node ./tests/test_safety_cli.js && powershell -ExecutionPolicy Bypass -File ./tests/test_stop_gate.ps1 && powershell -ExecutionPolicy Bypass -File ./tests/test_mesh_lock.ps1",
+    "mcp": "node ./bin/safety-mcp.js",
     "quickstart": "powershell -ExecutionPolicy Bypass -File ./quickstart.ps1",
     "lint": "powershell -ExecutionPolicy Bypass -File ./scripts/leftover_check.ps1",
     "memory:sync": "powershell -ExecutionPolicy Bypass -File ./scripts/memory_sync.ps1"

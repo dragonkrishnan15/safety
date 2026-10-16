@@ -129,8 +129,8 @@
 
     <!-- Version Badge -->
     <g transform="translate(202, 48)">
-      <rect x="0" y="0" width="120" height="26" rx="13" fill="#1e1b4b" stroke="#818cf8" stroke-width="1" />
-      <text x="60" y="17" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#c7d2fe">v5.1 APEX</text>
+      <rect x="0" y="0" width="140" height="26" rx="13" fill="#1e1b4b" stroke="#818cf8" stroke-width="1" />
+      <text x="70" y="17" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#c7d2fe">v5.2 APEX MESH</text>
     </g>
 
     <!-- Main Title with Continuous Gradient Animation -->

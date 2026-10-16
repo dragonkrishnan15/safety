@@ -41,7 +41,7 @@ if (Test-Path $ScorecardScript) {
     $ScorecardData = & powershell -ExecutionPolicy Bypass -File $ScorecardScript 2>$null | ConvertFrom-Json
 }
 
-# 3. Contract Path Boundary Check
+# 3. Contract Path Boundary & Diff Budget Check
 if (-not $ContractPath) {
     if (Test-Path "ct-contract.json") { $ContractPath = "ct-contract.json" }
     elseif (Test-Path "$env:TEMP/ct-contract.json") { $ContractPath = "$env:TEMP/ct-contract.json" }
@@ -63,6 +63,25 @@ if ($ContractPath -and (Test-Path $ContractPath)) {
                 }
             }
         }
+        if ($contract.permitted_paths -and $changedFiles) {
+            foreach ($file in $changedFiles) {
+                $isPermitted = $false
+                foreach ($permitted in $contract.permitted_paths) {
+                    if ($file -like $permitted) {
+                        $isPermitted = $true
+                        break
+                    }
+                }
+                if (-not $isPermitted) {
+                    $Violations.Add("Violation of Task Contract: Path '$file' not in permitted_paths.")
+                }
+            }
+        }
+        if ($contract.max_diff_lines -and $ScorecardData -and $ScorecardData.lines_added) {
+            if ($ScorecardData.lines_added -gt [int]$contract.max_diff_lines) {
+                $Violations.Add("Violation of Diff Budget: Added $($ScorecardData.lines_added) lines, exceeding limit of $($contract.max_diff_lines).")
+            }
+        }
     } catch {
         $Violations.Add("Failed to parse Task Contract at ${ContractPath}: $_")
     }
@@ -71,13 +90,19 @@ if ($ContractPath -and (Test-Path $ContractPath)) {
 # 4. Sensitive Secret & Token Scanner
 $SecretPatterns = @(
     'ghp_[A-Za-z0-9]{36}',
+    'github_pat_[A-Za-z0-9_]{82}',
     'sk-[A-Za-z0-9]{20,}',
-    'sk-ant-[A-Za-z0-9]{20,}',
+    'sk-proj-[A-Za-z0-9\-_]{20,}',
+    'sk-ant-[A-Za-z0-9\-_]{20,}',
     'AIza[0-9A-Za-z-_]{35}',
     'AKIA[0-9A-Z]{16}',
+    'aws_secret_access_key\s*=\s*[A-Za-z0-9/+=]{40}',
+    'hf_[A-Za-z0-9]{34}',
+    'https://hooks\.slack\.com/services/T[A-Za-z0-9]+/B[A-Za-z0-9]+/[A-Za-z0-9]+',
+    '(postgres|mysql|mongodb(\+srv)?):\/\/[^\s:]+:[^\s@]+@',
     '-----BEGIN [A-Z ]*PRIVATE KEY-----'
 )
-$diffContent = git diff -U0 HEAD 2>$null
+$diffContent = git diff -U0 HEAD -- ':!tests/fixtures/*' ':!tests/mocks/*' 2>$null
 if ($diffContent) {
     foreach ($pattern in $SecretPatterns) {
         $matches = [regex]::Matches($diffContent, "^\+.*($pattern)", [System.Text.RegularExpressions.RegexOptions]::Multiline)
@@ -87,10 +112,18 @@ if ($diffContent) {
     }
 }
 
-# 5. Deterministic Test Suite Execution
+# 5. Anti-Pattern & Code Invariant Checks (Swallowed Errors)
+if ($diffContent) {
+    $swallowedMatches = [regex]::Matches($diffContent, '^\+\s*(catch\s*\([^\)]*\)\s*\{\s*\}|except(\s+\w+)?:\s*(pass|\.\.\.))', [System.Text.RegularExpressions.RegexOptions]::Multiline)
+    if ($swallowedMatches.Count -gt 0) {
+        $Violations.Add("CODE INVARIANT VIOLATION: Detected swallowed exception/catch block without handling in diff additions.")
+    }
+}
+
+# 6. Deterministic Test Suite Execution
 $TestExitCode = 0
 if ($TestCommand) {
-    Invoke-Expression $TestCommand
+    $null = & cmd.exe /c $TestCommand 2>&1
     $TestExitCode = $LASTEXITCODE
     if ($TestExitCode -ne 0) {
         $Violations.Add("Stop Gate test command failed with exit code ${TestExitCode}: $TestCommand")

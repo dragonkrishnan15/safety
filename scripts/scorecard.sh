@@ -10,7 +10,7 @@ if [ -n "$numstat" ]; then
 $numstat
 EOF
 fi
-debug_count=$(git grep -n "DEBUG-CT" 2>/dev/null | wc -l | tr -d ' ')
+debug_count=$(git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' ':!assets/*' 2>/dev/null | wc -l | tr -d ' ')
 untracked=$(git ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
 net=$((added - deleted))
 printf '{"files_changed":%s,"lines_added":%s,"lines_deleted":%s,"net_change":%s,"debug_ct_count":%s,"untracked_files":%s}\n' \

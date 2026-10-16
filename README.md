@@ -11,14 +11,14 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Zero Vendor Lock-in](https://img.shields.io/badge/Vendor%20Lock--in-Zero-blueviolet.svg)](#-universal-compatibility)
 [![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-Active-success.svg)](#-live-animated-terminal-simulation)
-[![Release: v5.1 Apex](https://img.shields.io/badge/Release-v5.1%20Apex-cyan.svg)](CHANGELOG.md)
+[![Release: v5.2 Apex Mesh](https://img.shields.io/badge/Release-v5.2%20Apex%20Mesh-cyan.svg)](CHANGELOG.md)
 
 <p align="center">
   <b>Converts AI coding assistants from unconstrained token generators into disciplined, sandboxed Principal Engineers.</b><br/>
-  Enforces immutable task contracts, red-team chaos testing, cryptographic evidence trails, and zero-leak pre-commit stop gates.
+  Enforces immutable task contracts, red-team chaos testing, multi-agent mesh locks, active MCP interception, and zero-leak stop gates.
 </p>
 
-[**🚀 Quickstart**](#-instant-installation) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
+[**🚀 Quickstart**](#-instant-installation) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
 
 </div>
 
@@ -103,16 +103,41 @@ For full technical specifications and state transition diagrams, view [**`ARCHIT
 
 ## 🚀 Instant Installation
 
-### Method 1: AI Agent 1-Prompt Auto-Install (Zero Terminal)
-Copy and paste this exact prompt directly into **Cursor**, **Claude Code**, **Windsurf**, **Antigravity**, **Cline**, or **GitHub Copilot**:
+### 🤖 Method 1: The "1-Prompt" AI Magic Installer (Zero Terminal, 100% Autonomous)
 
-```text
-Install and activate the master-skill framework from https://github.com/dragonkrishnan15/safety.git into my environment by reading AGENT_INSTALL.md in that repository and applying the configuration for my IDE.
+> **For Users**: Simply copy and paste the block below into **Cursor Composer / Chat**, **Claude Code**, **Windsurf Cascade**, **Google Antigravity**, **Cline / Roo Code**, or **GitHub Copilot**. Your AI assistant will detect your editor, install the correct rules, configure git pre-commit quality gates, and verify the installation autonomously:
+
+```markdown
+Please install and activate the @dragonkrishnan15/safety governance framework (master-skill v5.2) in this workspace. Follow these steps autonomously without asking me for intermediate confirmation:
+
+1. READ THE MANIFEST: Fetch and read the installation instructions from:
+   https://raw.githubusercontent.com/dragonkrishnan15/safety/main/AGENT_INSTALL.md
+
+2. INSTALLATION PATH:
+   - If you have terminal/shell execution tools: Run `npx @dragonkrishnan15/safety init` (or on Windows: `powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex"`; on Linux/macOS: `curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash`).
+   - If you only have file-write/edit tools: Determine which IDE environment I am running (Cursor, Claude, Windsurf, Antigravity, Cline, or Copilot), download the corresponding adapter from https://raw.githubusercontent.com/dragonkrishnan15/safety/main/adapters/ (e.g. .cursorrules, CLAUDE.md, .windsurfrules, or AGENTS.md), and write it to the repository root.
+
+3. ACTIVATE SAFETY GATES:
+   - Ensure `ct-contract.json` is created at the repository root defining permitted paths.
+   - Run the stop gate verification (`node bin/safety.js gate` or `./scripts/stop_gate.ps1` / `./scripts/stop_gate.sh`) to confirm 0 debug tags, 0 secret leaks, and clean invariants.
+
+4. CONFIRMATION:
+   Once completed, reply confirming which IDE adapter was installed, and emit your first principal-engineer gate line:
+   `[ACCESS read][RUN interactive][SIZE standard][SHELL ...]`
 ```
 
 ---
 
-### Method 2: One-Line Terminal Command (Automated)
+### ⚡ Method 2: 1-Command Instant Setup (Zero-Config NPX)
+Run this in any local project terminal to auto-detect your editor, drop required adapters, register git pre-commit quality gates, and initialize your task contract in 3 seconds:
+
+```bash
+npx @dragonkrishnan15/safety init
+```
+
+---
+
+### 💻 Method 3: One-Line Terminal Command (Automated)
 
 #### 🪟 Windows (PowerShell):
 ```powershell
@@ -134,7 +159,7 @@ curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/instal
 
 ---
 
-### Method 3: Instant Quickstart Runner
+### 🏃 Method 4: Instant Quickstart Runner
 Run the interactive onboarder directly in your local clone:
 ```powershell
 # Windows
@@ -142,6 +167,44 @@ Run the interactive onboarder directly in your local clone:
 
 # macOS / Linux / WSL
 bash ./quickstart.sh
+```
+
+---
+
+## 🛠️ The Safety CLI & MCP Server
+
+SAFETY ships with a zero-dependency CLI (`bin/safety.js`) and a native **Model Context Protocol (MCP)** server (`bin/safety-mcp.js`).
+
+### CLI Commands:
+```bash
+# 1. Execute the full pre-commit stop gate audit
+safety gate --test "npm test"
+
+# 2. Pre-execution zero-destruction wall (blocks dangerous / secret commands)
+safety intercept "git reset --hard HEAD"   # -> BLOCKED (Destructive reset forbidden)
+safety intercept "npm run test"            # -> ALLOWED
+
+# 3. Decentralized multi-agent mesh locking
+safety mesh lock --agent "cursor" --paths "src/api/**" --task "Auth overhaul"
+safety mesh status
+safety mesh unlock --agent "cursor"
+
+# 4. View diff health & verification scorecard
+safety report
+```
+
+### Model Context Protocol (MCP) Integration:
+Configure the MCP server to give your AI assistants real-time, deterministic tool interception:
+
+```json
+{
+  "mcpServers": {
+    "safety": {
+      "command": "node",
+      "args": ["<path-to-safety>/bin/safety-mcp.js"]
+    }
+  }
+}
 ```
 
 ---
@@ -154,9 +217,18 @@ When working in interactive chat environments (Cursor, Claude Code, Antigravity,
 |:---|:---|
 | **`/master-skill`** (or **`/ms`**) | Forces full zero-trust triage and cognitive reasoning on the active task |
 | **`/ms-contract`** | Generates or validates `ct-contract.json` bounds for the current task |
+| **`/ms-mesh`** | Acquires, checks, or releases Multi-Agent Mesh Locks (`.master-skill/mesh-locks.json`) |
 | **`/ms-adversary`** | Injects red-team fault simulations (concurrency, poison inputs, latency drops) |
-| **`/ms-stop`** | Executes `scripts/stop_gate` pre-commit audit and renders diff health scorecard |
+| **`/ms-stop`** | Executes `safety gate` pre-commit audit and renders diff health scorecard |
 | **`/ms-report`** | Formats verified report citing Evidence IDs (`[EV-xxx]`) from the ledger |
+
+---
+
+## ⚡ High-Density Slim Profile (`profiles/SKILL.slim.md`)
+
+For fast, cost-effective models (Claude 3.5 Haiku, Gemini Flash, GPT-4o-mini), load our compact 1-page profile:
+- Located at [`profiles/SKILL.slim.md`](profiles/SKILL.slim.md) (~120 lines / ~2K tokens).
+- Retains 100% of the Zero-Destruction Wall, Task Contracts, and Stop Gates with 80% fewer tokens.
 
 ---
 

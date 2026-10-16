@@ -23,9 +23,14 @@ Identify which tool or IDE environment you are running under, then copy the spec
 
 ---
 
-## 🛠️ Automated Shell Execution (Optional)
+## 🛠️ Automated Shell Execution (Fastest & Recommended)
 
-If you have permission to execute shell commands in the terminal, you can simply run:
+If you have permission to execute shell commands in the terminal, execute the official setup wizard:
+
+### Cross-Platform (Zero-Dependency NPX):
+```bash
+npx @dragonkrishnan15/safety init
+```
 
 ### Windows (PowerShell):
 ```powershell
@@ -49,9 +54,14 @@ bash ./install.sh --global
 
 ## 📋 Verification Step for AI Agents
 
-Once you have copied the files:
+Once you have copied the files or run the installer:
 1. Verify that the destination file exists and is readable.
-2. In your next response to the user, confirm:
+2. Run the programmatic stop gate to ensure full compliance:
+   - If Node is available: `node bin/safety.js gate`
+   - Windows PowerShell: `powershell -ExecutionPolicy Bypass -File ./scripts/stop_gate.ps1`
+   - Linux/macOS: `bash ./scripts/stop_gate.sh`
+3. In your next response to the user, confirm:
    - Which agent/IDE was detected
    - The exact destination path configured
-   - That `master-skill (v5.1)` is now active for all future prompts
+   - That **`master-skill (v5.2 Apex Mesh Edition)`** is now active for all future prompts
+   - Emit your initial gate line: `[ACCESS read][RUN interactive][SIZE standard][SHELL ...]`
