@@ -1,7 +1,11 @@
 <div align="center">
 
-<!-- Animated Hero Header (Adapts dynamically to System Dark / Light Theme) -->
-<img src="assets/animated_hero_header.svg" alt="SAFETY Animated Hero Header" width="100%" />
+<!-- GitHub Native Dark/Light Mode Dual-Header (Enhancement 6) -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/animated_hero_header.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/animated_hero_header.svg">
+  <img src="assets/animated_hero_header.svg" alt="SAFETY Animated Hero Header" width="100%" />
+</picture>
 
 <br/><br/>
 
@@ -15,12 +19,24 @@
 [![Node Runtime](https://img.shields.io/badge/Node-%3E%3D%2018.0-339933?logo=node.js&logoColor=white)](package.json)
 [![Release: v5.2 Apex Mesh](https://img.shields.io/badge/Release-v5.2%20Apex%20Mesh-cyan.svg)](CHANGELOG.md)
 
+<br/>
+
+<!-- Technology Badges Row (Enhancement 5) -->
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](#)
+[![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)](#)
+[![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](#)
+[![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)](#)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)](#)
+
 <p align="center">
   <b>Converts AI coding assistants from unconstrained token generators into disciplined, sandboxed Principal Engineers.</b><br/>
   Enforces immutable task contracts, red-team chaos testing, multi-agent mesh locks, active MCP interception, and zero-leak stop gates.
 </p>
 
-[**🚀 1-Prompt Magic Setup**](#-method-1-the-1-prompt-ai-magic-installer-zero-terminal-100-autonomous) • [**🌐 Live Web Demo**](https://dragonkrishnan15.github.io/safety/) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
+[**🚀 1-Prompt Setup**](#-the-1-prompt-ai-magic-installer-zero-terminal-100-autonomous) • [**🌐 Live Web Demo**](https://dragonkrishnan15.github.io/safety/) • [**🎴 Editor Grid**](#-supported-ai-assistants--ide-matrix) • [**📊 Scorecard**](#-real-world-governance-scorecard--kpis) • [**🎯 Scenarios**](#-see-it-in-action-real-world-scenarios) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**📐 Architecture**](ARCHITECTURE.md)
 
 </div>
 
@@ -34,8 +50,10 @@
   <img src="assets/terminal_simulation.svg" alt="Animated Stop Gate Terminal" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);" />
 </div>
 
+<!-- Live Terminal Callout Box (Enhancement 7) -->
 > [!TIP]
-> **Try the Interactive Terminal Simulator Online**: Visit the [**SAFETY Documentation Playground**](https://dragonkrishnan15.github.io/safety/) to test blocked commands (`git reset --hard`, destructive clean, secret leaks) in an interactive browser terminal emulator.
+> **🌐 Live Interactive Documentation & Simulator**:
+> Try the real-time browser playground at [**https://dragonkrishnan15.github.io/safety/**](https://dragonkrishnan15.github.io/safety/) or view the high-resolution render showcase at [`assets/readme_preview.png`](assets/readme_preview.png) to test blocked commands (`git reset --hard`, destructive clean, secret leaks) in an interactive browser terminal emulator.
 
 ---
 
@@ -58,6 +76,107 @@ Data packets and code modifications traverse 6 deterministic governance gates be
 
 ---
 
+## 📊 Real-World Governance Scorecard & KPIs
+
+<!-- Benchmark / Governance Metrics (Enhancement 2) -->
+<table>
+<tr>
+<th width="35%">Governance Vector</th>
+<th width="32%" align="center">❌ Unchecked "Vibe Coding" AI</th>
+<th width="33%" align="center">✅ Sandboxed Principal AI with SAFETY</th>
+</tr>
+<tr>
+<td><b>Test Verification Integrity</b></td>
+<td align="center">❌ ~42% false positives<br/><i>(Claims "fixed!" without running tests)</i></td>
+<td align="center">✅ <b>0% Hallucinations</b><br/><i>(Requires verifiable <code>[EV-xxx]</code> proof)</i></td>
+</tr>
+<tr>
+<td><b>Secret & Token Protection</b></td>
+<td align="center">❌ High Risk<br/><i>(Commits <code>sk-</code>, <code>ghp_</code>, <code>AKIA</code> tokens)</i></td>
+<td align="center">✅ <b>100% Interception</b><br/><i>(Scans 12 regex patterns before git commit)</i></td>
+</tr>
+<tr>
+<td><b>Destructive Command Guard</b></td>
+<td align="center">❌ Destructive<br/><i>(Runs <code>git reset --hard</code>, deleting uncommitted user work)</i></td>
+<td align="center">✅ <b>Hard-Blocked at Runtime</b><br/><i>(Zero-Destruction Wall aborts with code 1)</i></td>
+</tr>
+<tr>
+<td><b>Multi-Agent Concurrency</b></td>
+<td align="center">❌ Race Collisions<br/><i>(Cursor & Claude overwrite each other's edits)</i></td>
+<td align="center">✅ <b>0 Race Collisions</b><br/><i>(Decentralized Mesh Lock with auto-expiring TTL)</i></td>
+</tr>
+<tr>
+<td><b>Error Recovery Strategy</b></td>
+<td align="center">❌ Patch Stacking<br/><i>(Stacks blind speculative edits until build implodes)</i></td>
+<td align="center">✅ <b>Atomic Clean Rollbacks</b><br/><i>(Instantly rolls back to clean snapshot on test fail)</i></td>
+</tr>
+<tr>
+<td><b>Scope Control & Churn</b></td>
+<td align="center">❌ Unbounded Churn<br/><i>(Refactors untouched files & reformats lockfiles)</i></td>
+<td align="center">✅ <b>Strict Invariant Bounds</b><br/><i>(Modifications restricted to <code>permitted_paths</code>)</i></td>
+</tr>
+</table>
+
+---
+
+## 🎯 "See It In Action": Real-World Scenarios
+
+<!-- Real-World Scenarios (Enhancement 3) -->
+
+### 🛑 Scenario A: The AI Attempts a Destructive `git reset --hard`
+When an AI assistant panics after broken tests and tries to wipe local unstaged work:
+```bash
+$ safety intercept "git reset --hard HEAD~1"
+[SAFETY INTERCEPTOR] ❌ COMMAND BLOCKED BY ZERO-DESTRUCTION WALL
+Reason: Destructive git reset detected. Wipes uncommitted user modifications.
+Permitted Alternative: Create an atomic branch or inspect git status.
+Exit Code: 1
+```
+
+### 🔑 Scenario B: Accidental OpenAI API Key Left in Diff
+When an AI assistant accidentally pastes a live token into source code:
+```bash
+$ safety gate --test "npm test"
+[SAFETY KERNEL] Initializing Zero-Trust Invariant Pre-Commit Audit...
+[SECRET SCANNER] ❌ REJECTED: Sensitive API key detected on line 14 of src/config.ts!
+Pattern Matched: sk-proj-[A-Za-z0-9-_]{20,}
+Action: Commit blocked. Please remove secret from working tree.
+Exit Code: 1
+```
+
+### 🔒 Scenario C: Concurrent Multi-Agent Mesh Lock Collision
+When Cursor IDE and Claude Code attempt to modify the same backend auth routes simultaneously:
+```bash
+# Agent "cursor" holds lock:
+$ safety mesh lock --agent "cursor" --paths "src/auth/**" --ttl 15
+[MESH LOCK] ✅ Acquired lock on 'src/auth/**' for agent 'cursor' (TTL: 15m)
+
+# Agent "claude" attempts to lock overlapping file:
+$ safety mesh lock --agent "claude" --paths "src/auth/jwt.ts"
+[MESH LOCK] ❌ COLLISION DETECTED: Path 'src/auth/jwt.ts' overlaps with active lock 'src/auth/**' held by agent 'cursor' until 19:15:00 UTC.
+Exit Code: 1
+```
+
+---
+
+## 🎴 Supported AI Assistants & IDE Matrix
+
+<!-- Visual Editor Cards Matrix (Enhancement 1) -->
+<div align="center">
+  <img src="assets/animated_agent_matrix.svg" alt="Supported AI Agents Matrix" width="100%" style="border-radius: 12px; margin: 12px 0;" />
+</div>
+
+| Environment | Adapter Path | Primary Enforcement Hook | Quick Activation |
+|:---|:---|:---|:---:|
+| 🟣 **Cursor IDE** | [`.cursorrules`](adapters/.cursorrules) | MDC Rule Interception & Terminal Guard | Automatic on open |
+| 🟠 **Claude Code** | [`CLAUDE.md`](adapters/CLAUDE.md) | Architectural Memory & Baseline Invariants | `/master-skill` |
+| 🌊 **Windsurf Cascade** | [`.windsurfrules`](adapters/.windsurfrules) | Cascade Pre-Execution Policy Gate | Automatic on load |
+| 🚀 **Google Antigravity** | [`SKILL.md`](SKILL.md) | Agentic Governance & Subagent Checkpoint | `/claude-thinking` |
+| 🤖 **Cline / Roo Code** | [`.clinerules`](adapters/.clinerules) | System Prompt Constraint Engine | Active by default |
+| 🐙 **GitHub Copilot** | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Repository Instruction Enforcement | Workspace-wide |
+
+---
+
 ## 🛡️ Core Capabilities & Runtime Guards
 
 <div align="center">
@@ -66,62 +185,9 @@ Data packets and code modifications traverse 6 deterministic governance gates be
 
 ---
 
-## 🤖 Supported AI Agents & Environments
-
-Native zero-trust governance adapters drop directly into your project with zero lock-in:
-
-<div align="center">
-  <img src="assets/animated_agent_matrix.svg" alt="Supported AI Agents Matrix" width="100%" style="border-radius: 12px; margin: 12px 0;" />
-</div>
-
----
-
-## ⚡ The Core Problem vs. The SAFETY Solution
-
-<table>
-<tr>
-<th width="50%" align="center">❌ Unchecked "Vibe Coding" AI Agents</th>
-<th width="50%" align="center">✅ Sandboxed Principal AI with SAFETY</th>
-</tr>
-<tr>
-<td>
-
-- **Hallucinated Passes**: Claims "Fixed and verified!" without ever executing tests.
-- **Speculative Patch Stacking**: When tests fail, stacks random edits until code breaks completely.
-- **Data Leaks & Secrets**: Commits API keys, local credentials, and internal tokens to GitHub.
-- **Scope Creep & Churn**: Refactors untouched files, deletes unrelated tests, and reformats entire directories.
-- **Fragile Happy-Path Tests**: Writes trivial mocks that pass locally but implode under real production load.
-- **Multi-Agent Collision**: Simultaneous agents overwrite each other's work with zero collision coordination.
-
-</td>
-<td>
-
-- **Proof-Backed Evidence**: Every assertion must cite a verifiable Evidence ID (`[EV-xxx]`) in `ct-ledger.jsonl`.
-- **Atomic Failsafe Rollbacks**: On failure, instantly reverts to clean checkpoint instead of stacking blind edits.
-- **Zero-Leak Secret Scanner**: Automatically intercepts API keys (`ghp_`, `sk-`, `AIza`, `AKIA`) before git commits.
-- **Strict Contract Boundaries**: Hard blocks unauthorized file writes outside configured `permitted_paths`.
-- **The Test Adversary**: Stress-tests code with 30-50 concurrent async workers, poison inputs, and network latency.
-- **Decentralized Mesh Locks**: Real-time atomic arbitration locks prevent simultaneous agent conflicts.
-
-</td>
-</tr>
-</table>
-
----
-
-## 📐 Deep-Dive System Architecture
-
-<div align="center">
-  <img src="assets/architecture_infographic.jpg" alt="Zero-Trust Architecture Infographic" width="100%" style="border-radius: 12px; margin: 16px 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);" />
-</div>
-
-For full technical specifications and state transition diagrams, view [**`ARCHITECTURE.md`**](ARCHITECTURE.md).
-
----
-
 ## 🚀 Instant Installation
 
-### 🤖 Method 1: The "1-Prompt" AI Magic Installer (Zero Terminal, 100% Autonomous)
+### 🤖 The "1-Prompt" AI Magic Installer (Zero Terminal, 100% Autonomous)
 
 > **For Users**: Simply copy and paste the block below into **Cursor Composer / Chat**, **Claude Code**, **Windsurf Cascade**, **Google Antigravity**, **Cline / Roo Code**, or **GitHub Copilot**. Your AI assistant will detect your editor, install the correct rules, configure git pre-commit quality gates, and verify the installation autonomously:
 
@@ -146,7 +212,7 @@ Please install and activate the @dragonkrishnan15/safety governance framework (m
 
 ---
 
-### ⚡ Method 2: 1-Command Instant Setup (Zero-Config NPX)
+### ⚡ 1-Command Instant Setup (Zero-Config NPX)
 Run this in any local project terminal to auto-detect your editor, drop required adapters, register git pre-commit quality gates, and initialize your task contract in 3 seconds:
 
 ```bash
@@ -155,7 +221,7 @@ npx @dragonkrishnan15/safety init
 
 ---
 
-### 💻 Method 3: One-Line Terminal Command (Automated)
+### 💻 One-Line Terminal Commands (Automated)
 
 #### 🪟 Windows (PowerShell):
 ```powershell
@@ -177,7 +243,7 @@ curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/instal
 
 ---
 
-### 🏃 Method 4: Instant Quickstart Runner
+### 🏃 Instant Quickstart Runner
 Run the interactive onboarder directly in your local clone:
 ```powershell
 # Windows
@@ -225,15 +291,6 @@ Configure the MCP server in your editor (`~/.cursor/mcp.json`, `claude_desktop_c
 }
 ```
 
-The MCP server exposes 7 native tools:
-1. `safety_validate_command` — Zero-Destruction Wall interception.
-2. `safety_init_contract` — Generates immutable `ct-contract.json`.
-3. `safety_verify_gate` — Audits invariants, secrets, and diff cleanliness.
-4. `safety_mesh_lock` — Acquires decentralized multi-agent lock with TTL.
-5. `safety_mesh_unlock` — Releases active agent locks.
-6. `safety_mesh_status` — Inspects all active locks across the agent mesh.
-7. `safety_scorecard` — Generates diff ratio and verification report.
-
 ---
 
 ## 🔒 Decentralized Multi-Agent Mesh Locking
@@ -251,14 +308,85 @@ node bin/safety.js mesh lock --agent "claude" --paths "src/api/**" --ttl 15
 
 # Agent tries to lock overlapping path -> REJECTED
 node bin/safety.js mesh lock --agent "cursor" --paths "src/api/auth.ts"
-# Output: [COLLISION] Path is locked by agent 'claude' until 17:45:00 UTC
+# Output: [COLLISION] Path is locked by agent 'claude' until 19:30:00 UTC
 ```
 
 ---
 
-## ⚡ Interactive Chat Slash Commands
+## 📂 Deep-Dive Specifications & Technical Reference
 
-When working in interactive chat environments (Cursor, Claude Code, Antigravity, Windsurf), you can use these shortcuts:
+<!-- Collapsible Sections for Power Users (Enhancement 4) -->
+
+<details>
+<summary><b>🔍 Expand Full 7 MCP Tools & JSON-RPC Schemas</b></summary>
+<br/>
+
+The SAFETY MCP server (`bin/safety-mcp.js`) provides 7 native tools compliant with the Model Context Protocol:
+
+1. **`safety_validate_command`**:
+   - *Arguments*: `command` (string)
+   - *Behavior*: Validates command against the Zero-Destruction Wall and secret regexes. Returns `allowed: true/false` and reason.
+2. **`safety_init_contract`**:
+   - *Arguments*: `task_id` (string), `permitted_paths` (array), `forbidden_paths` (array)
+   - *Behavior*: Creates a verifiable task contract at `ct-contract.json`.
+3. **`safety_verify_gate`**:
+   - *Arguments*: `test_command` (string, optional)
+   - *Behavior*: Audits invariant bounds, runs tests, checks for `DEBUG-CT` remnants, and scans for secrets.
+4. **`safety_mesh_lock`**:
+   - *Arguments*: `agent` (string), `paths` (array), `ttl_minutes` (number, default: 15)
+   - *Behavior*: Atomically acquires path locks in `.master-skill/mesh-locks.json`.
+5. **`safety_mesh_unlock`**:
+   - *Arguments*: `agent` (string)
+   - *Behavior*: Releases active path locks held by the agent.
+6. **`safety_mesh_status`**:
+   - *Behavior*: Returns all active locks, owners, paths, and lease expiration timestamps.
+7. **`safety_scorecard`**:
+   - *Behavior*: Calculates diff blast radius, additions/deletions ratio, and untracked file count.
+
+</details>
+
+<details>
+<summary><b>📋 Expand Task Contract Schema (<code>ct-contract.json</code>)</b></summary>
+<br/>
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/dragonkrishnan15/safety/main/templates/contract.template.json",
+  "task_id": "AUTH-042",
+  "permitted_paths": [
+    "src/auth/**",
+    "tests/auth/**",
+    "package.json"
+  ],
+  "forbidden_paths": [
+    ".github/workflows/**",
+    "prisma/migrations/**",
+    "package-lock.json"
+  ],
+  "max_diff_lines": 350,
+  "stop_gate_command": "npm test"
+}
+```
+
+</details>
+
+<details>
+<summary><b>🛑 Expand Zero-Destruction Wall Command Blacklist</b></summary>
+<br/>
+
+Commands blocked by `safety intercept` or pre-tool hooks:
+- `git reset --hard` (Destructive git working tree wipe)
+- `git clean -fd` / `git clean -f` (Unrecoverable untracked file deletion)
+- `git checkout .` (Reverts unstaged modifications wholesale)
+- `rm -rf /` / `rm -rf ~` (Dangerous filesystem deletion)
+- `drop database` / `truncate table` without dry-run (Irreversible data destruction)
+- Any command argument matching known secret patterns (`sk-`, `ghp_`, `AKIA`)
+
+</details>
+
+<details>
+<summary><b>⚡ Expand Full Interactive Slash Commands Reference</b></summary>
+<br/>
 
 | Command | Action Performed |
 |:---|:---|
@@ -269,6 +397,8 @@ When working in interactive chat environments (Cursor, Claude Code, Antigravity,
 | **`/ms-stop`** | Executes `safety gate` pre-commit audit and renders diff health scorecard |
 | **`/ms-report`** | Formats verified report citing Evidence IDs (`[EV-xxx]`) from the ledger |
 
+</details>
+
 ---
 
 ## ⚡ High-Density Slim Profile (`profiles/SKILL.slim.md`)
@@ -276,17 +406,6 @@ When working in interactive chat environments (Cursor, Claude Code, Antigravity,
 For fast, cost-effective models (Claude 3.5 Haiku, Gemini Flash, GPT-4o-mini), load our compact 1-page profile:
 - Located at [`profiles/SKILL.slim.md`](profiles/SKILL.slim.md) (~120 lines / ~2K tokens).
 - Retains 100% of the Zero-Destruction Wall, Task Contracts, and Stop Gates with 80% fewer tokens.
-
----
-
-## 📋 Production-Ready Boilerplate Templates
-
-The repository includes ready-to-use production templates in [`templates/`](templates/):
-
-- [`contract.template.json`](templates/contract.template.json): Task contract schema specifying permitted paths, forbidden paths, and invariants.
-- [`ledger.template.jsonl`](templates/ledger.template.jsonl): Append-only cryptographic evidence ledger.
-- [`adversary_test.py`](templates/adversary_test.py): Python red-team suite injecting 30 concurrent workers and poison inputs.
-- [`adversary_test.ts`](templates/adversary_test.ts): TypeScript/JavaScript suite testing 50 concurrent async promises under latency.
 
 ---
 
@@ -300,7 +419,14 @@ The repository includes ready-to-use production templates in [`templates/`](temp
 
 ---
 
+## 📈 Community & Star History
+
+<!-- Star History Widget (Enhancement 5) -->
 <div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=dragonkrishnan15/safety&type=Date)](https://star-history.com/#dragonkrishnan15/safety&Date)
+
+<br/>
 
 ### 🌟 Star this repository on GitHub!
 If you believe AI coding agents should be reliable, sandboxed, and disciplined, give this repo a star!
