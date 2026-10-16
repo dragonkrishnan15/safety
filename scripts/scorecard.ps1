@@ -11,7 +11,7 @@ if ($diffNumstat) {
         }
     }
 }
-$debugMatches = git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' ':!assets/*' 2>$null
+$debugMatches = git grep -n "DEBUG-CT" -- ':!*.md' ':!*.mdc' ':!scripts/*' ':!adapters/*' ':!templates/*' ':!examples/*' ':!assets/*' ':!bin/*' ':!docs/*' 2>$null
 $untracked = (git ls-files --others --exclude-standard 2>$null).Count
 [PSCustomObject]@{
     files_changed = $fileCount

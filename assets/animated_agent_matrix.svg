@@ -1,12 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 140" width="100%" height="auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 145" width="100%" height="auto">
   <defs>
-    <linearGradient id="agentCardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background Gradients -->
+    <linearGradient id="agentCardBgDark" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f172a" />
       <stop offset="100%" stop-color="#020617" />
     </linearGradient>
 
-    <filter id="aGlow">
-      <feGaussianBlur stdDeviation="3" result="blur" />
+    <linearGradient id="agentCardBgLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <filter id="aGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
@@ -15,72 +21,91 @@
   </defs>
 
   <style>
+    /* Mature Harmonic Beacon Pulses */
     @keyframes pulseLive {
-      0%, 100% { opacity: 0.3; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 6px #34d399); }
+      0%, 100% { opacity: 0.4; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 5px #10b981); }
     }
-    .beacon { animation: pulseLive 2s ease-in-out infinite; transform-origin: center; }
+    .beacon { animation: pulseLive 2.4s ease-in-out infinite; transform-origin: center; }
     .b1 { animation-delay: 0.0s; }
-    .b2 { animation-delay: 0.3s; }
-    .b3 { animation-delay: 0.6s; }
-    .b4 { animation-delay: 0.9s; }
-    .b5 { animation-delay: 1.2s; }
-    .b6 { animation-delay: 1.5s; }
-    .agent-name { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 700; fill: #f8fafc; }
-    .agent-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #94a3b8; }
+    .b2 { animation-delay: 0.4s; }
+    .b3 { animation-delay: 0.8s; }
+    .b4 { animation-delay: 1.2s; }
+    .b5 { animation-delay: 1.6s; }
+    .b6 { animation-delay: 2.0s; }
+
+    /* Default Theme (Dark) */
+    .theme-card-bg { fill: url(#agentCardBgDark); }
+    .theme-agent-name { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; font-size: 14px; font-weight: 700; fill: #f8fafc; }
+    .theme-agent-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #94a3b8; }
+    .theme-chip-bg { fill: #064e3b; stroke: #059669; }
+
+    /* Light Theme Adaptation */
+    @media (prefers-color-scheme: light) {
+      .theme-card-bg { fill: url(#agentCardBgLight); }
+      .theme-agent-name { fill: #0f172a; }
+      .theme-agent-type { fill: #64748b; }
+      .theme-chip-bg { fill: #dcfce7; stroke: #16a34a; }
+    }
   </style>
 
   <!-- Agent 1: Cursor -->
   <g transform="translate(10, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#38bdf8" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b1" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">Cursor IDE</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">.cursorrules</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#38bdf8" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b1" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">Cursor IDE</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">.cursorrules</text>
   </g>
 
   <!-- Agent 2: Claude Code -->
   <g transform="translate(168, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#c084fc" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b2" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">Claude Code</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">CLAUDE.md</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#c084fc" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b2" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">Claude Code</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">CLAUDE.md</text>
   </g>
 
   <!-- Agent 3: Antigravity -->
   <g transform="translate(326, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#34d399" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b3" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">Antigravity</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">SKILL.md</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#34d399" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b3" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">Antigravity</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">SKILL.md</text>
   </g>
 
   <!-- Agent 4: Copilot -->
   <g transform="translate(484, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#818cf8" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b4" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">GitHub Copilot</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">copilot-instructions</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#818cf8" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b4" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">GitHub Copilot</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">copilot-rules</text>
   </g>
 
   <!-- Agent 5: Windsurf -->
   <g transform="translate(642, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#38bdf8" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b5" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">Windsurf IDE</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">.windsurfrules</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#38bdf8" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b5" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">Windsurf IDE</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">.windsurfrules</text>
   </g>
 
   <!-- Agent 6: Cline / Roo -->
   <g transform="translate(800, 15)">
-    <rect x="0" y="0" width="145" height="110" rx="10" fill="url(#agentCardBg)" stroke="#fbbf24" stroke-width="1.2" />
-    <circle cx="24" cy="28" r="5" fill="#34d399" class="beacon b6" />
-    <text x="36" y="32" font-family="'JetBrains Mono', monospace" font-size="10" fill="#34d399" font-weight="bold">ACTIVE</text>
-    <text x="72" y="68" text-anchor="middle" class="agent-name">Cline / Roo</text>
-    <text x="72" y="88" text-anchor="middle" class="agent-type">.clinerules</text>
+    <rect x="0" y="0" width="145" height="115" rx="12" class="theme-card-bg" stroke="#fbbf24" stroke-width="1.4" />
+    <rect x="14" y="14" width="70" height="20" rx="10" class="theme-chip-bg" stroke-width="0.8" />
+    <circle cx="24" cy="24" r="4" fill="#34d399" class="beacon b6" />
+    <text x="34" y="28" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#10b981" font-weight="800">ACTIVE</text>
+    <text x="72" y="70" text-anchor="middle" class="theme-agent-name">Cline / Roo</text>
+    <text x="72" y="90" text-anchor="middle" class="theme-agent-type">.clinerules</text>
   </g>
 </svg>

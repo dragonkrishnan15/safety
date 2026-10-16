@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- Animated Hero Header -->
+<!-- Animated Hero Header (Adapts dynamically to System Dark / Light Theme) -->
 <img src="assets/animated_hero_header.svg" alt="SAFETY Animated Hero Header" width="100%" />
 
 <br/><br/>
@@ -10,7 +10,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Zero Vendor Lock-in](https://img.shields.io/badge/Vendor%20Lock--in-Zero-blueviolet.svg)](#-universal-compatibility)
-[![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-Active-success.svg)](#-live-animated-terminal-simulation)
+[![Secret Scanning](https://img.shields.io/badge/Secret%20Scanner-100%25%20Active-success.svg)](#-live-animated-terminal-simulation)
+[![Multi-Agent Mesh](https://img.shields.io/badge/Mesh%20Lock-Decentralized-purple.svg)](#-decentralized-multi-agent-mesh-locking)
+[![Node Runtime](https://img.shields.io/badge/Node-%3E%3D%2018.0-339933?logo=node.js&logoColor=white)](package.json)
 [![Release: v5.2 Apex Mesh](https://img.shields.io/badge/Release-v5.2%20Apex%20Mesh-cyan.svg)](CHANGELOG.md)
 
 <p align="center">
@@ -18,7 +20,7 @@
   Enforces immutable task contracts, red-team chaos testing, multi-agent mesh locks, active MCP interception, and zero-leak stop gates.
 </p>
 
-[**🚀 Quickstart**](#-instant-installation) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
+[**🚀 1-Prompt Magic Setup**](#-method-1-the-1-prompt-ai-magic-installer-zero-terminal-100-autonomous) • [**🌐 Live Web Demo**](https://dragonkrishnan15.github.io/safety/) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**⚡ Animated Flow**](#-interactive-animated-pipeline) • [**🛡️ Feature Cards**](#-core-capabilities--runtime-guards) • [**🤖 Supported Agents**](#-supported-ai-agents) • [**📐 Architecture**](ARCHITECTURE.md)
 
 </div>
 
@@ -26,19 +28,33 @@
 
 ## 🖥️ Live Animated Terminal Simulation
 
+*Real-time demonstration of the SAFETY Zero-Destruction Wall and Pre-Commit Stop Gate intercepting unauthorized churn, secret leaks, and unverified tests:*
+
 <div align="center">
   <img src="assets/terminal_simulation.svg" alt="Animated Stop Gate Terminal" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);" />
 </div>
+
+> [!TIP]
+> **Try the Interactive Terminal Simulator Online**: Visit the [**SAFETY Documentation Playground**](https://dragonkrishnan15.github.io/safety/) to test blocked commands (`git reset --hard`, destructive clean, secret leaks) in an interactive browser terminal emulator.
 
 ---
 
 ## ⚡ Interactive Animated Pipeline
 
-Data packets travel through 6 deterministic governance gates before any code reaches production:
+Data packets and code modifications traverse 6 deterministic governance gates before any pull request or merge is allowed:
 
 <div align="center">
   <img src="assets/animated_pipeline_flow.svg" alt="Animated 6-Stage Pipeline Flow" width="100%" style="border-radius: 12px; margin: 12px 0;" />
 </div>
+
+| Stage | Name | Deterministic Function | Exit Failure Condition |
+|:---:|:---|:---|:---|
+| **01** | **Triage Gate** | Records git baseline, classifies task scope (`TRIVIAL` / `STANDARD` / `COMPLEX`), establishes read/write bounds | Unclassified task |
+| **02** | **Task Contract** | Enforces immutable `permitted_paths` and hard-blocks `forbidden_paths` (`ct-contract.json`) | Boundary breach |
+| **03** | **Mesh Lock** | Arbitrates multi-agent concurrency (`.master-skill/mesh-locks.json`) with auto-expiring TTL leases | Path lock collision |
+| **04** | **Atomic Checkpoint** | Pre-edit clean snapshot; on test failure, instantly reverts to clean state (zero patch stacking) | Failure loop (> 3 attempts) |
+| **05** | **Test Adversary** | Injects 30-50 concurrent async workers, poison inputs, latency drops, and race conditions | Flaky / unhandled crash |
+| **06** | **Stop Gate & Ledger** | Scans 12+ credential patterns, validates sanitary diff, appends cryptographically signed proofs | Secret leak / unverified assertion |
 
 ---
 
@@ -50,9 +66,9 @@ Data packets travel through 6 deterministic governance gates before any code rea
 
 ---
 
-## 🤖 Supported AI Agents
+## 🤖 Supported AI Agents & Environments
 
-Active real-time zero-trust interception across all major coding environments:
+Native zero-trust governance adapters drop directly into your project with zero lock-in:
 
 <div align="center">
   <img src="assets/animated_agent_matrix.svg" alt="Supported AI Agents Matrix" width="100%" style="border-radius: 12px; margin: 12px 0;" />
@@ -75,6 +91,7 @@ Active real-time zero-trust interception across all major coding environments:
 - **Data Leaks & Secrets**: Commits API keys, local credentials, and internal tokens to GitHub.
 - **Scope Creep & Churn**: Refactors untouched files, deletes unrelated tests, and reformats entire directories.
 - **Fragile Happy-Path Tests**: Writes trivial mocks that pass locally but implode under real production load.
+- **Multi-Agent Collision**: Simultaneous agents overwrite each other's work with zero collision coordination.
 
 </td>
 <td>
@@ -84,6 +101,7 @@ Active real-time zero-trust interception across all major coding environments:
 - **Zero-Leak Secret Scanner**: Automatically intercepts API keys (`ghp_`, `sk-`, `AIza`, `AKIA`) before git commits.
 - **Strict Contract Boundaries**: Hard blocks unauthorized file writes outside configured `permitted_paths`.
 - **The Test Adversary**: Stress-tests code with 30-50 concurrent async workers, poison inputs, and network latency.
+- **Decentralized Mesh Locks**: Real-time atomic arbitration locks prevent simultaneous agent conflicts.
 
 </td>
 </tr>
@@ -194,7 +212,7 @@ safety report
 ```
 
 ### Model Context Protocol (MCP) Integration:
-Configure the MCP server to give your AI assistants real-time, deterministic tool interception:
+Configure the MCP server in your editor (`~/.cursor/mcp.json`, `claude_desktop_config.json`, or Windsurf MCP settings) to provide active tool interception:
 
 ```json
 {
@@ -205,6 +223,35 @@ Configure the MCP server to give your AI assistants real-time, deterministic too
     }
   }
 }
+```
+
+The MCP server exposes 7 native tools:
+1. `safety_validate_command` — Zero-Destruction Wall interception.
+2. `safety_init_contract` — Generates immutable `ct-contract.json`.
+3. `safety_verify_gate` — Audits invariants, secrets, and diff cleanliness.
+4. `safety_mesh_lock` — Acquires decentralized multi-agent lock with TTL.
+5. `safety_mesh_unlock` — Releases active agent locks.
+6. `safety_mesh_status` — Inspects all active locks across the agent mesh.
+7. `safety_scorecard` — Generates diff ratio and verification report.
+
+---
+
+## 🔒 Decentralized Multi-Agent Mesh Locking
+
+When multiple AI agents work on the same repository (e.g. Cursor modifying frontend components while Claude Code refactors backend routes), SAFETY prevents collisions via atomic lock arbitration:
+
+- **State File**: `.master-skill/mesh-locks.json` (git-ignored, zero-server).
+- **Collision Detection**: Glob intersection check (`minimatch` pattern matching).
+- **Auto-Expiring Leases**: Default 15-minute TTL prevents deadlocks if an agent crashes.
+- **Atomic Operations**: File-descriptor based synchronization prevents race conditions.
+
+```bash
+# Agent acquires lock on backend API
+node bin/safety.js mesh lock --agent "claude" --paths "src/api/**" --ttl 15
+
+# Agent tries to lock overlapping path -> REJECTED
+node bin/safety.js mesh lock --agent "cursor" --paths "src/api/auth.ts"
+# Output: [COLLISION] Path is locked by agent 'claude' until 17:45:00 UTC
 ```
 
 ---
@@ -240,6 +287,16 @@ The repository includes ready-to-use production templates in [`templates/`](temp
 - [`ledger.template.jsonl`](templates/ledger.template.jsonl): Append-only cryptographic evidence ledger.
 - [`adversary_test.py`](templates/adversary_test.py): Python red-team suite injecting 30 concurrent workers and poison inputs.
 - [`adversary_test.ts`](templates/adversary_test.ts): TypeScript/JavaScript suite testing 50 concurrent async promises under latency.
+
+---
+
+## 🧪 Automated Test Suite (14/14 Passing)
+
+| Test Module | Coverage | Status |
+|:---|:---|:---:|
+| `tests/test_safety_cli.js` | Zero-Destruction Wall, Task Contracts, Stop Gates, Scorecards, CLI Help | **6/6 PASS** ✅ |
+| `tests/test_stop_gate.ps1` / `.sh` | Secret Scanner, DEBUG-CT exclusions, Invariant Boundary enforcement | **3/3 PASS** ✅ |
+| `tests/test_mesh_lock.ps1` / `.sh` | Multi-Agent Lock Acquisition, Overlap Rejection, Status, Auto-Unlock | **5/5 PASS** ✅ |
 
 ---
 
