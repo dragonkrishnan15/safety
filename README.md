@@ -36,9 +36,81 @@
   Enforces immutable task contracts, red-team chaos testing, multi-agent mesh locks, active MCP interception, and zero-leak stop gates.
 </p>
 
-[**🚀 1-Prompt Setup**](#-the-1-prompt-ai-magic-installer-zero-terminal-100-autonomous) • [**🌐 Live Web Demo**](https://dragonkrishnan15.github.io/safety/) • [**🎴 Editor Grid**](#-supported-ai-assistants--ide-matrix) • [**📊 Scorecard**](#-real-world-governance-scorecard--kpis) • [**🎯 Scenarios**](#-see-it-in-action-real-world-scenarios) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**📐 Architecture**](ARCHITECTURE.md)
+[**⚡ Quick Copy**](#-1-click-quick-copy-command-center) • [**🚀 1-Prompt Setup**](#-the-1-prompt-ai-magic-installer-zero-terminal-100-autonomous) • [**🌐 Live Web Demo**](https://dragonkrishnan15.github.io/safety/) • [**🎴 Editor Grid**](#-supported-ai-assistants--ide-matrix) • [**📊 Scorecard**](#-real-world-governance-scorecard--kpis) • [**🎯 Scenarios**](#-see-it-in-action-real-world-scenarios) • [**🛠️ CLI & MCP**](#-the-safety-cli--mcp-server) • [**📐 Architecture**](ARCHITECTURE.md)
 
 </div>
+
+---
+
+## ⚡ 1-Click Quick Copy Command Center
+
+*Click the copy button on the top-right of any box below to copy clean, ready-to-run commands:*
+
+<table>
+<tr>
+<th width="50%">🤖 AI Agent 1-Prompt Magic Installer</th>
+<th width="50%">⚡ Instant Terminal Setup (Zero-Config NPX)</th>
+</tr>
+<tr>
+<td>
+<i>Paste directly into <b>Cursor Composer</b>, <b>Claude Code</b>, or <b>Windsurf Chat</b>:</i>
+
+```markdown
+Please install and activate @dragonkrishnan15/safety (master-skill v5.2) in this workspace autonomously from https://raw.githubusercontent.com/dragonkrishnan15/safety/main/AGENT_INSTALL.md. Detect my editor, drop the matching adapter, initialize ct-contract.json, and run the stop gate.
+```
+
+</td>
+<td>
+<i>Run in any local project terminal (detects editor & drops adapters):</i>
+
+```bash
+npx @dragonkrishnan15/safety init
+```
+
+<i>Windows PowerShell (Automated):</i>
+```powershell
+irm https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.ps1 | iex
+```
+
+<i>macOS / Linux / WSL (Bash):</i>
+```bash
+curl -fsSL https://raw.githubusercontent.com/dragonkrishnan15/safety/main/install.sh | bash
+```
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th width="33%">🛡️ Audit Pre-Commit Gate</th>
+<th width="33%">🔒 Acquire Multi-Agent Mesh Lock</th>
+<th width="34%">📊 Diff Health Scorecard</th>
+</tr>
+<tr>
+<td>
+
+```bash
+npx @dragonkrishnan15/safety gate --test "npm test"
+```
+
+</td>
+<td>
+
+```bash
+npx @dragonkrishnan15/safety mesh lock --agent "cursor" --paths "src/**"
+```
+
+</td>
+<td>
+
+```bash
+npx @dragonkrishnan15/safety report
+```
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -125,8 +197,13 @@ Data packets and code modifications traverse 6 deterministic governance gates be
 
 ### 🛑 Scenario A: The AI Attempts a Destructive `git reset --hard`
 When an AI assistant panics after broken tests and tries to wipe local unstaged work:
+
+**Command executed:**
 ```bash
-$ safety intercept "git reset --hard HEAD~1"
+safety intercept "git reset --hard HEAD~1"
+```
+**SAFETY Response:**
+```text
 [SAFETY INTERCEPTOR] ❌ COMMAND BLOCKED BY ZERO-DESTRUCTION WALL
 Reason: Destructive git reset detected. Wipes uncommitted user modifications.
 Permitted Alternative: Create an atomic branch or inspect git status.
@@ -135,8 +212,13 @@ Exit Code: 1
 
 ### 🔑 Scenario B: Accidental OpenAI API Key Left in Diff
 When an AI assistant accidentally pastes a live token into source code:
+
+**Command executed:**
 ```bash
-$ safety gate --test "npm test"
+safety gate --test "npm test"
+```
+**SAFETY Response:**
+```text
 [SAFETY KERNEL] Initializing Zero-Trust Invariant Pre-Commit Audit...
 [SECRET SCANNER] ❌ REJECTED: Sensitive API key detected on line 14 of src/config.ts!
 Pattern Matched: sk-proj-[A-Za-z0-9-_]{20,}
@@ -146,13 +228,18 @@ Exit Code: 1
 
 ### 🔒 Scenario C: Concurrent Multi-Agent Mesh Lock Collision
 When Cursor IDE and Claude Code attempt to modify the same backend auth routes simultaneously:
-```bash
-# Agent "cursor" holds lock:
-$ safety mesh lock --agent "cursor" --paths "src/auth/**" --ttl 15
-[MESH LOCK] ✅ Acquired lock on 'src/auth/**' for agent 'cursor' (TTL: 15m)
 
-# Agent "claude" attempts to lock overlapping file:
-$ safety mesh lock --agent "claude" --paths "src/auth/jwt.ts"
+**Agent "cursor" acquires lock:**
+```bash
+safety mesh lock --agent "cursor" --paths "src/auth/**" --ttl 15
+```
+
+**Agent "claude" attempts to lock overlapping file:**
+```bash
+safety mesh lock --agent "claude" --paths "src/auth/jwt.ts"
+```
+**SAFETY Response:**
+```text
 [MESH LOCK] ❌ COLLISION DETECTED: Path 'src/auth/jwt.ts' overlaps with active lock 'src/auth/**' held by agent 'cursor' until 19:15:00 UTC.
 Exit Code: 1
 ```
@@ -166,14 +253,14 @@ Exit Code: 1
   <img src="assets/animated_agent_matrix.svg" alt="Supported AI Agents Matrix" width="100%" style="border-radius: 12px; margin: 12px 0;" />
 </div>
 
-| Environment | Adapter Path | Primary Enforcement Hook | Quick Activation |
-|:---|:---|:---|:---:|
-| 🟣 **Cursor IDE** | [`.cursorrules`](adapters/.cursorrules) | MDC Rule Interception & Terminal Guard | Automatic on open |
+| Environment | Adapter Path | Primary Enforcement Hook | 1-Click Copy Setup |
+|:---|:---|:---|:---|
+| 🟣 **Cursor IDE** | [`.cursorrules`](adapters/.cursorrules) | MDC Rule Interception & Terminal Guard | `npx @dragonkrishnan15/safety init` |
 | 🟠 **Claude Code** | [`CLAUDE.md`](adapters/CLAUDE.md) | Architectural Memory & Baseline Invariants | `/master-skill` |
-| 🌊 **Windsurf Cascade** | [`.windsurfrules`](adapters/.windsurfrules) | Cascade Pre-Execution Policy Gate | Automatic on load |
+| 🌊 **Windsurf Cascade** | [`.windsurfrules`](adapters/.windsurfrules) | Cascade Pre-Execution Policy Gate | `npx @dragonkrishnan15/safety init` |
 | 🚀 **Google Antigravity** | [`SKILL.md`](SKILL.md) | Agentic Governance & Subagent Checkpoint | `/claude-thinking` |
-| 🤖 **Cline / Roo Code** | [`.clinerules`](adapters/.clinerules) | System Prompt Constraint Engine | Active by default |
-| 🐙 **GitHub Copilot** | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Repository Instruction Enforcement | Workspace-wide |
+| 🤖 **Cline / Roo Code** | [`.clinerules`](adapters/.clinerules) | System Prompt Constraint Engine | `npx @dragonkrishnan15/safety init` |
+| 🐙 **GitHub Copilot** | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Repository Instruction Enforcement | `npx @dragonkrishnan15/safety init` |
 
 ---
 
@@ -259,21 +346,37 @@ bash ./quickstart.sh
 
 SAFETY ships with a zero-dependency CLI (`bin/safety.js`) and a native **Model Context Protocol (MCP)** server (`bin/safety-mcp.js`).
 
-### CLI Commands:
+### ⚡ CLI Quick Commands:
+
+*Click the copy button on any command below to execute directly in your terminal:*
+
+**Audit Pre-Commit Stop Gate:**
 ```bash
-# 1. Execute the full pre-commit stop gate audit
 safety gate --test "npm test"
+```
 
-# 2. Pre-execution zero-destruction wall (blocks dangerous / secret commands)
-safety intercept "git reset --hard HEAD"   # -> BLOCKED (Destructive reset forbidden)
-safety intercept "npm run test"            # -> ALLOWED
+**Test Command Against Zero-Destruction Wall:**
+```bash
+safety intercept "git reset --hard HEAD"
+```
 
-# 3. Decentralized multi-agent mesh locking
+**Acquire Multi-Agent Mesh Lock:**
+```bash
 safety mesh lock --agent "cursor" --paths "src/api/**" --task "Auth overhaul"
-safety mesh status
-safety mesh unlock --agent "cursor"
+```
 
-# 4. View diff health & verification scorecard
+**Inspect Active Mesh Lock Status:**
+```bash
+safety mesh status
+```
+
+**Release Active Mesh Lock:**
+```bash
+safety mesh unlock --agent "cursor"
+```
+
+**Generate Diff Health Scorecard:**
+```bash
 safety report
 ```
 
